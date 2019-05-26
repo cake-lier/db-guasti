@@ -48,14 +48,14 @@ informazioni tecniche. L'operatore richiede inoltre la data di acquisto dell'ele
 il cliente le abbia a disposizione o se ne ricordi. In assenza di data di acquisto sarà compito del tecnico, una volta recatosi a casa del cliente, 
 recuperare almeno questa informazione e in caso la garanzia del prodotto sia scaduta o non sia trovata, far pagare il cliente. Il cliente potrebbe avere 
 aderito opzionalmente ad un programma di estensione della garanzia, identificato da un codice, informazione che deve fornire, se non fase in chiamata, 
-almeno al momento della visita. Da ultimo, l'operatore chiede al cliente di farsi descrivere il guasto e registra la data corrente come data di apertura 
+almeno al momento della visita. Da ultimo, l'operatore chiede al cliente di farsi descrivere il guasto o i guasti subiti e registra la data corrente come data di apertura 
 della pratica, ponendo lo stato dell'intervento come aperto e concorda con il cliente la data di visita del tecnico a casa per la riparazione.\newline
 Un difetto è univocamente determinato da due codici, il "\textit{Component Code}", che identifica quale parte di un elettrodomestico viene affetto, e
 il codice di tipo, che indica qual è nello specifico il tipo di difetto che il componente può subire. Ad ogni difetto sono associati i ricambi che sono 
 necessari per poterlo sistemare, che potrebbero anche essere più di uno o nessuno, identificati da un codice, e il costo di ciascuno di essi, 
 sia in termini di costo del ricambio stesso, che del costo di manodopera per l'installazione.\newline
 Un tecnico, che afferisce ad un centro assistenza come l'operatore, si preoccuperà, una volta raccolte le informazioni necessarie dalla chiamata,
-di recarsi a casa del cliente e registrare a sua volta una descrizione personale del guasto del cliente, dopodichè possibilmente riparerà il guasto
+di recarsi a casa del cliente e registrare a sua volta una descrizione personale del guasto o dei guasti del cliente, dopodichè possibilmente li riparerà
 e si preoccuperà di chiudere la richiesta di assistenza pendente. Specificherà anche il tempo che ha impiegato nel risolvere il problema del cliente
 espresso in quarti d'ora. Un tecnico può lavorare direttamente per l'azienda o è assunto tramite un'impresa terza per l'azienda stessa. \newline
 Un progettista di elettrodomestici dovrà poi periodicamente recuperare le informazioni riguardanti i guasti che si sono verificati sui prodotti che
@@ -90,7 +90,7 @@ stesso, dalla richiesta iniziale del cliente, alla visita del tecnico dell'assis
 che ogni intervento sarà raccolto in un'unica pratica e perciò anche quest'ultimo termine indica lo stesso concetto.
 
 \section{Definizione delle specifiche ed estrapolazione dei concetti}
-Si vuole realizzare una base di dati che permetta di gestire tutte le informazioni che riguardano un  \textbf{guasto} di un \textbf{prodotto}.
+Si vuole realizzare una base di dati che permetta di gestire tutte le informazioni che riguardano un \textbf{guasto} di un \textbf{prodotto}.
 Un prodotto è univocamente identificato da un "PNC" (\textit{Product Number Code}) ed è caratterizzato da una categoria, un \textbf{modello} 
 sotto forma di codice e un "SNC" (\textit{Serial Number Code}). Un prodotto possiede inoltre una data di acquisto e una di installazione, insieme ad 
 un'estensione di garanzia associata identificata da un codice, informazioni che però possono essere disponibili o meno, a seconda che il \textbf{cliente}
@@ -100,18 +100,18 @@ Al verificarsi di un guasto, il cliente si preoccupa di chiamare l'assistenza cl
 il recapito presso il quale dispacciare il \textbf{tecnico} per la riparazione del prodotto ed opzionalmente il suo indirizzo \textit{email},
 solamente nel caso il cliente lo possedesse.\newline
 Il cliente parlerà con un \textbf{operatore}, che chiederà al cliente tutte le informazioni relative al prodotto o ai prodotti
-che hanno subito un guasto insieme ad una descrizione di quest'ultimo che viene anch'essa registrata. Viene inoltre concordata una data di
+che hanno subito un guasto insieme alle descrizioni dei guasti stessi che vengono anch'esse registrate. Viene inoltre concordata una data di
 visita del tecnico affinchè possa riparare il prodotto. Infine, vengono registrati la data della chiamata del cliente e viene
 aggiornato lo stato dell'intervento come aperto. Quando il tecnico visiterà il cliente, uno solo per intervento, registrerà una sua descrizione
-del guasto e dopo averlo riparato segnerà lo stato dell'intervento come chiuso. Indicherà anche il tempo speso per farlo in quarti d'ora.\newline
+del guasto per ognuno di essi e dopo averli riparati segnerà lo stato dell'intervento come chiuso. Indicherà anche il tempo speso per farlo in quarti d'ora.\newline
 Un guasto è associato ad uno specifico \textbf{difetto}, il quale è univocamente determinato da due codici: il "\textit{Component Code}"
 che identifica il componente del prodotto coinvolto e un codice che identifica il tipo del difetto su quello specifico componente. Nella
 riparazione di un difetto possono essere utilizzati uno o più \textbf{ricambi}, ognuno dei quali è identificato da un codice e vi è associato
 sia un costo di acquisto per il ricambio stesso che di manodopera per l'installazione.\newline
 L'azienda possiede per i suoi dipendenti informazioni come il codice fiscale, il nome, il cognome, la data e il luogo di nascita, luogo di
 residenza e lo stipendio percepito. I dipendenti presi in considerazione sono gli operatori, i tecnici e i
-\textbf{progettisti} di elettrodomestici. Gli operatori e i tecnici afferiscono ad uno specifico \textbf{centro assistenza} dell'azienda,
-mentre i progettisti sono interessati ad analizzare i dati di una o più \textbf{categorie} di prodotto. Un tecnico inoltre può essere
+\textbf{progettisti}. Gli operatori e i tecnici afferiscono ad uno specifico \textbf{centro assistenza} dell'azienda,
+mentre i progettisti sono interessati ad analizzare i dati dei guasti di una o più \textbf{categorie} di prodotto. Un tecnico inoltre può essere
 dipendente interno dell'azienda oppure no.\newline
 Un centro assistenza ha sede in una città e possiede una determinata area di competenza, nella quale tutte le telefonate che vengono fatte
 per l'assistenza vengono inoltrate a quello specifico centro. Esso è identificato da un codice univoco, ma solo nella nazione in cui si trova.\newline
@@ -131,11 +131,11 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 	Cliente & Una persona che ha acquistato un prodotto presso l'azienda e ha richiesto un intervento per quello specifico prodotto & Prodotto,\newline 
 	Intervento\\
 	\hline
-	Guasto & Un problema di varia natura che si è verificato in uno specifico prodotto, causato da un difetto nel prodotto stesso & Prodotto,\newline 
-	Difetto\\
+	Guasto & Un problema di varia natura che si è verificato in uno specifico prodotto, causato da un difetto nel prodotto stesso, per cui viene
+	richiesto un intervento. Sarà analizzato da un progettista & Prodotto,\newline Difetto, \newline Intervento,\newline Progettista\\
 	\hline
-	Intervento & Una richiesta fatta da un cliente per risolvere un guasto subito, sarà registrato da un operatore, risolto da un tecnico ed
-	analizzato da un progettista & Guasto,\newline Operatore,\newline Tecnico,\newline Progettista\\
+	Intervento & Una richiesta fatta da un cliente per risolvere uno o più guasti subiti, sarà registrato da un operatore e risolto da un Tecnico
+	& Guasto,\newline Operatore,\newline Tecnico\\
 	\hline
 	Difetto & Una classe di guasti accomunati dal componente in cui il guasto si verifica e la natura del difetto stesso, possono essere utilizzati
 	dei ricambi per poterlo riparare & Guasto,\newline Ricambio\\
@@ -148,8 +148,8 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 	Tecnico & Un dipendente dell'azienda che si preoccupa di attendere ad interventi di manutenzione e chiudere le richieste pendenti, appartiene
 	ad un centro assistenza & Intervento,\newline Centro Assistenza\\
 	\hline
-	Progettista & Un dipendente dell'azienda che si preoccupa di analizzare i dati sugli interventi effettuati, si occupa solamente di alcuni tipi
-	di prodotto & Intervento\\
+	Progettista & Un dipendente dell'azienda che si preoccupa di analizzare i dati sui guasti accaduti, ma solamente su alcuni tipi
+	di prodotto & Guasto\\
 	\hline
 	Centro Assistenza & Parte dell'azienda volta all'impiego di operatori e tecnici di assistenza & Operatore,\newline Tecnico\\
 	\hline
@@ -162,7 +162,7 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 
 \begin{figure}[H]
 	\centering
-	%\includegraphics[width=\linewidth]{images/scheletro.png}
+	\includegraphics[width=\linewidth]{images/skeleton.png}
 	\caption{Schema scheletro dei concetti, così come estrapolati dalle specifiche}
 \end{figure}
 
@@ -175,7 +175,13 @@ che ruotano tutte attorno alla nozione di persona. Tutte queste infatti sono per
 ed il cognome; è perciò significativo metterle assieme in una gerarchia che discende da persona. Inoltre, tutti e tre i concetti meno che "cliente"
 sono di fatto dipendenti dell'azienda e in quanto tali le informazioni che l'azienda trattiene su di essi sono le stesse, pur intrattenendo con gli
 altri concetti rapporti diversi a seconda della mansione che svolgono. Anche per queste tre concetti è opportuno raccoglierli attraverso una seconda
-gerarchia che origini da dipendente, che a sua volta è una persona.
+gerarchia che origini da dipendente, che a sua volta è una persona. I concetti di "operatore" e "tecnico" saranno poi legati a "centro assistenza"
+così come individuato nello schema scheletro. Il "progettista", poichè può occuparsi o di una o di più categorie di prodotto quando analizza i "guasti",
+queste gli verranno associate mediante un attributo multiplo obbligatorio. Pur essendo condivise tra più "progettisti" e anche dai "prodotti" stessi,
+non è il caso separare il concetto di "categoria" in un'entità a sè stante, perchè non presenta nessuna caratteristica che non sia il suo nome stesso
+e in caso l'insieme dei prodotti che presentano una stessa categoria dovrebbe essere rimosso, non è problematico. Infatti, significherebbe semplicemente
+che l'azienda ha deciso di voler smettere di trattare le informazioni su una determinata categoria di elettrodomestici e a maggior ragione anche la
+categoria stessa è bene che non lasci traccia nel \textit{database}.
 
 \begin{figure}[H]
 	\centering
@@ -183,20 +189,19 @@ gerarchia che origini da dipendente, che a sua volta è una persona.
 	\caption{Schema raffinato dei concetti riguardanti "persone"}
 \end{figure}
 
-\subsection{Centro assistenza}
+\subsection{Necessità di un entità separata per i guasti}
 
-Il concetto di "centro assistenza", naturale seguito nell'espansione delle specifiche dopo la precedente esplorazione dei concetti legati a persone,
-non necessita di molto lavoro per essere sistemato.  
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth]{images/centriAssistenza.png}
-	\caption{Schema raffinato del concetto "centro assistenza"}
-\end{figure}
-
-\subsection{Interventi}
-
-Il cuore delle specifiche è quello che riguarda un "intervento" e i "guasti" che possono accadere ad un prodotto.
+Dai concetti di "persone" è poi immediato spostarsi sui quelli di "intervento" e "guasto" che li coinvolgono più direttamente. Benchè il testo
+specifichi che siano i prodotti, a causa dei loro guasti, ad essere in numero di uno o più presenti in un intervento, è più adatto frapporre il
+concetto di "guasto" tra essi ed il concetto di "intervento". È infatti facile immaginare come un cliente potrebbe voler riportare la presenza
+di un guasto solamente dopo che un secondo si è verificato, magari perchè non era così urgente, e lo farebbe all'interno dello stesso intervento.
+Se eliminassimo il concetto di "guasto" questo non sarebbe possibile e inoltre provocherebbe problemi anche con la nozione di "difetto". Essendo
+un prodotto caratterizzato anche da più guasti, infatti, potrebbero essere più di uno i "difetti" legati ad un "prodotto", ma questo impedirebbe
+la loro ripetizione, mentre invece è assai probabile che se un "guasto" non viene correttamente riparato, sullo stesso "prodotto" si verificherà
+di nuovo in futuro. Magari, più semplicemente, potrebbe anche verificarsi anche un guasto diverso, ma la cui origine è sempre lo stesso "difetto" di
+progettazione. I dati che sono di competenza del tecnico inserire sono tutti modellati mediante attributi opzionali, poichè si suppone che
+l'apertura della pratica coincida con l'inserimento di un nuovo \textit{record} nel \textit{database}, momento nel quale questi dati sono ancora
+sconosciuti.
 
 \begin{figure}[H]
 	\centering
@@ -204,9 +209,11 @@ Il cuore delle specifiche è quello che riguarda un "intervento" e i "guasti" ch
 	\caption{Schema raffinato dei concetti "intervento", "guasto" e "difetto"}
 \end{figure}
 
-\subsection{Prodotti}
+\subsection{Modellazione del concetto di "prodotto"}
 
-Da ultimo, espandiamo la nozione di "prodotto".
+Da ultimo, espandiamo la nozione di "prodotto". Non è una componente dello schema particolarmente significativa, anche se presenta alcune particolarità.
+Il fatto che il cliente possa non avere a disposizione le informazioni riguardanti la data di acquisto, installazione o addirittura la garanzia sul
+prodotto, richiede una modellazione specifica. In particolar modo, queste informazioni sarà necessario modellarle come attributi singoli opzionali.
 
 \begin{figure}[H]
 	\centering
