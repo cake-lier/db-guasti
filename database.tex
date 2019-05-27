@@ -91,9 +91,9 @@ che ogni intervento sarà raccolto in un'unica pratica e perciò anche quest'ult
 
 \section{Definizione delle specifiche ed estrapolazione dei concetti}
 Si vuole realizzare una base di dati che permetta di gestire tutte le informazioni che riguardano un \textbf{guasto} di un \textbf{prodotto}.
-Un prodotto è univocamente identificato da una combinazione di codici "PNC" (\textit{Product Number Code}) e "SNC" (\textit{Serial Number Code}) ed è caratterizzato
+Un prodotto è univocamente identificato da una combinazione di codici detti "PNC" (\textit{Product Number Code}) e "SNC" (\textit{Serial Number Code}) ed è caratterizzato
 da una \textbf{categoria} e un \textbf{modello} sotto forma di codice. Un prodotto possiede inoltre una data di acquisto e una di installazione, insieme ad 
-un'\textbf{estensione di garanzia} associata identificata da un codice, informazioni che però possono essere disponibili o meno, a seconda che il \textbf{cliente}
+un'\textbf{estensione di garanzia} identificata da un codice, informazioni che però possono essere disponibili o meno, a seconda che il \textbf{cliente}
 che lo possiede ne abbia tenuto traccia o meno.\newline
 Al verificarsi di un guasto, il cliente si preoccupa di chiamare l'assistenza clienti dell'azienda produttrice per richiedere un
 \textbf{intervento}. Ogni cliente verrà identificato dal suo numero di telefono e verranno registrati il suo nome, il suo cognome,
@@ -121,7 +121,7 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 	\textbf{Termine} & \textbf{Descrizione} & \textbf{Collegamenti}\\
 	\hline
 	\hline
-	Prodotto & Un elettrodomestico che l'azienda ha rilasciato sul mercato ed è stato comprato da un cliente, per poi subire un guasto &
+	Prodotto & Un elettrodomestico di un determinato modello che l'azienda ha rilasciato sul mercato ed è stato comprato da un cliente, per poi subire un guasto &
 	Cliente,\newline Modello,\newline Guasto\\
 	\hline
 	Modello & Una classe di prodotti accomunata da caratteristiche comuni & Prodotto\\
@@ -149,7 +149,7 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 	ad un centro assistenza & Intervento,\newline Centro Assistenza\\
 	\hline
 	Progettista & Un dipendente dell'azienda che si preoccupa di analizzare i dati sui guasti accaduti, ma solamente su alcuni tipi
-	di prodotto & Guasto\\
+	di prodotto & Guasto, Prodotto\\
 	\hline
 	Centro Assistenza & Parte dell'azienda volta all'impiego di operatori e tecnici di assistenza & Operatore,\newline Tecnico\\
 	\hline
@@ -202,7 +202,7 @@ di un guasto solamente dopo che un secondo si è verificato, magari perchè il p
 Se eliminassimo il concetto di "guasto" questo non sarebbe possibile e inoltre provocherebbe problemi anche con la nozione di "difetto". Essendo
 un prodotto caratterizzato anche da più guasti, infatti, potrebbero essere più di uno i difetti legati ad un prodotto, anche ripetuti nel tempo,
 ma una schematizzazione del genere impedirebbe proprio la loro ripetizione. Potrebbe ad esempio verificarsi un guasto diverso in un momento successivo,
-che verrà incluso poi in un intervento successivo, ma la cui origine è sempre lo stesso difetto di progettazione. I dati che sono di competenza del tecnico
+che verrà incluso poi in un intervento successivo, ma la cui origine è sempre lo stesso difetto di progettazione.\newline I dati che sono di competenza del tecnico
 inserire sono tutti modellati mediante attributi opzionali, poichè si suppone che l'apertura della pratica coincida con l'inserimento di un nuovo
 \textit{record} nel \textit{database}, momento nel quale questi dati sono ancora sconosciuti. Per le nozioni di "componente" e "garanzia" è stato
 deciso di non renderle entità poichè non possiedono caratteristiche interessanti che non siano i codici stessi che le identificano. Inoltre, un componente
@@ -234,10 +234,168 @@ prodotto, richiede una modellazione specifica. In particolar modo, queste inform
 	\caption{Schema concettuale finale}
 \end{figure}
 
+I vincoli che questo schema non può modellare sono chiaramente quelli inerenti allo stato delle entità nel tempo, non è infatti lo schema adatto per poter
+specificare chi e come dovrà modificare lo stato dell'intervento una volta creatone uno nuovo. Inoltre, non è possibile specificare nello schema che i guasti
+di cui un progettista deve occuparsi sono solamente quelli che riguardano prodotti appartenenti alla sua categoria di interesse. 
+
 \chapter{Progettazione logica}
 
 \section{Volume dei dati}
 
+\begin{tabularx}{\linewidth}{>{\hsize=0.375\hsize}X|X|>{\hsize=0.475\hsize}X}
+	\hline
+	\textbf{Nome del concetto} & \textbf{Tipo di costrutto} & \textbf{Stima del volume}\\
+	\hline
+	\hline
+	Persona & E & \\
+	\hline
+	Dipendente & E & \\
+	\hline
+	Cliente & E & \\
+	\hline
+	Operatore & E & \\
+	\hline
+	Tecnico & E & \\
+	\hline
+	Progettista & E & \\
+	\hline
+	Centro Assistenza & E & \\
+	\hline
+	Afferenza_Tec & R & \\
+	\hline
+	Afferenza_Op & R & \\
+	\hline
+	Intervento & E & \\
+	\hline
+	Richiesta & R & \\
+	\hline
+	Apertura & R & \\
+	\hline
+	Assistenza & R & \\
+	\hline
+	Motivazione & R & \\
+	\hline
+	Guasto & E & \\
+	\hline
+	Analisi & R & \\
+	\hline
+	Difetto & E & \\
+	\hline
+	Causa & R & \\
+	\hline
+	Ricambio & E & \\
+	\hline
+	Riparazione & R & \\
+	\hline
+	Prodotto & E & \\
+	\hline
+	Effetto & R & \\
+	\hline
+	Modello & E & \\
+	\hline
+	Tipo & R & \\
+	\hline
+	Proprietà & R & \\
+	\hline
+	\caption{Tabella dei volumi dei dati}
+\end{tabularx}
+
+Questa tabella prende in considerazione i volumi dei dati nell'arco di ...
+
 \section{Descrizione e frequenza delle principali operazioni}
+
+Le principali operazioni che possono essere fatti sulla base di dati possono essere divise in tre categorie, a seconda del dipendente dell'azienda che vi accede.
+In caso fosse un operatore a dover accedere, sarebbe principalmente interessato a:
+
+\begin{itemize}
+	\item[O1 -] Inserimento di un nuovo intervento
+		\subitem Un operatore dovrà poter inserire un nuovo intervento 
+	\item[O2 -] Cancellazione di un intervento precedentemente aperto dall'operatore stesso
+		\subitem Un operatore dovrà poter cancellare un intervento aperto in precedenza da lui stesso perchè accortosi di un errore commesso nell'inserimento
+		oppure perchè il cliente non desidera più ricevere alcun tipo di assistenza 
+\end{itemize}
+
+Se consideriamo invece un tecnico, le operazioni necessarie per poter svolgere la sua mansione sono:
+
+\begin{itemize}
+	\item[T1 - ] Vista di tutti gli interventi correntemente aperti non già assegnati ad un altro tecnico, ordinati per urgenza
+		\subitem Prima di iniziare a lavorare, un tecnico dovrà capire quali sono gli interventi sui quali potrà dedicarsi e per poter scegliere, deve poterli avere a
+		disposizione tutti quanti. In particolar modo, sarebbe più utile organizzarli per urgenza, ovvero per maggior tempo trascorso dalla data della chiamata
+	\item[T2 - ] Aggiornamento di un intervento
+		\subitem Una volta eseguita una riparazione, il tecnico si sarà recato a casa di un cliente e avrà perciò aggiornato le informazioni sul prodotto che il cliente
+		non era riuscito a fornire. Inoltre, avrà eseguito la sua riparazione, perciò sarà necessario che aggiorni le informazioni sull'intervento di sua sola
+		competenza una volta terminata la visita al cliente
+\end{itemize}
+
+Da ultimo, ci sono i progettisti che necessiteranno di stilare rapporti sotto forma di classifiche sulle principali caratteristiche dei guasti ma che competono solamente
+le categorie di prodotti di loro competenza. Le principali operazioni che vorranno fare saranno:
+
+\begin{itemize}
+	\item[P1 - ] Visualizzare tutti i guasti accaduti nel mese corrente
+	\subitem Ogni mese è richiesto fare un report sulla produzione degli elettrodomestici ed è perciò necessario avere a disposizione tutti i guasti che sono accaduti
+	\item[P2 - ] I primi cinque modelli che hanno subito più guasti nel mese corrente
+	\subitem Di tutti i guasti, quelli più importanti saranno quelli che coinvolgono i modelli più colpiti, che saranno quelli che necessiteranno un nuovo studio più urgente
+	\item[P3 - ] I primi cinque \textit{PNC} che hanno subito più guasti nel mese corrente
+	\subitem Ogni modello coinvolge essenzialmente più codici di prodotto più specifici e per un'analisi più di dettaglio è necessario poter avere a disposizione una classifica
+	di guasti ordinata per \textit{PNC}, da cui estrarre i più "urgenti"
+	\item[P4 - ] I primi cinque \textit{Component Code} che sono stati coinvolti maggiormente nei guasti di questo mese
+	\subitem Alcuni componenti si guastano più di altri indipendentemente dal prodotto sul quale sono collocati. Si vuole ottenere i primi cinque maggiormente presenti questo mese
+	\item[P5 - ] I primi cinque ricambi più utilizzati per riparare i guasti di questo mese
+	\subitem Uno stesso ricambio può essere utilizzato in riparazioni di diversi guasti, perciò il suo costo è quello che andrà ad incidere maggiormente su quello totale dei
+	ricambi acquistati per le riparazioni ed è perciò necessario stilare una classifica per ricambi utilizzati nei guasti del mese corrente.
+	\item[P6 - ] I primi cinque per costo ...
+\end{itemize}
+
+\begin{tabularx}
+	\hline
+	\textbf{Codice operazione} & \textbf{Frequenza} & \textbf{Tipo (Interattiva / Batch)}\\
+	\hline
+	\hline
+	O1 & & I\\
+	\hline
+	O2 & & I\\
+	\hline
+	T1 & & I\\
+	\hline
+	T2 & & I\\
+	\hline
+	P1 & & B\\
+	\hline
+	P2 & & B\\
+	\hline
+	P3 & & B\\
+	\hline
+	P4 & & B\\
+	\hline
+	P5 & & B\\
+	\hline
+	P6 & & B\\
+	\hline
+	\caption{Tabella della frequenza delle principali operazioni}
+\end{tabularx}
+
+ Nella precedente tabella vengono riassunte le frequenze di tutte le operazioni che sono state precedentemente individuate.
+
+\section{Schemi di navigazione e tabelle degli accessi delle principali operazioni}
+
+Per ogni operazione, verrà esplicitato a parole il modo con il quale verrà eseguita l'operazione e verrà mostrato uno schema che indichi come questi
+accessi alle varie entità e relazioni si riflette sullo schema concettuale realizzato. Da questo schema, si estrarrà la tabella degli accessi che ci
+permetterà di avere il costo totale di ognuna delle operazioni in termini di "\textit{I/O}".
+
+\subsection{O1, O2 - Inserimento e cancellazione di un nuovo intervento}
+
+L'inserimento di ogni nuovo intervento coinciderà con l'aggiunta di un nuovo intervento e, nel caso peggiore, anche di un nuovo cliente che non 
+
+\section{Raffinamento dello schema concettuale}
+
+\section{Analisi delle ridondanze}
+
+\section{Traduzione di entità e associazioni in relazioni}
+
+\section{Schema finale}
+
+\section{Traduzione delle operazioni in SQL}
+
+\chapter{Progettazione dell'applicazione}
 
 \end{document}
