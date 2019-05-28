@@ -247,25 +247,25 @@ di cui un progettista deve occuparsi sono solamente quelli che riguardano prodot
 	\textbf{Nome del concetto} & \textbf{Tipo di costrutto} & \textbf{Stima del volume}\\
 	\hline
 	\hline
-	Persona & E & \\
+	Persona & E & 13350\\
 	\hline
-	Dipendente & E & \\
+	Dipendente & E & 450\\
 	\hline
-	Cliente & E & \\
+	Cliente & E & 12900\\
 	\hline
-	Operatore & E & \\
+	Operatore & E & 80\\
 	\hline
-	Tecnico & E & \\
+	Tecnico & E & 240\\
 	\hline
-	Progettista & E & \\
+	Progettista & E & 130\\
 	\hline
-	Centro Assistenza & E & \\
+	Centro Assistenza & E & 80\\
 	\hline
 	Afferenza_Tec & R & \\
 	\hline
 	Afferenza_Op & R & \\
 	\hline
-	Intervento & E & \\
+	Intervento & E & 13200\\
 	\hline
 	Richiesta & R & \\
 	\hline
@@ -275,15 +275,15 @@ di cui un progettista deve occuparsi sono solamente quelli che riguardano prodot
 	\hline
 	Motivazione & R & \\
 	\hline
-	Guasto & E & \\
+	Guasto & E & 13220\\
 	\hline
 	Analisi & R & \\
 	\hline
-	Difetto & E & \\
+	Difetto & E & 50\\
 	\hline
 	Causa & R & \\
 	\hline
-	Ricambio & E & \\
+	Ricambio & E & 75\\
 	\hline
 	Riparazione & R & \\
 	\hline
@@ -343,7 +343,8 @@ le categorie di prodotti di loro competenza. Le principali operazioni che vorran
 	\item[P5 - ] I primi cinque ricambi più utilizzati per riparare i guasti di questo mese
 	\subitem Uno stesso ricambio può essere utilizzato in riparazioni di diversi guasti, perciò il suo costo è quello che andrà ad incidere maggiormente su quello totale dei
 	ricambi acquistati per le riparazioni ed è perciò necessario stilare una classifica per ricambi utilizzati nei guasti del mese corrente.
-	\item[P6 - ] I primi cinque per costo ...
+	\item[P6 - ] I primi cinque interventi più costosi a partire dai ricambi
+	\subitem  
 \end{itemize}
 
 \begin{tabularx}
@@ -351,25 +352,25 @@ le categorie di prodotti di loro competenza. Le principali operazioni che vorran
 	\textbf{Codice operazione} & \textbf{Frequenza} & \textbf{Tipo (Interattiva / Batch)}\\
 	\hline
 	\hline
-	O1 & & I\\
+	O1 & 5 volte al giorno & I\\
 	\hline
 	O2 & & I\\
 	\hline
-	T1 & & I\\
+	T1 & 1 volta al giorno & I\\
 	\hline
-	T2 & & I\\
+	T2 & 5 volte al giorno & I\\
 	\hline
-	P1 & & B\\
+	P1 & 5 volte al mese & B\\
 	\hline
-	P2 & & B\\
+	P2 & 5 volte al mese & B\\
 	\hline
-	P3 & & B\\
+	P3 & 5 volte al mese & B\\
 	\hline
-	P4 & & B\\
+	P4 & 5 volte al mese & B\\
 	\hline
-	P5 & & B\\
+	P5 & 5 volte al mese & B\\
 	\hline
-	P6 & & B\\
+	P6 & 5 volte al mese & B\\
 	\hline
 	\caption{Tabella della frequenza delle principali operazioni}
 \end{tabularx}
