@@ -6,6 +6,7 @@
 \usepackage{tabularx}
 \usepackage{ltablex}
 \usepackage[font=small,format=plain,labelfont=bf,up,textfont=normal,up,justification=justified,singlelinecheck=false,skip=0.01\linewidth]{caption}
+\usepackage{enumitem}
 \renewcommand{\familydefault}{\sfdefault}
 
 \title{"Progetto di una base di dati per la gestione del ciclo di vita del difetto nella produzione dell'elettrodomestico"}
@@ -28,7 +29,7 @@ attori in gioco, tecnici, telefonisti, analisti dei dati e progettisti, di poter
 il prodotto: le tempistiche di manifestazione, di risoluzione, il tipo di guasto ed altro ancora. Questo permetterà all'azienda di poter
 avere più controllo sullo sviluppo e la messa in produzione di futuri progetti avendo a disposizione più informazioni strategiche.
 
-\chapter{Analisi}
+\chapter{Analisi dei requisiti}
 
 \section{Intervista}
 Si vuole realizzare una base di dati che permetta di gestire tutte le informazioni che riguardano un guasto di un elettrodomestico.
@@ -160,7 +161,7 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 	\caption{Glossario dei termini}
 \end{tabularx}
 
-\chapter{Analisi concettuale}
+\chapter{Progettazione concettuale}
 
 \section{Schema scheletro}
 
@@ -867,31 +868,168 @@ Un'altra modifica che si può effettuare è importare la nazione in cui l'interv
 la nazione di appartenenza del centro assistenza a cui l'operatore che riceve la chiamata fa capo, in quanto si suppone che ogni cliente che chiama venga diretto al centro assistenza 
 adeguato alla sua zona di residenza secondo l'azienda. Questa introduzione di ridondanza porterebbe all'aumento del costo dell'operazione O1, ma ad una diminuzione del costo di P7.
 
-\begin{tabularx}{\linewidth}{X|X|X}
-	\title{Operazione O1}
-	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
-	\hline
-	\hline
-	Intervento & 1 & S\\
-	\hline
-	Cliente & 1 & S\\
-	\hline
-	Guasto & 13.220 / 13.200 = 1,002 & S\\
-	\hline
-	Prodotto & 13.220 / 13.200 = 1,002 & S\\
-	\hline
-	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 8,008 Accessi }\\\hline
-	\hline
-	\caption{Calcolo degli accessi delle operazioni O1 e O2}
-\end{tabularx}
+\captionsetup[table]{skip=-10pt}
+\begin{table}[H]
+	\caption*{\textbf{Operazione O1 con ridondanza}}
+	\begin{tabularx}{\linewidth}{X|X|X}
+		\hline
+		\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
+		\hline
+		\hline
+	%	Afferenza\_Op & 1 & L\\
+	%	\hline
+		Intervento & 1 & S\\
+		\hline
+	%	Richiesta & 1 & S\\
+	%	\hline
+		Cliente & 1 & S\\
+		\hline
+	%	Motivazione & 13.220 / 13.200 = 1,002 & S\\
+	%	\hline
+		Guasto & 13.220 / 13.200 = 1,002 & S\\
+		\hline
+	%	Effetto & 1,002 & S\\
+	%	\hline
+		Prodotto & 1,002 & S\\
+		\hline
+		\hline
+		TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 8,008 accessi }\\
+		\hline
+		\hline
+		TOTALE MENSILE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 8,008 * 5 accessi/giorno * 30 giorno/mese = 1201,2 accessi/mese }\\
+		\hline
+		\hline
+	\end{tabularx}
+	\caption*{\textbf{Operazione P7 con ridondanza}}
+	\begin{tabularx}{\linewidth}{X|X|X}
+		\hline
+		\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
+		\hline
+		\hline
+		Guasto & 13.220 & L\\
+		\hline
+	%	Motivazione & 13.220 & L\\
+	%	\hline
+		Intervento & 13.220 & L\\
+		\hline
+		\hline
+		TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 26.440 accessi }\\
+		\hline
+		\hline
+		TOTALE MENSILE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 26.440 * 5 accessi/mese = 132.200 accessi/mese }\\
+		\hline
+		\hline
+	\end{tabularx}
+\end{table}
+\captionsetup[table]{skip=10pt}
+
+Perciò, abbiamo che il numero totale di accessi mensili supponendo di mantenere la ridondanza è di 133.401,2 contro i 144.417,87 accessi effettuati in caso di mancanza della
+ridondanza, rendendo utile il suo mantenimento.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{images/Unredundant.png}
+	\caption{Schema E/R ulteriormente raffinato in seguito all'analisi delle ridondanze}
+\end{figure}
 
 \section{Traduzione di entità e associazioni in relazioni}
 
-\section{Schema finale}
+\begin{itemize}
+	\item \textbf{CENTRI\_ASSISTENZA} (\underline{CodiceNazionale}, \underline{Nazione}, Sede, AreaCompetenza)
+	\item \textbf{OPERATORI} (\underline{Codice}, Nome, Cognome, CF, DataNascita, LuogoNascita, Residenza, Stipendio, CodiceNazionaleCentro, NazioneCentro)
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item[] FK: (CodiceNazionaleCentro, NazioneCentro) REFERENCES CENTRI\_ASSISTENZA
+			\item[] Unique(CF)
+		\end{itemize}
+	\item \textbf{TECNICI} (\underline{Codice}, Nome, Cognome, CF, DipendenteInterno, DataNascita, LuogoNascita, Residenza, Stipendio, CodiceNazionaleCentro, NazioneCentro)
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item[] FK: (CodiceNazionaleCentro, NazioneCentro) REFERENCES CENTRI\_ASSISTENZA
+			\item[] Unique(CF)
+		\end{itemize}
+	\item \textbf{CLIENTI} (\underline{NumeroTelefono}, Nome, Cognome, Recapito, Email*)
+	\item \textbf{INTERVENTI} (\underline{NumeroTelefonoCliente}, \underline{DataRichiesta}, Stato, DataVisita, TempoImpiegato*, Nazione, CodiceOperatore, CodiceTecnico)
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item[] FK: (NumeroTelefonoCliente) REFERENCES CLIENTI
+			\item[] FK: (CodiceOperatore) REFERENCES OPERATORI
+			\item[] FK: (CodiceTecnico) REFERENCES TECNICI
+		\end{itemize}		
+	\item \textbf{MODELLI} (\underline{Codice}, Nome)
+	\item \textbf{PRODOTTI} (\underline{PNC}, \underline{SNC}, Categoria, DataAcquisto*, DataInstallazione*, CodiceGaranzia*, CodiceModello)
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item[] FK: (CodiceModello) REFERENCES MODELLI
+		\end{itemize}		
+	\item \textbf{DIFETTI} (\underline{ComponentCode}, \underline{CodiceTipo}, NomeComponente, NomeTipo)
+	\item \textbf{RICAMBI} (\underline{Codice}, Nome, CostoAcquisto, CostoInstallazione, ComponentCode, CodiceTipoDifetto)
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item[] FK: (ComponentCode, CodiceTipoDifetto) REFERENCES DIFETTI
+		\end{itemize}		
+	\item \textbf{GUASTI} (\underline{NumeroTelefonoCliente}, \underline{DataRichiestaIntervento}, \underline{PNC}, \underline{SNC}, DescrizioneCliente, DescrizioneTecnico*, ComponentCode*,
+	CodiceTipoDifetto*)
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item[] FK: (NumeroTelefonoCliente, DataRichiestaIntervento) REFERENCES INTERVENTI
+			\item[] FK: (PNC, SNC) REFERENCES PRODOTTI
+			\item[] FK: (ComponentCode*, CodiceTipoDifetto*) REFERENCES DIFETTI
+		\end{itemize}		
+	\item \textbf{CATEGORIE\_PRODOTTI} (\underline{Codice}, Nome)
+	\item \textbf{PROGETTISTI} (\underline{Codice}, Nome, Cognome, CF, DataNascita, LuogoNascita, Residenza, Stipendio)
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item[] Unique(CF)
+		\end{itemize}
+	\item \textbf{INTERESSI} (\underline{CodiceCategoria}, \underline{CodiceProgettista})
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item[] FK: (CodiceCategoria) REFERENCES CATEGORIE
+			\item[] FK: (CodiceProgettista) REFERENCES PROGETTISTI
+		\end{itemize}
+\end{itemize}
+
+\section{Schema relazionale finale}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{images/Logic.png}
+	\caption{Schema logico relazionale ottenuto dal paragrafo precedente}
+\end{figure}
 
 \section{Traduzione delle operazioni in SQL}
+
+\begin{itemize}
+	\item[\textbf{O1} -] Inserimento di un nuovo intervento
+	\subitem \dots
+	\item[\textbf{O2} -] Cancellazione di un intervento precedentemente aperto dall'operatore
+	\subitem \dots
+	\item[\textbf{T1 -}] Vista di tutti gli interventi correntemente aperti non già assegnati ad un altro tecnico, ordinati per urgenza
+	\subitem \dots
+	\item[\textbf{T2 -}] Aggiornamento di un intervento
+	\subitem \dots
+	\item[\textbf{P1 -}] Visualizzare tutti i guasti accaduti nel mese corrente
+	\subitem \dots
+	\item[\textbf{P2 -}] I primi cinque modelli che hanno subito più guasti nel mese corrente
+	\subitem \dots
+	\item[\textbf{P3 -}] I primi cinque \textit{PNC} che hanno subito più guasti nel mese corrente
+	\subitem \dots
+	\item[\textbf{P4 -}] I primi cinque \textit{Component Code} che sono stati coinvolti maggiormente nei guasti di questo mese
+	\subitem \dots
+	\item[\textbf{P5 -}] I primi cinque ricambi più utilizzati per riparare i guasti di questo mese
+	\subitem \dots
+	\item[\textbf{P6 -}] I primi cinque interventi più costosi a partire dai ricambi nel mese corrente
+	\subitem \dots
+	\item[\textbf{P7 -}] I primi cinque paesi per numero di guasti avvenuti in questo mese
+	\subitem \dots
+	\item[\textbf{P8 -}] I \textit{Time To Failure} rispetto alla data di acquisto di ciascun prodotto coinvolto nei guasti di questo mese
+	\subitem \dots
+	\item[\textbf{P9 -}] I \textit{Time To Failure} rispetto alla data di installazione di ciascun prodotto coinvolto nei guasti di questo mese
+	\subitem \dots
+	\item[\textbf{P10 -}] Tempo medio di riparazione di un guasto per tipo di difetto
+	\subitem \dots
+	\item[\textbf{V1} -] Conteggio di tutti gli interventi aperti nel mese da ciascun operatore
+	\subitem \dots
+	\item[\textbf{V2 -}] Conteggio di tutti gli interventi chiusi nel mese corrente da ciascun tecnico
+	\subitem \dots
+	\item[\textbf{V3 -}] Tempo medio di riparazione di un guasto per ciascun tecnico
+	\subitem \dots
+	\item[\textbf{V4 -}] Distanza temporale media tra ricezione della chiamata e visita del tecnico per centro assistenza
+	\subitem \dots
+\end{itemize}
 
 \chapter{Progettazione dell'applicazione}
 
