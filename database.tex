@@ -850,7 +850,42 @@ diminuendo i costi legati a quelle specifiche operazioni.
 
 \section{Analisi delle ridondanze}
 
-Relazioni proprietà e analisi
+Le associazioni che figurano come ridondanti nello schema sono due: "Analisi", tra "Progettista" e "Guasto", e "Proprietà", tra "Cliente" e "Prodotto". Queste due associazioni
+condividono il fatto che nessuna delle due è utilizzata delle principali operazioni individuate e in particolar modo, nessuna delle due è particolarmente utile ai nostri scopi.\newline
+L'associazione "Analisi", infatti, dovrebbe tenere conto di tutti i possibili guasti che sono di interesse per ciascuno dei progettisti, che però provocherebbe non poche ridondanze
+a livello di record per nessun utilizzo. Vero è che abbiamo indicato che non tutti i progettisti sono interessati a visionare tutti i guasti, ma filtrare questi dati può essere effettuato
+anche senza la presenza esplicita di questa associazione, tanto più che abbiamo indicato le operazioni di creazione delle statistiche come "\textit{batch}", quindi da eseguire in
+un momento diverso, possibilmente antecedente, rispetto a quello in cui i progettisti accederanno ai dati. Sarà poi quando un progettista richiederà la visualizzazione dei dati che
+essi saranno filtrati sulla base delle categorie di suo interesse.\newline
+Per quanto riguarda invece "Proprietà", pur essendo vero che il cliente effettua una telefonata per un elettrodomestico che possiede, non abbiamo alcun interesse ad utilizzare mai
+questa nozione. Il fatto che sia presente il cliente associato ad un intervento è perché necessitiamo di sapere presso chi mandare il tecnico per la riparazione. Quale che sia il prodotto
+che possiede è a noi indifferente, poiché non ci interessano statistiche di vendita o similari. Nell'estremo caso volessimo risalire, per un dato cliente, a quali elettrodomestici
+ha comprato - e gli si sono necessariamente guastati - possiamo sempre farlo attraverso "Intervento" e "Guasto".\newline
+Attributi ridondanti eliminabili già presenti nello schema "\textit{Entity-Relationship}" non sono presenti. Per semplificare le operazioni da effettuare su base mensile, si può pensare di importare la data di apertura dell'intervento all'interno dell'entità "Guasto", cosa che però viene già effettuata in quanto "Intervento" è parte integrante della chiave di "Guasto" e perciò
+non è richiesta alcuna modifica ulteriore.\newline
+Un'altra modifica che si può effettuare è importare la nazione in cui l'intervento viene aperto all'interno dell'entità "Intervento" stessa. Questo attributo "Nazione" sarebbe perciò
+la nazione di appartenenza del centro assistenza a cui l'operatore che riceve la chiamata fa capo, in quanto si suppone che ogni cliente che chiama venga diretto al centro assistenza 
+adeguato alla sua zona di residenza secondo l'azienda. Questa introduzione di ridondanza porterebbe all'aumento del costo dell'operazione O1, ma ad una diminuzione del costo di P7.
+
+\begin{tabularx}{\linewidth}{X|X|X}
+	\title{Operazione O1}
+	\hline
+	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
+	\hline
+	\hline
+	Intervento & 1 & S\\
+	\hline
+	Cliente & 1 & S\\
+	\hline
+	Guasto & 13.220 / 13.200 = 1,002 & S\\
+	\hline
+	Prodotto & 13.220 / 13.200 = 1,002 & S\\
+	\hline
+	\hline
+	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 8,008 Accessi }\\\hline
+	\hline
+	\caption{Calcolo degli accessi delle operazioni O1 e O2}
+\end{tabularx}
 
 \section{Traduzione di entità e associazioni in relazioni}
 
