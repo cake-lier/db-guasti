@@ -22,8 +22,8 @@
 \chapter{Introduzione}
 In questo progetto si vuole realizzare una base di dati a supporto della gestione dei difetti nella realizzazione dell'elettrodomestico,
 chiudendo la "catena dell'informazione" tra cliente ed azienda nella fase terminale del ciclo di vita del prodotto. Lo scopo è fornire
-all'azienda tutte le informazioni necessarie sugli elettrodomestici una volta arrivati nelle mani del cliente finale, così da poter
-ottenere informazioni sul campo per quanto riguarda gli obiettivi attesi e disattesi. In particolar modo, l'attenzione è posta sull'elemento
+all'azienda tutte le informazioni necessarie sugli elettrodomestici dopo essere arrivati nelle mani del cliente finale, così da poter
+ottenere informazioni sul campo e capire quali sono gli obiettivi portati a termine e quali no. In particolar modo, l'attenzione è posta sull'elemento
 principe per quanto riguarda l'analisi del comportamento di un bene di consumo: il difetto, in tutti i suoi aspetti. Sarà permesso a tutti gli
 attori in gioco, tecnici, telefonisti, analisti dei dati e progettisti, di poter avere una visione a tutto tondo del problema che riguarda
 il prodotto: le tempistiche di manifestazione, di risoluzione, il tipo di guasto ed altro ancora. Questo permetterà all'azienda di poter
@@ -37,8 +37,9 @@ L'azienda riceve telefonate da un cliente che vengono smistate ad un adeguato ce
 Ogni centro assistenza ha sede in una città e possiede una determinata area di competenza, per cui tutte le chiamate che verranno effettuate
 all'interno di quest'ultima verranno redirette al centro assistenza associato. L'identificazione dei centri assistenza viene fatta mediante dei
 codici che hanno però valenza solamente nazionale.\newline
-L'operatore, di cui l'azienda conosce dati identificativi come nome, cognome, data e luogo di nascita, codice fiscale, luogo di residenza, nonché lo 
-stipendio che gli elargisce e lo identifica mediante un codice, così come per ogni suo dipendente, chiede al cliente di identificarsi. Vengono richiesti dall'operatore 
+L'operatore, identificato mediante un codice univoco tra i dipendenti, di cui l'azienda conosce dati identificativi come nome, cognome, data
+e luogo di nascita, codice fiscale, luogo di residenza, nonché lo stipendio che gli elargisce, così come per ogni altro dipendente, chiede al 
+cliente di identificarsi. Vengono richiesti dall'operatore 
 il nome, il cognome e il recapito a cui fare riferimento nel momento nel quale un solo tecnico si recherà in loco per riparare il suo elettrodomestico. 
 Eventualmente, l'operatore chiede anche l'indirizzo \textit{email}, qualora il cliente lo possieda. Inoltre, viene registrato il numero di telefono 
 chiamante a cui verrà fatto riferimento anche in futuro come specifico per quel dato cliente.\newline
@@ -54,7 +55,7 @@ della pratica, ponendo lo stato dell'intervento come aperto e concorda con il cl
 Un difetto è univocamente determinato da due codici, il "\textit{Component Code}", che identifica quale parte di un elettrodomestico viene affetto, e
 il codice di tipo, che indica qual è nello specifico il tipo di difetto che il componente può subire. Ad ogni difetto sono associati i ricambi che sono 
 necessari per poterlo sistemare, che potrebbero anche essere più di uno o nessuno, identificati da un codice, e il costo di ciascuno di essi, 
-sia in termini di costo del ricambio stesso, che del costo di manodopera per l'installazione.\newline
+sia in termini di costo del ricambio stesso, che del costo di manodopera per l'installazione in fase di costruzione.\newline
 Un tecnico, che afferisce ad un centro assistenza come l'operatore, si preoccuperà, una volta raccolte le informazioni necessarie dalla chiamata,
 di recarsi a casa del cliente e registrare a sua volta una descrizione personale del guasto o dei guasti del cliente, dopodiché possibilmente li riparerà
 e si preoccuperà di chiudere la richiesta di assistenza pendente. Specificherà anche il tempo che ha impiegato nel risolvere il problema del cliente
@@ -84,8 +85,8 @@ gli competono, indicati dalla o dalle categorie di prodotto a cui è assegnato, 
 	\caption{Associazioni termine-sinonimo per formulare specifiche non ambigue}
 \end{tabularx}
 
-Il termine "elettrodomestico" verrà da qui in avanti sostituito dal termine "prodotto", in quanto dotato di una più adeguato carattere di astrattezza
-e generalità, benché il caso in esame sia studiato su di un'azienda che produce elettrodomestici. I termini come "chiamata", "richiesta di
+Il termine "elettrodomestico" verrà da qui in avanti sostituito dal termine "prodotto", in quanto dotato di un più adeguato carattere di astrattezza
+e generalità, benché il caso in esame coinvolga un'azienda che produce elettrodomestici. I termini come "chiamata", "richiesta di
 assistenza", "intervento" e loro sinonimi vengono tutti raccolti sotto il termine "intervento" poiché di fatto descrivono le varie fasi dello
 stesso, dalla richiesta iniziale del cliente, alla visita del tecnico dell'assistenza, fino alla riparazione del prodotto indicato. Si intende
 che ogni intervento sarà raccolto in un'unica pratica e perciò anche quest'ultimo termine indica lo stesso concetto.
@@ -94,7 +95,7 @@ che ogni intervento sarà raccolto in un'unica pratica e perciò anche quest'ult
 Si vuole realizzare una base di dati che permetta di gestire tutte le informazioni che riguardano un \textbf{guasto} di un \textbf{prodotto}.
 Un prodotto è univocamente identificato da una combinazione di codici detti "PNC" (\textit{Product Number Code}) e "SNC" (\textit{Serial Number Code}) ed è caratterizzato
 da una \textbf{categoria} e un \textbf{modello} sotto forma di codice. Un prodotto possiede inoltre una data di acquisto e una di installazione, insieme ad 
-un'\textbf{estensione di garanzia} identificata da un codice, informazioni che però possono essere disponibili o meno, a seconda che il \textbf{cliente}
+un'estensione di garanzia identificata da un codice, informazioni che però possono essere disponibili o meno, a seconda che il \textbf{cliente}
 che lo possiede ne abbia tenuto traccia o meno.\newline
 Al verificarsi di un guasto, il cliente si preoccupa di chiamare l'assistenza clienti dell'azienda produttrice per richiedere un
 \textbf{intervento}. Ogni cliente verrà identificato dal suo numero di telefono e verranno registrati il suo nome, il suo cognome,
@@ -106,11 +107,11 @@ visita del tecnico affinché possa riparare il prodotto. Infine, vengono registr
 aggiornato lo stato dell'intervento come aperto. Quando il tecnico visiterà il cliente, uno solo per intervento, registrerà una sua descrizione
 del guasto per ognuno di essi e dopo averli riparati segnerà lo stato dell'intervento come chiuso. Indicherà anche il tempo speso per farlo in quarti d'ora.\newline
 Un guasto è associato ad uno specifico \textbf{difetto}, il quale è univocamente determinato da due codici: il "\textit{Component Code}"
-che identifica il \textbf{componente} del prodotto coinvolto e un codice che identifica il tipo del difetto su quello specifico componente. Nella
-riparazione di un difetto possono essere utilizzati uno o più \textbf{ricambi}, ognuno dei quali è identificato da un codice e vi è associato
-sia un costo di acquisto per il ricambio stesso che di manodopera per l'installazione.\newline
+che identifica il componente del prodotto coinvolto e un codice che identifica il tipo del difetto su quello specifico componente. Nella
+riparazione di un difetto possono essere utilizzati uno o più \textbf{ricambi} e nel caso il tipo di difetto li richiedesse, il loro uso non è opzionale.
+Ognuno dei ricambi è identificato da un codice e vi è associato sia un costo di acquisto per il ricambio stesso che di manodopera per l'installazione.\newline
 L'azienda possiede per i suoi dipendenti informazioni come il codice fiscale, il nome, il cognome, la data e il luogo di nascita, luogo di
-residenza e lo stipendio percepito e li identifica mediante un codice. I dipendenti presi in considerazione sono gli operatori, i tecnici e i
+residenza e lo stipendio percepito e li identifica mediante un codice univoco tra tutti i dipendenti. I dipendenti presi in considerazione sono gli operatori, i tecnici e i
 \textbf{progettisti}. Gli operatori e i tecnici afferiscono ad uno specifico \textbf{centro assistenza} dell'azienda,
 mentre i progettisti sono interessati ad analizzare i dati dei guasti di una o più categorie di prodotto stilando delle classifiche. Un tecnico
 inoltre può essere dipendente interno dell'azienda oppure no.\newline
@@ -122,10 +123,8 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 	\textbf{Termine} & \textbf{Descrizione} & \textbf{Collegamenti}\\
 	\hline
 	\hline
-	Prodotto & Un elettrodomestico di un determinato modello che l'azienda ha rilasciato sul mercato ed è stato comprato da un cliente, per poi subire un guasto &
-	Cliente,\newline Modello,\newline Guasto\\
-	\hline
-	Modello & Una classe di prodotti accomunata da caratteristiche comuni & Prodotto\\
+	Prodotto & Un elettrodomestico di un determinata categoria che l'azienda ha rilasciato sul mercato ed è stato comprato da un cliente, per poi subire un guasto &
+	Cliente,\newline Categoria,\newline Guasto\\
 	\hline
 	Cliente & Una persona che ha acquistato un prodotto presso l'azienda e ha richiesto un intervento per quello specifico prodotto & Prodotto,\newline 
 	Intervento\\
@@ -133,15 +132,13 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 	Guasto & Un problema di varia natura che si è verificato in uno specifico prodotto, causato da un difetto nel prodotto stesso, per cui viene
 	richiesto un intervento. Sarà analizzato da un progettista & Prodotto,\newline Difetto,\newline Intervento,\newline Progettista\\
 	\hline
-	Intervento & Una richiesta fatta da un cliente per risolvere uno o più guasti subiti, sarà registrato da un operatore e risolto da un tecnico
-	& Guasto,\newline Operatore,\newline Tecnico\\
+	Intervento & Una richiesta fatta da un cliente per risolvere uno o più guasti subiti ai propri elettrodomestici, sarà registrato da un operatore e risolto da un tecnico
+	& Guasto,\newline Operatore,\newline Tecnico,\newline Cliente\\
 	\hline
 	Difetto & Una classe di guasti accomunati dal componente in cui il guasto si verifica e la natura del difetto stesso, possono essere utilizzati
-	dei ricambi per poterlo riparare & Guasto,\newline Componente,\newline Ricambio\\
+	dei ricambi per poterlo riparare & Guasto,\newline Ricambio\\
 	\hline
-	Componente & Una parte di un prodotto che può subire un guasto per un suo difetto di produzione & Guasto,\newline Difetto\\
-	\hline
-	Ricambio & Un componente di un prodotto che può essere utilizzato nella riparazione di un difetto & Prodotto,\newline Difetto\\
+	Ricambio & Un componente che può essere utilizzato nella riparazione di un difetto & Difetto\\
 	\hline
 	Operatore & Un dipendente dell'azienda che si preoccupa di aprire richieste di intervento, appartiene ad un determinato centro assistenza
 	& Intervento,\newline Centro Assistenza\\
@@ -149,14 +146,12 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 	Tecnico & Un dipendente dell'azienda che si preoccupa di attendere ad interventi di manutenzione e chiudere le richieste pendenti, appartiene
 	ad un centro assistenza & Intervento,\newline Centro Assistenza\\
 	\hline
-	Progettista & Un dipendente dell'azienda che si preoccupa di analizzare i dati sui guasti accaduti, ma solamente su alcuni tipi
-	di prodotto & Guasto, Prodotto\\
+	Progettista & Un dipendente dell'azienda che si preoccupa di analizzare i dati sui guasti accaduti, ma solamente su alcune categorie
+	di prodotto & Guasto,\newline Categoria\newline Prodotto\\
 	\hline
 	Centro Assistenza & Parte dell'azienda volta all'impiego di operatori e tecnici di assistenza & Operatore,\newline Tecnico\\
 	\hline
 	Categoria & Un'insieme di prodotti che rappresentano lo stesso tipo di elettrodomestico (ad esempio: "Forno", "Lavatrice", ecc.) & Prodotto\\
-	\hline
-	Estensione di garanzia & Particolare programma che può essere scelto per un prodotto per prolungare il periodo per il quale si trova in garanzia & Prodotto\\
 	\hline
 	\caption{Glossario dei termini}
 \end{tabularx}
@@ -179,14 +174,10 @@ Nelle specifiche sono specificati quattro concetti - "cliente", "operatore", "te
 che ruotano tutte attorno alla nozione di persona. Tutte queste infatti sono persone e in quanto tali condividono almeno informazioni come il nome
 ed il cognome; è perciò significativo metterle assieme in una gerarchia che discende da persona. Inoltre, tutti e tre i concetti meno che "cliente"
 sono di fatto dipendenti dell'azienda e in quanto tali le informazioni che l'azienda trattiene su di essi sono le stesse, pur intrattenendo con gli
-altri concetti rapporti diversi a seconda della mansione che svolgono. Anche per queste tre concetti è opportuno raccoglierli attraverso una seconda
+altri concetti rapporti diversi a seconda della mansione che svolgono. Anche per questi tre concetti è opportuno raccoglierli attraverso una seconda
 gerarchia che origini da dipendente, che a sua volta è una persona. I concetti di "operatore" e "tecnico" saranno poi legati a "centro assistenza"
-così come individuato nello schema scheletro. Il "progettista", poiché può occuparsi o di una o di più categorie di prodotto quando analizza i "guasti",
-queste gli verranno associate mediante un attributo multiplo obbligatorio. Pur essendo condivise tra più "progettisti" e anche dai "prodotti" stessi,
-non è il caso separare il concetto di "categoria" in un'entità a sè stante, perché non presenta nessuna caratteristica che non sia il suo nome stesso
-e in caso l'insieme dei prodotti che presentano una stessa categoria dovesse essere rimosso, non è problematico. Infatti, significherebbe semplicemente
-che l'azienda ha deciso di voler smettere di trattare le informazioni su una determinata categoria di elettrodomestici e a maggior ragione anche la
-categoria stessa è bene che non lasci traccia nel \textit{database}.
+così come individuato nello schema scheletro. Al "progettista" invece verranno associate mediante una relazione adeguata la o le categorie di prodotto 
+di cui si occupa per quanto riguarda l'analisi dei guasti.
 
 \begin{figure}[H]
 	\centering
@@ -200,14 +191,15 @@ Dai concetti di "persone" è poi immediato spostarsi sui quelli di "intervento" 
 specifichi che siano i prodotti, a causa dei loro guasti, ad essere in numero di uno o più presenti in un intervento, è più adatto frapporre il
 concetto di "guasto" tra essi e quello di "intervento". È infatti facile immaginare come un cliente potrebbe voler riportare la presenza
 di un guasto solamente dopo che un secondo si è verificato, magari perché il primo non era così urgente, e lo farebbe all'interno dello stesso intervento.
-Se eliminassimo il concetto di "guasto" questo non sarebbe possibile e inoltre provocherebbe problemi anche con la nozione di "difetto". Essendo
-un prodotto caratterizzato anche da più guasti, infatti, potrebbero essere più di uno i difetti legati ad un prodotto, anche ripetuti nel tempo,
+Se eliminassimo il concetto di "guasto", sostituendo a questo il concetto di "prodotto", questo non sarebbe possibile e inoltre provocherebbe problemi anche con la nozione di "difetto". Potendo
+un prodotto essere afflitto anche da più guasti, infatti, potrebbero essere più di uno i difetti legati ad un prodotto, anche ripetuti nel tempo,
 ma una schematizzazione del genere impedirebbe proprio la loro ripetizione. Potrebbe ad esempio verificarsi un guasto diverso in un momento successivo,
 che verrà incluso poi in un intervento successivo, ma la cui origine è sempre lo stesso difetto di progettazione.\newline I dati che sono di competenza del tecnico
-inserire sono tutti modellati mediante attributi opzionali, poiché si suppone che l'apertura della pratica coincida con l'inserimento di un nuovo
-\textit{record} nel \textit{database}, momento nel quale questi dati sono ancora sconosciuti. Per le nozioni di "componente" e "garanzia" è stato
-deciso di non renderle entità poiché non possiedono caratteristiche interessanti che non siano i codici stessi che le identificano. Inoltre, un componente
-è esso stesso un ricambio, solo acquistato in un secondo momento dalla costruzione dell'elettrodomestico.
+inserire, nonché i dati che lo riguardano, sono tutti modellati mediante attributi opzionali o relazioni con cardinalità minima zero, poiché si suppone che l'apertura della pratica coincida con 
+l'inserimento di un nuovo \textit{record} nel \textit{database}, momento nel quale questi dati sono ancora sconosciuti.
+La data di apertura e di chiusura di un intervento vengono realizzate mediante un attributo composto obbligatorio perché vogliamo esplicitamente specificare che non vogliamo
+trattenere soltanto la data in quanto tale, ma anche l'ora, così da poter essere sicuri di distinguere anche i casi in cui abbiamo clienti che chiamano per più interventi nello
+stesso giorno.
 
 \begin{figure}[H]
 	\centering
@@ -236,8 +228,10 @@ prodotto, richiede una modellazione specifica. In particolar modo, queste inform
 \end{figure}
 
 I vincoli che questo schema non può modellare sono chiaramente quelli inerenti allo stato delle entità nel tempo, non è infatti lo schema adatto per poter
-specificare chi e come dovrà modificare lo stato dell'intervento una volta creatone uno nuovo. Inoltre, non è possibile specificare nello schema che i guasti
-di cui un progettista deve occuparsi sono solamente quelli che riguardano prodotti appartenenti alla sua categoria di interesse. 
+specificare chi e come dovrà modificare lo stato dell'intervento una volta creatone uno nuovo. Inoltre, non è possibile vincolare il fatto che la data di
+apertura dell'intervento dovrà essere chiaramente successiva a quella di chiusura della stessa ed entrambe dovranno essere successive a quelle di acquisto e
+installazione dei prodotti contenuti nello stesso. Infine, non abbiamo modo di determinare se la categoria a cui viene associato un prodotto sia veramente
+quella corretta.
 
 \chapter{Progettazione logica}
 
@@ -248,11 +242,11 @@ di cui un progettista deve occuparsi sono solamente quelli che riguardano prodot
 	\textbf{Nome del concetto} & \textbf{Tipo di costrutto} & \textbf{Stima del volume}\\
 	\hline
 	\hline
-	Persona & E & 13.350\\
+	Persona & E & 155.250\\
 	\hline
 	Dipendente & E & 450\\
 	\hline
-	Cliente & E & 12.900\\
+	Cliente & E & 154.800\\
 	\hline
 	Operatore & E & 80\\
 	\hline
@@ -266,37 +260,39 @@ di cui un progettista deve occuparsi sono solamente quelli che riguardano prodot
 	\hline
 	Afferenza\_Op & R & 80\\
 	\hline
-	Intervento & E & 13.200\\
+	Intervento & E & 158.400\\
 	\hline
-	Richiesta & R & 13.200\\
+	Richiesta & R & 158.400\\
 	\hline
-	Apertura & R & 13.200\\
+	Apertura & R & 158.400\\
 	\hline
-	Assistenza & R & 13.200\\
+	Assistenza & R & 158.400\\
 	\hline
-	Motivazione & R & 13.220\\
+	Motivazione & R & 158.640\\
 	\hline
-	Guasto & E & 13.220\\
+	Guasto & E & 158.640\\
 	\hline
-	Analisi & R & 429.650\\
+	Analisi & R & 2.577.900\\
 	\hline
 	Difetto & E & 50\\
 	\hline
-	Causa & R & 13.220\\
+	Causa & R & 158.640\\
 	\hline
 	Ricambio & E & 75\\
 	\hline
 	Riparazione & R & 75\\
 	\hline
-	Prodotto & E & 13.000\\
+	Prodotto & E & 156.000\\
 	\hline
-	Effetto & R & 13.220\\
+	Effetto & R & 158.640\\
 	\hline
-	Modello & E & 800\\
+	Categoria & E & 12\\
 	\hline
-	Tipo & R & 13.000\\
+	Appartenenza & R & 156.000\\
 	\hline
-	Proprietà & R & 13.000\\
+	Interesse & R & 195\\
+	\hline
+	Proprietà & R & 156.000\\
 	\hline
 	\caption{Tabella dei volumi dei dati}
 \end{tabularx}
@@ -329,15 +325,19 @@ Se consideriamo invece un tecnico, le operazioni più frequenti che riguardano l
 		non era riuscito a fornire. Inoltre, dopo aver eseguito la riparazione, sarà necessario che aggiunga anche le informazioni sull'intervento di sua sola competenza
 \end{itemize}
 
-Da ultimo, ci sono i progettisti che necessiteranno di stilare rapporti sotto forma di classifiche sulle principali caratteristiche dei guasti. Le principali operazioni che
-permettono di estrarre dati di loro interesse sono:
+Da ultimo, ci sono i progettisti che necessiteranno di stilare rapporti sotto forma di classifiche sulle principali caratteristiche dei guasti. Per poter migliorare le prestazioni,
+non applichiamo il filtro sui dati a ciascuna operazione così che vengano restituiti solo i guasti di interesse ad un singolo progettista, ma eseguiamo le operazioni sulla totalità
+dei dati. Ci preoccuperemo di filtrare i dati solamente una volta che verranno richiesti dallo specifico progettista, mostrandogli una vista creata specificatamente per lui, così
+da poter effettuare le \textit{query} in modalità "\textit{batch}", fuori orario rispetto a quando i dati prodotti verranno utilizzati, ed averli sempre pronti senza dover attendere.
+Le principali operazioni che permettono di estrarre dati di interesse ai progettisti sono:
 
 \begin{itemize}
-	\item[\textbf{P1 -}] Visualizzare tutti i guasti accaduti nel mese corrente
-		\subitem Ogni mese è richiesto fare un \textit{report} sulla produzione degli elettrodomestici ed è perciò necessario avere a disposizione tutti i guasti che sono accaduti in questo periodo
-	\item[\textbf{P2 -}] I primi cinque modelli che hanno subito più guasti nel mese corrente
-		\subitem Di tutti i guasti, quelli più importanti saranno quelli che coinvolgono i modelli maggiormente colpiti, gli stessi che necessiteranno uno studio più approfondito per analizzarne 
-		le criticità
+	\item[\textbf{P1 -}] Visualizzare tutte le informazioni relative ai guasti accaduti nel mese corrente
+		\subitem Ogni mese è richiesto fare un \textit{report} sulla produzione degli elettrodomestici ed è perciò necessario avere a disposizione tutti i dati inerenti a
+		tutti i guasti che sono accaduti in questo periodo
+	\item[\textbf{P2 -}] Visualizzare tutti i guasti che presentano una certa parola chiave nella descrizione scritta dal tecnico
+		\subitem Per poter analizzare un po' per volta i guasti, è utile poter filtrare solamente quelli che presentano un certo tipo di problema specifico così come indicato
+		dalle parole stesse del tecnico che l'ha riparato, senza però la precisione data dalla ricerca per difetto
 	\item[\textbf{P3 -}] I primi cinque \textit{PNC} che hanno subito più guasti nel mese corrente
 		\subitem Ogni modello coinvolge più codici di prodotto e per un'analisi di in maggior dettaglio è necessario poter avere a disposizione una classifica
 		di guasti ordinata per \textit{PNC}, da cui estrarre i più colpiti
@@ -364,7 +364,7 @@ permettono di estrarre dati di loro interesse sono:
 		andando ad indicare su quali parti di ciascun prodotto è necessario focalizzarsi per ridurre i costi di manutenzione dei prodotti stessi
 \end{itemize}
 
-Le operazioni che non vanno eseguite da una specifica categoria di dipendenti, ma riguardano più delle informazioni utili all'azienda in generale, sono:
+Le operazioni che non vanno eseguite da una specifica categoria di dipendenti, ma riguardano informazioni utili all'azienda in generale, sono:
 
 \begin{itemize}
 	\item[\textbf{V1} -] Conteggio di tutti gli interventi aperti nel mese da ciascun operatore
@@ -390,13 +390,13 @@ Le operazioni che non vanno eseguite da una specifica categoria di dipendenti, m
 	\hline
 	O2 & 1 volta al mese & I\\
 	\hline
-	T1 & 1 volta al giorno & I\\
+	T1 & 1 volta al giorno & B\\
 	\hline
 	T2 & 5 volte al giorno & I\\
 	\hline
 	P1 & 5 volte al mese & B\\
 	\hline
-	P2 & 5 volte al mese & B\\
+	P2 & 5 volte al mese & I\\
 	\hline
 	P3 & 5 volte al mese & B\\
 	\hline
@@ -439,60 +439,100 @@ L'apertura di ogni nuovo intervento coinciderà con l'aggiunta di un nuovo inter
 prima d'ora e di uno o più nuovi prodotti che non si erano mai rotti. All'intervento viene inoltre associato l'operatore che lo registra.\newline
 L'operazione di cancellazione è identica nelle operazioni, ne cambia semplicemente la frequenza.
 
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
+	\hline
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
+	\hline
+	\hline
+	Cliente & E & 1 & S\\
+	\hline
+	Richiesta & A & 1 & S\\
+	\hline
+	Intervento & E & 1 & S\\
+	\hline
+	Motivazione & A & 158.640 / 158.400 = 1,002 & S\\
+	\hline
+	Guasto & E & 1,002 & S\\
+	\hline
+	Effetto & A & 1,002 & S\\
+	\hline
+	Prodotto & E & 1,002 & S\\
+	\hline
+	Appartenenza & A & 1,002 & S\\
+	\hline
+	Proprietà & A & 1,002 & S\\
+	\hline
+	\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 18,024 accessi }\\\hline
+	\hline
+	\caption{Calcolo degli accessi delle operazioni O1 e O2}
+\end{tabularx}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{images/O1-O2.png}
 	\caption{Schema di navigazione per le operazioni O1 e O2}
 \end{figure}
 
-\begin{tabularx}{\linewidth}{X|X|X}
-	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
-	\hline
-	\hline
-	Intervento & 1 & S\\
-	\hline
-	Cliente & 1 & S\\
-	\hline
-	Guasto & 13.220 / 13.200 = 1,002 & S\\
-	\hline
-	Prodotto & 13.220 / 13.200 = 1,002 & S\\
-	\hline
-	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 8,008 Accessi }\\\hline
-	\hline
-	\caption{Calcolo degli accessi delle operazioni O1 e O2}
-\end{tabularx}
-
 \subsection{T1 - Visualizzazione degli interventi aperti}
 
 Questa operazione visualizza tutti e soli gli interventi correntemente aperti, perciò i costrutti che coinvolge sono banali:
 solamente l'entità intervento.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth]{images/T1.png}
-	\caption{Schema di navigazione per l'operazione T1}
-\end{figure}
-
-\begin{tabularx}{\linewidth}{X|X|X}
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
 	\hline
 	\hline
-	Intervento & 13.200 & L\\
+	Intervento & E & 158.400 & L\\
 	\hline
 	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 13.200 Accessi }\\\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 158.400 accessi }\\\hline
 	\hline
 	\caption{Calcolo degli accessi dell'operazione T1}
 \end{tabularx}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics{images/T1.png}
+	\caption{Schema di navigazione per l'operazione T1}
+\end{figure}
+
 \subsection{T2 - Chiusura di un intervento}
 
 Si tratta di un'operazione svolta da un tecnico una volta giunto a casa di un cliente fatta dopo la riparazione dell'elettrodomestico del cliente. I dati necessariamente
-aggiornati sono quelli relativi all'intervento e a ciascuno dei guasti riparati mentre quelli che potrebbero essere inseriti in aggiunta nel caso peggiore sono quelli
-relativi al prodotto o ai prodotti che il cliente non è riuscito a reperire da solo.
+aggiornati sono quelli relativi all'intervento e a ciascuno dei guasti riparati, quindi anche le informazioni che associano i guasti ai difetti, mentre quelli che potrebbero essere inseriti
+in aggiunta nel caso peggiore sono quelli relativi al prodotto o ai prodotti che il cliente non è riuscito a reperire da solo. Per semplicità, assumiamo che tutti i difetti necessari siano
+già stati preventivamente inseriti all'interno del \textit{database}.
+
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
+	\hline
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
+	\hline
+	\hline
+	Intervento & E & 1 & L\\
+	\hline
+	Intervento & E & 1 & S\\
+	\hline
+	Motivazione & A & 158.640 / 158.400 = 1,002 & L\\
+	\hline
+	Guasto & E & 1,002 & L\\
+	\hline
+	Guasto & E & 1,002 & S\\
+	\hline
+	Effetto & A & 1,002 & L\\
+	\hline
+	Prodotto & E & 1,002 & L\\
+	\hline
+	Prodotto & E & 1,002 & S\\
+	\hline
+	Causa & A & 1,002 & S\\
+	\hline
+	\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 13,020 accessi }\\\hline
+	\hline
+	\caption{Calcolo degli accessi dell'operazione T2}
+\end{tabularx}
 
 \begin{figure}[H]
 	\centering
@@ -500,33 +540,42 @@ relativi al prodotto o ai prodotti che il cliente non è riuscito a reperire da 
 	\caption{Schema di navigazione per l'operazione T2}
 \end{figure}
 
-\begin{tabularx}{\linewidth}{X|X|X}
+\subsection{P1 - Visualizzazione di tutti i dati inerenti ai guasti del mese corrente}
+
+Per visualizzare tutti i dati inerenti a tutti guasti accaduti nel mese corrente, occorre passare in rassegna tutti gli elementi dell'entità "guasto" e vedere la
+data di apertura dell'intervento a cui sono associati per vedere se sono del mese corrente oppure no. Dopodiché, è necessario associare loro i prodotti che hanno
+coinvolto e i difetti che li hanno causati con tanto di ricambi utilizzati. D'ora in poi, per questa e per tutte le operazioni successive, si supporrà che tutti i \textit{record}
+nel \textit{database} siano equamente distribuiti tra i mesi, in modo tale che basti dividere per dodici per trovare il numero di record effettivamente interessati da un'operazione.
+Naturalmente, supporremo, come nella realtà, di non sapere a priori quali sono i \textit{record} appartenenti a quale mese e perciò dovremo fare almeno una ricerca preventiva.
+
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
-	\hline
-	\hline
-	Intervento & 1 & L\\
-	\hline
-	Intervento & 1 & S\\
-	\hline
-	Guasto & 13.220 / 13.200 = 1,002 & L\\
-	\hline
-	Guasto & 13.220 / 13.200 = 1,002 & S\\
-	\hline
-	Prodotto & 13.220 / 13.200 = 1,002 & L\\
-	\hline
-	Prodotto & 13.220 / 13.200 = 1,002 & S\\
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
 	\hline
 	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 9,012 Accessi }\\\hline
+	Guasto & E & 158.640 & L\\
 	\hline
-	\caption{Calcolo degli accessi dell'operazione T2}
+	Motivazione & A & 158.640 / 12 = 13.220 & L\\
+	\hline
+	Intervento & E & 13.220 & L\\
+	\hline
+	Effetto & A & 13.220 & L\\
+	\hline
+	Prodotto & E & 13.220 & L\\
+	\hline
+	Causa & A & 13.220 & L\\
+	\hline
+	Difetto & E & 13.220 & L\\
+	\hline
+	Riparazione & A & 13.220 * (75 / 50) = 19.830 & L\\
+	\hline
+	Ricambio & E & 19.830 & L\\
+	\hline
+	\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 277.620 accessi }\\\hline
+	\hline
+	\caption{Calcolo degli accessi dell'operazione P1}
 \end{tabularx}
-
-\subsection{P1 - Visualizzazione di tutti i guasti del mese}
-
-Per visualizzare tutti i guasti accaduti nel mese corrente, occorre passare in rassegna tutti gli elementi dell'entità "Guasto" e vedere la data di apertura dell'intervento
-a cui sono associati per vedere se sono del mese corrente oppure no.
 
 \begin{figure}[H]
 	\centering
@@ -534,25 +583,27 @@ a cui sono associati per vedere se sono del mese corrente oppure no.
 	\caption{Schema di navigazione per l'operazione P1}
 \end{figure}
 
-\begin{tabularx}{\linewidth}{X|X|X}
+\subsection{P2, P3 - Visualizzazione di tutti i guasti che presentano una certa parola chiave e i primi cinque PNC maggiormente coinvolti nei guasti del mese}
+
+Nell'operazione P2 si prendono in considerazione tutti i guasti e si mostrano soltanto quelli che, nella descrizione inserita dal tecnico, presentano una certa parola
+chiave. Questo significa che l'unica entità coinvolta è "guasto" e lo schema di navigazione di P2 sarà perciò molto semplificato. Stesso discorso vale per l'operazione P3:
+se si vuole raggruppare i guasti per PNC, e poi mostrare i cinque sottogruppi con il maggior numero di membri, l'unico modo per farlo è passare in rassegna tutti gli elementi
+di "guasto". Potrebbe sembrare necessario l'accesso all'entità "prodotto" e all'entità "intervento", ma in questo caso, poiché l'attributo "PNC" è parte integrante della
+chiave di "prodotto" e la data di richiesta dell'intervento è parte della chiave di "intervento", questi valori fanno parte della chiave di "guasto"
+e perciò non sarà necessario nessun accesso ad entità ulteriori.
+
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
 	\hline
 	\hline
-	Guasto & 13.220 & L\\
-	\hline
-	Intervento & 13.220 & L\\
+	Guasto & E & 158.640 & L\\
 	\hline
 	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 26.440 Accessi }\\\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 158.640 accessi }\\\hline
 	\hline
-	\caption{Calcolo degli accessi dell'operazione P1}
+	\caption{Calcolo degli accessi delle operazioni P2 e P3}
 \end{tabularx}
-
-\subsection{P2 - I primi cinque modelli che hanno subito più guasti nel mese corrente}
-
-In questa operazione si considerano i guasti del mese corrente e poi, passando attraverso l'entità "Prodotto", si ottengono i modelli associati a ciascun
-guasto, per poi raggrupparli e contare i \textit{record} che compongono ogni gruppo ed infine tenere soltanto i primi cinque. 
 
 \begin{figure}[H]
 	\centering
@@ -560,60 +611,27 @@ guasto, per poi raggrupparli e contare i \textit{record} che compongono ogni gru
 	\caption{Schema di navigazione per l'operazione P2}
 \end{figure}
 
-\begin{tabularx}{\linewidth}{X|X|X}
-	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
-	\hline
-	\hline
-	Guasto & 13.220 & L\\
-	\hline
-	Intervento & 13.220 & L\\
-	\hline
-	Prodotto & 13.220 / 12 = 1.101,667 & L\\
-	\hline
-	Modello & 1.101,667 & L\\
-	\hline
-	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 28.643,334 Accessi }\\\hline
-	\hline
-	\caption{Calcolo degli accessi dell'operazione P2}
-\end{tabularx}
-
-\subsection{P3, P8, P9 - I primi cinque PNC che hanno subito più guasti e i "Time To Failure" per ciascun prodotto a partire dalla data di acquisto e dalla data di installazione}
-
-L'operazione P3 è pressoché identica alla precedente, con la sola differenza che ci interessa raggruppare per PNC e non per modello, perciò non è necessario andare
-a scomodare quest'ultima entità. Per le due operazioni P8 e P9 invece ci si preoccupa di poter estrarre i cosiddetti "Time To Failure" di ciascun prodotto, cioè il
-tempo che è passato tra una certa data fissata e il momento in cui il prodotto ha subito il guasto. L'operazione P8 fissa il momento iniziale alla data di acquisto
-del prodotto, mentre l'operazione P9 alla data di installazione dello stesso. Anche per queste due operazioni, partendo dai guasti del mese corrente, si risale alla data di apertura
-dell'intervento associato, che viene scelta come data di rottura dell'elettrodomestico, e poi si risale al prodotto associato da cui si estrae la data di interesse.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth]{images/P3-P8-P9.png}
-	\caption{Schema di navigazione per l'operazione P3}
-\end{figure}
-
-\begin{tabularx}{\linewidth}{X|X|X}
-	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
-	\hline
-	\hline
-	Guasto & 13.220 & L\\
-	\hline
-	Intervento & 13.220 & L\\
-	\hline
-	Prodotto & 13.220 / 12 = 1.101,667 & L\\
-	\hline
-	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 27.541,667 Accessi }\\\hline
-	\hline
-	\caption{Calcolo degli accessi dell'operazione P3}
-\end{tabularx}
-
 \subsection{P4 - I primi cinque component code maggiormente presenti nei guasti di questo mese}
 
-Anche questa operazione si inserisce sulla scia della precedente, con la differenza che, dopo aver ottenuto tutti i guasti del mese corrente, li si raggruppa sulla base del
+Anche questa operazione si inserisce sulla scia di P3, con la differenza che, dopo aver ottenuto tutti i guasti del mese corrente, li si raggruppa sulla base del
 \textit{component code} del difetto che li ha causati, per poi contare quanti elementi sono presenti in ogni gruppo e infine ordinare i gruppi sulla base della quantità dei loro membri.
+
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
+	\hline
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
+	\hline
+	\hline
+	Guasto & E & 158.640 & L\\
+	\hline
+	Causa & A & 158.640 / 12 = 13.220 & L\\
+	\hline
+	Difetto & E & 13.220 & L\\
+	\hline
+	\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 185.080 accessi }\\\hline
+	\hline
+	\caption{Calcolo degli accessi dell'operazione P4}
+\end{tabularx}
 
 \begin{figure}[H]
 	\centering
@@ -621,30 +639,35 @@ Anche questa operazione si inserisce sulla scia della precedente, con la differe
 	\caption{Schema di navigazione per l'operazione P4}
 \end{figure}
 
-\begin{tabularx}{\linewidth}{X|X|X}
-	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
-	\hline
-	\hline
-	Guasto & 13.220 & L\\
-	\hline
-	Intervento & 13.220 & L\\
-	\hline
-	Difetto & 13.220 / 12 = 1.101,667 & L\\
-	\hline
-	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 27.541,667 Accessi }\\\hline
-	\hline
-	\caption{Calcolo degli accessi dell'operazione P4}
-\end{tabularx}
-
 \subsection{P5, P6 - I primi cinque ricambi più utilizzati nel riparare i guasti del mese corrente e quelli più costosi nelle riparazioni}
 
 L'operazione P5 non si discosta molto dalle precedenti perché si occupa, una volta ottenuti i guasti del mese, di associarli ai difetti che li hanno causati e poi questi
 ai ricambi necessari per ripararli. Una volta fatto, li si raggruppa per ricambio utilizzato e si prendono i primi cinque gruppi che presentano il maggior numero di membri.
-L'operazione P6 è identica negli \textit{step} all'operazione P6, anziché però prendere i primi cinque gruppi di ricambi che presentano il maggior numero di membri, vengono
+L'operazione P6 è identica negli \textit{step} all'operazione P5, anziché però prendere i primi cinque gruppi di ricambi che presentano il maggior numero di membri, vengono
 scelti i primi cinque gruppi che presentano una somma dei costi maggiore di quella degli altri. In questo caso si tiene conto del numero dei ricambi utilizzati, ma anche del
 loro costo unitario.
+
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
+	\hline
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
+	\hline
+	\hline
+	Guasto & E & 158.640 & L\\
+	\hline
+	Causa & A & 158.640 / 12 = 13.220 & L\\
+	\hline
+	Difetto & E & 13.220 & L\\
+	\hline
+	Riparazione & A & 13.220 & L\\
+	\hline
+	Ricambio & E & (75 / 50) * 13.220 = 19.830  & L\\
+	\hline
+	\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 218.130 accessi }\\
+	\hline
+	\hline
+	\caption{Calcolo degli accessi delle operazioni P5 e P6}
+\end{tabularx}
 
 \begin{figure}[H]
 	\centering
@@ -652,31 +675,35 @@ loro costo unitario.
 	\caption{Schema di navigazione per le operazioni P5 e P6}
 \end{figure}
 
-\begin{tabularx}{\linewidth}{X|X|X}
-	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
-	\hline
-	\hline
-	Guasto & 13.220 & L\\
-	\hline
-	Intervento & 13.220 & L\\
-	\hline
-	Difetto & 13.220 / 12 = 1.101,667 & L\\
-	\hline
-	Ricambio & (75 / 50) * 1.101,667 = 1.652,500  & L\\
-	\hline
-	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 29.194,167 Accessi }\\
-	\hline
-	\hline
-	\caption{Calcolo degli accessi delle operazioni P5 e P6}
-\end{tabularx}
-
 \subsection{P7 - I primi cinque paesi per numero di guasti di questo mese}
 
 In questa operazione, come nelle precedenti, si prendono in considerazione i guasti del mese corrente, per poi risalire sempre tramite agli interventi che contengono i guasti,
 agli operatori che hanno registrato gli interventi e infine attraverso questi ai centri assistenza che hanno accolto la richiesta, identificando la nazione da cui proviene
 l'intervento. A questo punto, non resta che raggruppare per nazione e visualizzare i primi cinque gruppi per numero di membri.
+
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
+	\hline
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
+	\hline
+	Guasto & E & 158.640 & L\\
+	\hline
+	Motivazione & A & 158.640 / 12 = 13.220 & L\\
+	\hline
+	Intervento & E & 13.220 & L\\
+	\hline
+	Apertura & A & 13.220 & L\\
+	\hline
+	Operatore & E & 13.220 & L\\
+	\hline
+	Afferenza\_Op & A & 13.220 & L\\
+	\hline
+	Centro Assistenza & E & 13.220 & L\\
+	\hline
+	\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 237.960 accessi }\\\hline
+	\hline
+	\caption{Calcolo degli accessi dell'operazione P7}
+\end{tabularx}
 
 \begin{figure}[H]
 	\centering
@@ -684,29 +711,63 @@ l'intervento. A questo punto, non resta che raggruppare per nazione e visualizza
 	\caption{Schema di navigazione per l'operazione P7}
 \end{figure}
 
-\begin{tabularx}{\linewidth}{X|X|X}
+\subsection{P8, P9 - I "Time To Failure" per ciascun prodotto a partire dalla data di acquisto e dalla data di installazione}
+
+Per le due operazioni P8 e P9 ci si preoccupa di poter estrarre i cosiddetti "Time To Failure" di ciascun prodotto, cioè il
+tempo che è passato tra una certa data fissata e il momento in cui il prodotto ha subito il guasto. L'operazione P8 fissa il momento iniziale alla data di acquisto
+del prodotto, mentre l'operazione P9 alla data di installazione dello stesso. Per eseguire entrambe queste due operazioni, partendo dai guasti del mese corrente, si
+sceglie come data di rottura dell'elettrodomestico la data di apertura dell'intervento associato, che abbiamo disponibile senza accessi aggiuntivi, e poi si risale
+al prodotto associato da cui si estrae l'altra data di interesse.
+
+\begin{figure}[H]
+	\centering
+%	\includegraphics[width=\linewidth]{images/P8-P9.png}
+	\caption{Schema di navigazione per le operazioni P8 e P9}
+\end{figure}
+
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
-	\hline
-	Guasto & 13.220 & L\\
-	\hline
-	Intervento & 13.220 & L\\
-	\hline
-	Operatore & 13.220 / 12 = 1.101,667 & L\\
-	\hline
-	Centro Assistenza & 1.101,667 & L\\
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
 	\hline
 	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 28.643,334 Accessi }\\\hline
+	Guasto & E & 158.640 & L\\
 	\hline
-	\caption{Calcolo degli accessi dell'operazione P7}
+	Effetto & A & 158.640 / 12 = 13.220 & L\\
+	\hline
+	Prodotto & E & 13.220 & L\\
+	\hline
+	\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 185.080 accessi }\\\hline
+	\hline
+	\caption{Calcolo degli accessi delle operazioni P8 e P9}
 \end{tabularx}
 
 \subsection{P10 - Tempo medio di riparazione di un guasto per tipo di difetto}
 
-Per poter calcolare il tempo medio di riparazione di un guasto occorre per prima cosa accedere all'intervento che lo contiene ed estrarre da questo la data di apertura dell'intervento e quella
-di chiusura, così da poter calcolare il tempo impiegato per ripararlo. Dopodiché, per ogni guasto è necessario accedere al difetto che lo ha causato così da poter raggruppare i guasti
-per difetto.
+Per poter calcolare il tempo medio di riparazione di un guasto occorre per prima cosa accedere all'intervento che lo contiene ed estrarre da questo la data di
+chiusura dell'intervento, così da poter calcolare il tempo impiegato per ripararlo. Dopodiché, per ogni guasto è necessario accedere al difetto che lo ha causato
+così da poter raggruppare i guasti per difetto.
+
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
+	\hline
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
+	\hline
+	\hline
+	Guasto & E & 158.640 & L\\
+	\hline
+	Motivazione & A & 158.640 & L\\
+	\hline
+	Intervento & E & 158.640 & L\\
+	\hline
+	Causa & A & 158.640 & L\\
+	\hline
+	Difetto & A & 158.640 & L\\
+	\hline
+	\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 793.200 accessi }\\\hline
+	\hline
+	\caption{Calcolo degli accessi dell'operazione P10}
+\end{tabularx}
 
 \begin{figure}[H]
 	\centering
@@ -714,48 +775,33 @@ per difetto.
 	\caption{Schema di navigazione per l'operazione P10}
 \end{figure}
 
-\begin{tabularx}{\linewidth}{X|X|X}
-	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
-	\hline
-	\hline
-	Guasto & 13.220 & L\\
-	\hline
-	Intervento & 13.220 & L\\
-	\hline
-	Difetto & 13.220 & L\\
-	\hline
-	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 39.660 Accessi }\\\hline
-	\hline
-	\caption{Calcolo degli accessi dell'operazione T1}
-\end{tabularx}
-
 \subsection{V1 - Conteggio di tutti gli interventi aperti nel mese da ciascun operatore}
 
 In questa operazione si suddividono gli interventi che sono stati fatti in questo mese tra i vari operatori sulla base di chi ha aperto quale intervento. Si effettua
 poi un raggruppamento per operatore e si contano gli elementi per ciascun sottogruppo.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth]{images/V1.png}
-	\caption{Schema di navigazione per l'operazione V1}
-\end{figure}
-
-\begin{tabularx}{\linewidth}{X|X|X}
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
 	\hline
 	\hline
-	Intervento & 13.200 / 12 = 1.100 & L\\
+	Intervento & E & 158.400 & L\\
 	\hline
-	Operatore & 1.100 & L\\
+	Apertura & A & 158.400 / 12 = 13.200 & L\\
+	\hline
+	Operatore & E & 13.200 & L\\
 	\hline
 	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 2.200 Accessi }\\\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 184.800 accessi }\\\hline
 	\hline
 	\caption{Calcolo degli accessi dell'operazione V1}
 \end{tabularx}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{images/V1.png}
+	\caption{Schema di navigazione per l'operazione V1}
+\end{figure}
 
 \subsection{V2, V3 - Conteggio di tutti gli interventi chiusi nel mese e tempo medio di riparazione per ciascun tecnico}
 
@@ -763,54 +809,60 @@ Queste due operazioni non sono per nulla dissimili dalla precedente, se non per 
 se l'operazione V2 è identica nei passaggi alla precedente, l'operazione V3 sceglie come criterio da visualizzare per ciascun gruppo non tanto il numero di
 elementi dello stesso ma la media dei tempi necessari per la risoluzione dei problemi che il tecnico ha sistemato.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth]{images/V2-V3.png}
-	\caption{Schema di navigazione per le operazioni V2 e V3}
-\end{figure}
-
-\begin{tabularx}{\linewidth}{X|X|X}
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
 	\hline
 	\hline
-	Intervento & 13.200 / 12 = 1.100 & L\\
+	Intervento & E & 158.400 & L\\
 	\hline
-	Tecnico & 13.200 / 12 = 1.100 & L\\
+	Assistenza & A & 158.400 / 12 = 13.200 & L\\
+	\hline
+	Tecnico & E & 13.200 & L\\
 	\hline
 	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 2.200 Accessi }\\\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 184.800 accessi }\\\hline
 	\hline
 	\caption{Calcolo degli accessi delle operazioni V2 e V3}
 \end{tabularx}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{images/V2-V3.png}
+	\caption{Schema di navigazione per le operazioni V2 e V3}
+\end{figure}
 
 \subsection{V4 -  Distanza temporale media tra ricezione della chiamata e visita del tecnico per centro assistenza}
 
 Questa operazione raggruppa gli interventi per centro assistenza che li ha creati e per ogni gruppo calcola la media del tempo di vita di un intervento, dalla sua apertura
 dopo una chiamata alla sua chiusura dopo la visita di un tecnico.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth]{images/V4.png}
-	\caption{Schema di navigazione per l'operazione V4}
-\end{figure}
-
-\begin{tabularx}{\linewidth}{X|X|X}
+\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
-	\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
+	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
 	\hline
 	\hline
-	Intervento & 13.200 & L\\
+	Intervento & E & 158.400 & L\\
 	\hline
-	Operatore & 13.200 & L\\
+	Apertura & A & 158.400 & L\\
 	\hline
-	Centro Assistenza & 13.200 & L\\
+	Operatore & E & 158.400 & L\\
+	\hline
+	Afferenza\_Op & A & 158.400 & L\\
+	\hline
+	Centro Assistenza & E & 158.400 & L\\
 	\hline
 	\hline
-	TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 39.600 Accessi }\\\hline
+	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 792.000 accessi }\\\hline
 	\hline
 	\caption{Calcolo degli accessi dell'operazione V4}
 \end{tabularx}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{images/V4.png}
+	\caption{Schema di navigazione per l'operazione V4}
+\end{figure}
 
 \section{Raffinamento dello schema concettuale}
 
@@ -822,16 +874,18 @@ cercando di mantenere quanto più possibile alta la fedeltà dei concetti rappre
 La rimozione della gerarchia che discende direttamente da persona è, delle due presenti, la più semplice. L'entità persona, volta esclusivamente a fattorizzare
 i campi comuni, non ha nessuna utilità pratica oltre quella citata all'interno dello schema. Si procede perciò ad eliminarla con un collasso verso il basso,
 duplicando i campi "Nome" e "Cognome" per le entità "Cliente" e "Dipendente". Per la seconda gerarchia, quella che origina da "Dipendente", si decide anche in questo
-caso di effettuare un collasso verso il basso perché, osservando le principali operazioni individuate, nessuna richiede l'accesso alla totalità dei dipendenti tutti assieme,
+caso di effettuare un collasso verso il basso perché, osservando le principali operazioni individuate, nessuna richiede l'accesso ai dei dipendenti tutti assieme,
 anzi, al contrario. Ben tre operazioni vengono effettuate su una specifica categoria di dipendenti in maniera indipendente dagli altri e se decidessimo di creare un'unica
 relazione con tutti i dipendenti finirebbero per aumentare il loro costo in termini di "\textit{I/O}". Inoltre, in entrambe le gerarchie, non abbiamo nessun tipo di associazione
-che figura legata all'entità padre, perciò nessuno vi farà mai accesso e non saranno presenti dopo la modifica associazioni duplicate.
+che figura legata all'entità padre, perciò nessuno vi farà mai accesso e non saranno presenti dopo la modifica associazioni duplicate. Quello che succede è che però
+vengono persi alcuni vincoli che vanno implementati a parte, ovvero che l'unicità degli attributi "Codice Fiscale" e "Codice" deve valere non solo all'interno della singola
+relazione, ma anche tra tutte e tre le relazioni che discendono da "dipendente".
 
-\subsection{Eliminazione di attributi multipli}
+\subsection{Eliminazione di attributi multipli o composti}
 
-Nello schema è presente un solo attributo multiplo, la categoria di interesse dei progettisti, che come sappiamo può essere anche più di una. Si decide perciò di isolarla in
-un entità a sé stante e legarla a "Progettista" mediante un'associazione "uno a molti". Essa sarà costituita dal nome della categoria e da un codice che la identifica univocamente.
-Allo stesso modo, ogni prodotto, che appartiene ad una categoria, avrà la propria categoria di appartenenza specificata mediante il codice identificativo della categoria stessa.
+Nello schema non sono presenti attributi multipli, ma sono presenti attributi composti. Poiché il loro scopo era semplicemente segnalare il fatto che quegli attributi erano date
+che inglobavano non solo la data in sè e per sè, ma anche l'ora, possiamo semplicemente eliminarli senza problemi, avendo però cura di scegliere il tipo di dato adeguato
+per quegli attributi una volta che creeremo la relazione corrispondente.
 
 \subsection{Scelta delle chiavi primarie}
 
@@ -845,7 +899,7 @@ diminuendo i costi legati a quelle specifiche operazioni.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{images/Refined.png}
+	\includegraphics[width=\linewidth]{images/refined.png}
 	\caption{Schema E/R dopo i raffinamenti individuati nei paragrafi precedenti}
 \end{figure}
 
@@ -864,66 +918,73 @@ che possiede è a noi indifferente, poiché non ci interessano statistiche di ve
 ha comprato - e gli si sono necessariamente guastati - possiamo sempre farlo attraverso "Intervento" e "Guasto".\newline
 Attributi ridondanti eliminabili già presenti nello schema "\textit{Entity-Relationship}" non sono presenti. Per semplificare le operazioni da effettuare su base mensile, si può pensare di importare la data di apertura dell'intervento all'interno dell'entità "Guasto", cosa che però viene già effettuata in quanto "Intervento" è parte integrante della chiave di "Guasto" e perciò
 non è richiesta alcuna modifica ulteriore.\newline
+Inoltre, per mantenere i costi di accesso delle operazioni uguali a quelli individuati nella sezione dedicata, dobbiamo poter permettere che si possa immediatamente
+individuare se un dato guasto è utile ad un dato progettista, perché ricade nella sua categoria di interesse, oppure no, senza ulteriori costi aggiuntivi. Questo può essere fatto
+copiando il valore dell'attributo "codice" dell'istanza dell'entità "categoria" a cui il prodotto associato al guasto interessato è a sua volta associato. Non abbiamo nessuna
+variazione dei costi per l'inserimento nel caso peggiore, restano identici a come li avevamo calcolati, perciò abbiamo un deciso guadagno in termini di numero di accessi.\newline
 Un'altra modifica che si può effettuare è importare la nazione in cui l'intervento viene aperto all'interno dell'entità "Intervento" stessa. Questo attributo "Nazione" sarebbe perciò
 la nazione di appartenenza del centro assistenza a cui l'operatore che riceve la chiamata fa capo, in quanto si suppone che ogni cliente che chiama venga diretto al centro assistenza 
-adeguato alla sua zona di residenza secondo l'azienda. Questa introduzione di ridondanza porterebbe all'aumento del costo dell'operazione O1, ma ad una diminuzione del costo di P7.
+adeguato alla sua zona di residenza. Questa introduzione di ridondanza porterebbe all'aumento del costo dell'operazione O1, ma ad una diminuzione del costo di P7.
 
 \captionsetup[table]{skip=-10pt}
 \begin{table}[H]
 	\caption*{\textbf{Operazione O1 con ridondanza}}
-	\begin{tabularx}{\linewidth}{X|X|X}
+	\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 		\hline
-		\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
-		\hline
-		\hline
-	%	Afferenza\_Op & 1 & L\\
-	%	\hline
-		Intervento & 1 & S\\
-		\hline
-	%	Richiesta & 1 & S\\
-	%	\hline
-		Cliente & 1 & S\\
-		\hline
-	%	Motivazione & 13.220 / 13.200 = 1,002 & S\\
-	%	\hline
-		Guasto & 13.220 / 13.200 = 1,002 & S\\
-		\hline
-	%	Effetto & 1,002 & S\\
-	%	\hline
-		Prodotto & 1,002 & S\\
+		\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
 		\hline
 		\hline
-		TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 8,008 accessi }\\
+		Afferenza\_Op & A & 1 & L\\
+		\hline
+		Cliente & E & 1 & S\\
+		\hline
+		Richiesta & A & 1 & S\\
+		\hline
+		Intervento & E & 1 & S\\
+		\hline
+		Motivazione & A & 158.640 / 158.400 = 1,002 & S\\
+		\hline
+		Guasto & E & 1,002 & S\\
+		\hline
+		Effetto & A & 1,002 & S\\
+		\hline
+		Prodotto & E & 1,002 & S\\
+		\hline
+		Appartenenza & A & 1,002 & S\\
+		\hline
+		Proprietà & A & 1,002 & S\\
+		\hline
+		\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 19,024 accessi }\\
 		\hline
 		\hline
-		TOTALE MENSILE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 8,008 * 5 accessi/giorno * 30 giorno/mese = 1201,2 accessi/mese }\\
+		\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE MENSILE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 19,024 * 5 accessi/giorno * 30 giorno/mese = 2.853,600 accessi/mese }\\
 		\hline
 		\hline
 	\end{tabularx}
 	\caption*{\textbf{Operazione P7 con ridondanza}}
-	\begin{tabularx}{\linewidth}{X|X|X}
+	\begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 		\hline
-		\textbf{Costrutto coinvolto} & \textbf{Accessi} & \textbf{Tipo di Accesso}\\
-		\hline
-		\hline
-		Guasto & 13.220 & L\\
-		\hline
-	%	Motivazione & 13.220 & L\\
-	%	\hline
-		Intervento & 13.220 & L\\
+		\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
 		\hline
 		\hline
-		TOTALE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 26.440 accessi }\\
+		Guasto & E & 158.640 & L\\
+		\hline
+		Motivazione & A & 158.640 / 12 = 13.220 & L\\
+		\hline
+		Intervento & E & 13.220 & L\\
 		\hline
 		\hline
-		TOTALE MENSILE & \multicolumn{2}{>{\hsize=2\hsize}X}{ 26.440 * 5 accessi/mese = 132.200 accessi/mese }\\
+		\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 185.080 accessi }\\
+		\hline
+		\hline
+		\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE MENSILE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 185.080 * 5 accessi/mese = 925.400 accessi/mese }\\
 		\hline
 		\hline
 	\end{tabularx}
 \end{table}
 \captionsetup[table]{skip=10pt}
 
-Perciò, abbiamo che il numero totale di accessi mensili supponendo di mantenere la ridondanza è di 133.401,2 contro i 144.417,87 accessi effettuati in caso di mancanza della
+Perciò, abbiamo che il numero totale di accessi mensili supponendo di mantenere la ridondanza è di 928.253,600 contro i 3.893.400 accessi effettuati in caso di mancanza della
 ridondanza, rendendo utile il suo mantenimento.
 
 \begin{figure}[H]
@@ -936,41 +997,40 @@ ridondanza, rendendo utile il suo mantenimento.
 
 \begin{itemize}
 	\item \textbf{CENTRI\_ASSISTENZA} (\underline{CodiceNazionale}, \underline{Nazione}, Sede, AreaCompetenza)
-	\item \textbf{OPERATORI} (\underline{Codice}, Nome, Cognome, CF, DataNascita, LuogoNascita, Residenza, Stipendio, CodiceNazionaleCentro, NazioneCentro)
+	\item \textbf{OPERATORI} (\underline{Codice}, CF, Nome, Cognome, DataNascita, LuogoNascita, Residenza, Stipendio, CodiceNazionaleCentro, NazioneCentro)
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item[] FK: (CodiceNazionaleCentro, NazioneCentro) REFERENCES CENTRI\_ASSISTENZA
 			\item[] Unique(CF)
 		\end{itemize}
-	\item \textbf{TECNICI} (\underline{Codice}, Nome, Cognome, CF, DipendenteInterno, DataNascita, LuogoNascita, Residenza, Stipendio, CodiceNazionaleCentro, NazioneCentro)
+	\item \textbf{TECNICI} (\underline{Codice}, Nome, Cognome, CF,  DataNascita, LuogoNascita, Residenza, Stipendio, DipendenteInterno, CodiceNazionaleCentro, NazioneCentro)
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item[] FK: (CodiceNazionaleCentro, NazioneCentro) REFERENCES CENTRI\_ASSISTENZA
 			\item[] Unique(CF)
 		\end{itemize}
 	\item \textbf{CLIENTI} (\underline{NumeroTelefono}, Nome, Cognome, Recapito, Email*)
-	\item \textbf{INTERVENTI} (\underline{NumeroTelefonoCliente}, \underline{DataRichiesta}, Stato, DataVisita, TempoImpiegato*, Nazione, CodiceOperatore, CodiceTecnico)
+	\item \textbf{INTERVENTI} (\underline{NumeroTelefonoCliente}, \underline{DataRichiesta}, Stato, DataVisita, TempoImpiegato*, Nazione, CodiceOperatore, CodiceTecnico*)
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item[] FK: (NumeroTelefonoCliente) REFERENCES CLIENTI
 			\item[] FK: (CodiceOperatore) REFERENCES OPERATORI
 			\item[] FK: (CodiceTecnico) REFERENCES TECNICI
 		\end{itemize}		
-	\item \textbf{MODELLI} (\underline{Codice}, Nome)
-	\item \textbf{PRODOTTI} (\underline{PNC}, \underline{SNC}, Categoria, DataAcquisto*, DataInstallazione*, CodiceGaranzia*, CodiceModello)
+	\item \textbf{CATEGORIE} (\underline{Codice}, Nome)
+	\item \textbf{PRODOTTI} (\underline{PNC}, \underline{SNC}, Modello, DataAcquisto*, DataInstallazione*, CodiceGaranzia*, CodiceCategoria)
 		\begin{itemize}[leftmargin=*, topsep=0pt]
-			\item[] FK: (CodiceModello) REFERENCES MODELLI
+			\item[] FK: (CodiceCategoria) REFERENCES CATEGORIE
 		\end{itemize}		
 	\item \textbf{DIFETTI} (\underline{ComponentCode}, \underline{CodiceTipo}, NomeComponente, NomeTipo)
 	\item \textbf{RICAMBI} (\underline{Codice}, Nome, CostoAcquisto, CostoInstallazione, ComponentCode, CodiceTipoDifetto)
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item[] FK: (ComponentCode, CodiceTipoDifetto) REFERENCES DIFETTI
 		\end{itemize}		
-	\item \textbf{GUASTI} (\underline{NumeroTelefonoCliente}, \underline{DataRichiestaIntervento}, \underline{PNC}, \underline{SNC}, DescrizioneCliente, DescrizioneTecnico*, ComponentCode*,
+	\item \textbf{GUASTI} (\underline{NumeroTelefonoCliente}, \underline{DataRichiestaIntervento}, \underline{PNC}, \underline{SNC}, DescrizioneCliente, DescrizioneTecnico*, CategoriaProdotto, ComponentCode*,
 	CodiceTipoDifetto*)
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item[] FK: (NumeroTelefonoCliente, DataRichiestaIntervento) REFERENCES INTERVENTI
 			\item[] FK: (PNC, SNC) REFERENCES PRODOTTI
 			\item[] FK: (ComponentCode*, CodiceTipoDifetto*) REFERENCES DIFETTI
-		\end{itemize}		
-	\item \textbf{CATEGORIE\_PRODOTTI} (\underline{Codice}, Nome)
+		\end{itemize}
 	\item \textbf{PROGETTISTI} (\underline{Codice}, Nome, Cognome, CF, DataNascita, LuogoNascita, Residenza, Stipendio)
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item[] Unique(CF)
@@ -986,7 +1046,7 @@ ridondanza, rendendo utile il suo mantenimento.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{images/Logic.png}
+	\includegraphics[width=\linewidth]{images/logic.png}
 	\caption{Schema logico relazionale ottenuto dal paragrafo precedente}
 \end{figure}
 
