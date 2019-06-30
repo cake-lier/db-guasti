@@ -320,7 +320,7 @@ Se consideriamo invece un tecnico, le operazioni più frequenti che riguardano l
 	\item[\textbf{T1 -}] Vista di tutti gli interventi correntemente aperti non già assegnati ad un altro tecnico, ordinati per urgenza
 		\subitem Prima di iniziare a lavorare, un tecnico dovrà capire quali sono gli interventi sui quali potrà dedicarsi e per poter scegliere, deve poterli avere a
 		disposizione tutti quanti. In particolar modo, sarebbe più utile organizzarli per urgenza, qui intesa come tempo trascorso dalla data della chiamata
-	\item[\textbf{T2 -}] Aggiornamento di un intervento
+	\item[\textbf{T2 -}] Chiusura di un intervento
 		\subitem Una volta recatosi a casa di un cliente, il tecnico avrà avuto la possibilità di aggiungere al sistema le informazioni sul prodotto che il cliente
 		non era riuscito a fornire. Inoltre, dopo aver eseguito la riparazione, sarà necessario che aggiunga anche le informazioni sull'intervento di sua sola competenza
 \end{itemize}
@@ -452,15 +452,15 @@ L'operazione di cancellazione è identica nelle operazioni, ne cambia sempliceme
 	\hline
 	Motivazione & A & 158.640 / 158.400 = 1,002 & S\\
 	\hline
-	Guasto & E & 1,002 & S\\
-	\hline
-	Effetto & A & 1,002 & S\\
-	\hline
 	Prodotto & E & 1,002 & S\\
 	\hline
 	Appartenenza & A & 1,002 & S\\
 	\hline
 	Proprietà & A & 1,002 & S\\
+	\hline
+	Effetto & A & 1,002 & S\\
+	\hline
+	Guasto & E & 1,002 & S\\
 	\hline
 	\hline
 	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 18,024 accessi }\\\hline
@@ -639,13 +639,12 @@ Anche questa operazione si inserisce sulla scia di P3, con la differenza che, do
 	\caption{Schema di navigazione per l'operazione P4}
 \end{figure}
 
-\subsection{P5, P6 - I primi cinque ricambi più utilizzati nel riparare i guasti del mese corrente e quelli più costosi nelle riparazioni}
+\subsection{P5, P6 - I primi cinque ricambi più utilizzati nel riparare i guasti del mese corrente e gli interventi più costosi per le riparazioni}
 
 L'operazione P5 non si discosta molto dalle precedenti perché si occupa, una volta ottenuti i guasti del mese, di associarli ai difetti che li hanno causati e poi questi
 ai ricambi necessari per ripararli. Una volta fatto, li si raggruppa per ricambio utilizzato e si prendono i primi cinque gruppi che presentano il maggior numero di membri.
-L'operazione P6 è identica negli \textit{step} all'operazione P5, anziché però prendere i primi cinque gruppi di ricambi che presentano il maggior numero di membri, vengono
-scelti i primi cinque gruppi che presentano una somma dei costi maggiore di quella degli altri. In questo caso si tiene conto del numero dei ricambi utilizzati, ma anche del
-loro costo unitario.
+L'operazione P6 invece raggruppa i guasti per singolo intervento e ne calcola il costo, scegliendo poi i primi cinque gruppi che presentano il costo dato dalla riparazione maggiore
+di quello degli altri. In questo caso si tiene conto del numero dei ricambi utilizzati, ma anche del loro costo unitario.
 
 \begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
@@ -1054,41 +1053,131 @@ ridondanza, rendendo utile il suo mantenimento.
 
 \begin{itemize}
 	\item[\textbf{O1} -] Inserimento di un nuovo intervento
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item INSERT INTO Clienti (NumeroTelefono, Nome, Cognome, Recapito, Email) \\VALUES (?, ?, ?, ?, ?);
+				\subitem (In caso il cliente non fosse presente)\newline
+			\item INSERT INTO Prodotti (PNC, SNC, Modello, DataAcquisto, DataInstallazione, CodiceGaranzia, CodiceCategoria) \\VALUES (?, ?, ?, ?, ?, ?, ?);
+				\subitem (In caso il prodotto non fosse presente)\newline
+			\item INSERT INTO Interventi (NumeroTelefonoCliente, DataRichiesta, Stato, DataVisita, TempoImpiegato, Nazione, CodiceOperatore, CodiceTecnico) \\VALUES (?, ?, ?, ?, ?, ?, ?, ?);\newline			
+			\item INSERT INTO Guasti(NumeroTelefonoCliente, DataRichiestaIntervento, PNC, SNC, DescrizioneCliente, DescrizioneTecnico, CategoriaProdotto, ComponentCode, CodiceTipoDifetto) \\VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+				\subitem (Per ogni guasto contenuto nell'intervento inserito)
+		\end{itemize}
 	\item[\textbf{O2} -] Cancellazione di un intervento precedentemente aperto dall'operatore
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item DELETE FROM Guasti \\WHERE Guasti.NumeroTelefonoCliente = ? AND Guasti.DataRichiestaIntervento = ? AND Guasti.PNC = ? AND Guasti.SNC = ?;
+				\subitem (Per ognuno dei guasti inseriti con questo intervento)\newline
+			\item DELETE FROM Interventi \\WHERE Interventi.NumeroTelefonoCliente = ? AND Interventi.DataRichiesta = ?;\newline
+			\item DELETE FROM Clienti \\WHERE Clienti.NumeroTelefono = ?;
+				\subitem (In caso avessimo inserito un cliente \textit{ex-novo})\newline
+			\item DELETE FROM Prodotti \\WHERE Prodotti.PNC = ? AND Prodotti.SNC = ?;
+				\subitem (In caso avessimo inserito un prodotto \textit{ex-novo})			
+		\end{itemize}
 	\item[\textbf{T1 -}] Vista di tutti gli interventi correntemente aperti non già assegnati ad un altro tecnico, ordinati per urgenza
-	\subitem \dots
-	\item[\textbf{T2 -}] Aggiornamento di un intervento
-	\subitem \dots
-	\item[\textbf{P1 -}] Visualizzare tutti i guasti accaduti nel mese corrente
-	\subitem \dots
-	\item[\textbf{P2 -}] I primi cinque modelli che hanno subito più guasti nel mese corrente
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT Interventi.NumeroTelefonoCliente, Interventi.DataRichiesta\\
+			FROM Interventi\\
+			WHERE Interventi.CodiceTecnico IS NULL\\
+			ORDER BY Interventi.DataRichiesta;
+		\end{itemize}
+	\item[\textbf{T2 -}] Chiusura di un intervento
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item UPDATE Interventi SET Interventi.CodiceTecnico = ?, Interventi.Stato = 'C', Interventi.TempoImpiegato = ? FROM Interventi WHERE Interventi.DataRichiesta = ? AND Interventi.NumeroTelefonoCliente = ?;\newline
+			\item UPDATE Guasti SET Guasti.DescrizioneTecnico = ?, Guasti.CodiceTipoDifetto = ?, Guasti.ComponentCode = ? FROM Guasti WHERE Guasti.DataRichiestaIntervento = ? AND Guasti.NumeroTelefonoCliente = ? AND Guasti.PNC = ? AND Guasti.SNC = ?;\newline
+			\item UPDATE Prodotti SET Prodotti.DataAcquisto = ?, Prodotti.DataInstallazione = ?, Prodotti.CodiceGaranzia = ? FROM Prodotti WHERE Prodotti.PNC = ? AND Prodotti.SNC = ?;
+				\subitem (Nel caso avesse aiutato il cliente a ritrovare alcune informazioni sul prodotto, le informazioni ignote manterranno il campo con valore "NULL")
+		\end{itemize}
+	\item[\textbf{P1 -}] Visualizzare tutti i dati inerenti ai guasti accaduti nel mese corrente
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT Guasti.CategoriaProdotto, Guasti.PNC, Guasti.SNC, Prodotti.Modello, Guasti.DataRichiestaIntervento, Interventi.DataVisita, Prodotti.DataAcquisto, Prodotti.DataInstallazione, Interventi.Nazione, Guasti.DescrizioneCliente, Guasti.DescrizioneTecnico, Guasti.ComponentCode, Difetti.NomeComponente, Guasti.CodiceTipoDifetto, Difetti.NomeTipo AS 'NomeTipoDifetto', Ricambi.Codice AS 'CodiceRicambio', Ricambi.Nome AS 'NomeRicambio', Ricambi.CostoAcquisto, Ricambi.CostoInstallazione\\
+			FROM (((Guasti JOIN Interventi ON Guasti.NumeroTelefonoCliente = Interventi.NumeroTelefonoCliente AND Guasti.DataRichiestaIntervento = Interventi.DataRichiesta) JOIN Prodotti ON Guasti.PNC = Prodotti.PNC AND Guasti.SNC = Prodotti.SNC) JOIN Difetti ON Guasti.ComponentCode = Difetti.ComponentCode AND Guasti.CodiceTipoDifetto = Difetti.CodiceTipo) LEFT OUTER JOIN Ricambi ON Ricambi.ComponentCode = Difetti.ComponentCode AND Ricambi.CodiceTipoDifetto = Difetti.CodiceTipo\\
+			WHERE MONTH(Guasti.DataRichiestaIntervento) = MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP);
+		\end{itemize}
+	\item[\textbf{P2 -}] Visualizzare tutti i guasti che presentano una certa parola chiave nella descrizione scritta dal tecnico
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT Guasti.CategoriaProdotto, Guasti.PNC, Guasti.SNC, Guasti.DescrizioneCliente, Guasti.DescrizioneTecnico, Guasti.ComponentCode, Guasti.CodiceTipoDifetto\\
+			FROM Guasti\\
+			WHERE Guasti.CodiceTipoDifetto IS NOT NULL AND Guasti.ComponentCode IS NOT NULL AND MONTH(Guasti.DataRichiestaIntervento) = \\MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP) AND CHARINDEX(?, Guasti.DescrizioneTecnico) $>$ 0;
+		\end{itemize}
 	\item[\textbf{P3 -}] I primi cinque \textit{PNC} che hanno subito più guasti nel mese corrente
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT TOP(5) WITH TIES Guasti.CategoriaProdotto, Guasti.PNC, COUNT(*) AS '\#'\\
+			FROM Guasti\\
+			WHERE Guasti.ComponentCode IS NOT NULL AND Guasti.CodiceTipoDifetto IS NOT NULL AND MONTH(Guasti.DataRichiestaIntervento) = \\MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP)\\
+			GROUP BY Guasti.CategoriaProdotto, Guasti.PNC ORDER BY 3 DESC;
+		\end{itemize}
 	\item[\textbf{P4 -}] I primi cinque \textit{Component Code} che sono stati coinvolti maggiormente nei guasti di questo mese
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT TOP(5) WITH TIES Guasti.CategoriaProdotto, Guasti.ComponentCode, Difetti.NomeComponente, COUNT(*) AS '\#'\\
+			FROM Guasti JOIN Difetti ON Guasti.CodiceTipoDifetto = Difetti.CodiceTipo AND Guasti.ComponentCode = Difetti.ComponentCode\\
+			WHERE MONTH(Guasti.DataRichiestaIntervento) = MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP)\\
+			GROUP BY Guasti.CategoriaProdotto, Guasti.ComponentCode, Difetti.NomeComponente ORDER BY 4 DESC;
+		\end{itemize}
 	\item[\textbf{P5 -}] I primi cinque ricambi più utilizzati per riparare i guasti di questo mese
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT TOP(5) WITH TIES Guasti.CategoriaProdotto, Ricambi.Codice, Ricambi.Nome, Ricambi.CostoAcquisto, Ricambi.CostoInstallazione, COUNT(*) AS '\#'\\
+			FROM (Guasti JOIN Difetti ON Guasti.ComponentCode = Difetti.ComponentCode AND Guasti.CodiceTipoDifetto = Difetti.CodiceTipo) JOIN Ricambi ON Difetti.ComponentCode = Ricambi.ComponentCode AND Difetti.CodiceTipo = Ricambi.CodiceTipoDifetto\\
+			WHERE MONTH(Guasti.DataRichiestaIntervento) = MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP)\\
+			GROUP BY Ricambi.Codice, Ricambi.Nome, Ricambi.CostoAcquisto, Ricambi.CostoInstallazione, Guasti.CategoriaProdotto ORDER BY 6 DESC;
+		\end{itemize}
 	\item[\textbf{P6 -}] I primi cinque interventi più costosi a partire dai ricambi nel mese corrente
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT TOP(5) WITH TIES Guasti.CategoriaProdotto, Guasti.DataRichiestaIntervento, SUM(Ricambi.CostoAcquisto + Ricambi.CostoInstallazione) AS 'CostoTotale'\\
+			FROM (Guasti JOIN Difetti ON Guasti.ComponentCode = Difetti.ComponentCode AND Guasti.CodiceTipoDifetto = Difetti.CodiceTipo) JOIN Ricambi ON Difetti.ComponentCode = Ricambi.ComponentCode AND Difetti.CodiceTipo = Ricambi.CodiceTipoDifetto\\
+			WHERE MONTH(Guasti.DataRichiestaIntervento) = MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP)\\
+			GROUP BY Guasti.NumeroTelefonoCliente, Guasti.DataRichiestaIntervento, Guasti.CategoriaProdotto ORDER BY 3 DESC;
+		\end{itemize}
 	\item[\textbf{P7 -}] I primi cinque paesi per numero di guasti avvenuti in questo mese
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT Guasti.CategoriaProdotto, Interventi.Nazione, COUNT(*) AS '\#'\\
+			FROM Guasti JOIN Interventi ON Guasti.NumeroTelefonoCliente = Interventi.NumeroTelefonoCliente AND Guasti.DataRichiestaIntervento = Interventi.DataRichiesta\\
+			WHERE Guasti.CodiceTipoDifetto IS NOT NULL AND Guasti.ComponentCode IS NOT NULL AND MONTH(Guasti.DataRichiestaIntervento) = \\MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP)\\
+			GROUP BY Interventi.Nazione, Guasti.CategoriaProdotto;
+		\end{itemize}
 	\item[\textbf{P8 -}] I \textit{Time To Failure} rispetto alla data di acquisto di ciascun prodotto coinvolto nei guasti di questo mese
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT Guasti.CategoriaProdotto, Prodotti.PNC, Prodotti.SNC, Prodotti.CodiceGaranzia, Prodotti.Modello, DATEDIFF(d, Prodotti.DataAcquisto, Guasti.DataRichiestaIntervento) AS 'TTF (giorni)'\\
+			FROM Guasti JOIN Prodotti ON Guasti.PNC = Prodotti.PNC AND Guasti.SNC = Prodotti.SNC\\
+			WHERE Guasti.CodiceTipoDifetto IS NOT NULL AND Guasti.ComponentCode IS NOT NULL AND MONTH(Guasti.DataRichiestaIntervento) = \\MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP) AND Prodotti.DataAcquisto IS NOT NULL;
+		\end{itemize}
 	\item[\textbf{P9 -}] I \textit{Time To Failure} rispetto alla data di installazione di ciascun prodotto coinvolto nei guasti di questo mese
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT Guasti.CategoriaProdotto, Prodotti.PNC, Prodotti.SNC, Prodotti.CodiceGaranzia, Prodotti.Modello, DATEDIFF(d, Prodotti.DataInstallazione, Guasti.DataRichiestaIntervento) AS 'TTF (giorni)'\\
+			FROM Guasti JOIN Prodotti ON Guasti.PNC = Prodotti.PNC AND Guasti.SNC = Prodotti.SNC\\
+			WHERE Guasti.CodiceTipoDifetto IS NOT NULL AND Guasti.ComponentCode IS NOT NULL AND MONTH(Guasti.DataRichiestaIntervento) = \\MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP) AND Prodotti.DataInstallazione IS NOT NULL;
+		\end{itemize}
 	\item[\textbf{P10 -}] Tempo medio di riparazione di un guasto per tipo di difetto
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT Guasti.CategoriaProdotto, Difetti.CodiceTipo, Difetti.NomeTipo, AVG(Interventi.TempoImpiegato) AS 'TempoMedioRiparazione'\\
+			FROM (Guasti JOIN Difetti ON Guasti.ComponentCode = Difetti.ComponentCode AND Guasti.CodiceTipoDifetto = Difetti.CodiceTipo) JOIN Interventi ON Guasti.NumeroTelefonoCliente = Interventi.NumeroTelefonoCliente AND Guasti.DataRichiestaIntervento = Interventi.DataRichiesta\\
+			WHERE MONTH(Guasti.DataRichiestaIntervento) = MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP) AND Interventi.TempoImpiegato IS NOT NULL\\
+			GROUP BY Guasti.CategoriaProdotto, Difetti.CodiceTipo, Difetti.NomeTipo ORDER BY 4 DESC;
+		\end{itemize}
 	\item[\textbf{V1} -] Conteggio di tutti gli interventi aperti nel mese da ciascun operatore
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT Operatori.CF, Operatori.Nome, Operatori.Cognome, COUNT(*) AS '\#'\\
+			FROM Interventi JOIN Operatori ON Interventi.CodiceOperatore = Operatori.Codice\\
+			WHERE MONTH(Interventi.DataRichiesta) = MONTH(CURRENT\_TIMESTAMP) AND YEAR(Interventi.DataRichiesta) = YEAR(CURRENT\_TIMESTAMP)\\
+			GROUP BY Operatori.Codice, Operatori.CF, Operatori.Nome, Operatori.Cognome;
+		\end{itemize}
 	\item[\textbf{V2 -}] Conteggio di tutti gli interventi chiusi nel mese corrente da ciascun tecnico
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT Tecnici.CF, Tecnici.Nome, Tecnici.Cognome, COUNT(*) AS '\#'\\
+			FROM Interventi JOIN Tecnici ON Interventi.CodiceTecnico = Tecnici.Codice\\
+			WHERE MONTH(Interventi.DataRichiesta) = MONTH(CURRENT\_TIMESTAMP) AND YEAR(Interventi.DataRichiesta) = YEAR(CURRENT\_TIMESTAMP)\\
+			GROUP BY Tecnici.Codice, Tecnici.CF, Tecnici.Nome, Tecnici.Cognome;
+		\end{itemize}
 	\item[\textbf{V3 -}] Tempo medio di riparazione di un guasto per ciascun tecnico
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT Tecnici.CF, Tecnici.Nome, Tecnici.Cognome, AVG(Interventi.TempoImpiegato) AS 'TempoMedioImpiegato'\\
+			FROM Interventi JOIN Tecnici ON Interventi.CodiceTecnico = Tecnici.Codice\\
+			GROUP BY Tecnici.Codice, Tecnici.CF, Tecnici.Nome, Tecnici.Cognome;
+		\end{itemize}
 	\item[\textbf{V4 -}] Distanza temporale media tra ricezione della chiamata e visita del tecnico per centro assistenza
-	\subitem \dots
+		\begin{itemize}[leftmargin=*, topsep=0pt]
+			\item SELECT Centri\_Assistenza.CodiceNazionale, Centri\_Assistenza.Nazione, Centri\_Assistenza.Sede, Centri\_Assistenza.AreaCompetenza, AVG(CAST(DATEDIFF(d, Interventi.DataRichiesta, Interventi.DataVisita) AS REAL)) AS 'TempoMedioRiparazione'\\
+			FROM (Interventi JOIN Operatori ON Interventi.CodiceOperatore = Operatori.Codice) JOIN Centri\_Assistenza ON Operatori.CodiceNazionaleCentro = Centri\_Assistenza.CodiceNazionale AND Operatori.NazioneCentro = Centri\_Assistenza.Nazione\\
+			GROUP BY Centri\_Assistenza.CodiceNazionale, Centri\_Assistenza.Nazione, Centri\_Assistenza.Sede, Centri\_Assistenza.AreaCompetenza;
+		\end{itemize}
 \end{itemize}
 
 \chapter{Progettazione dell'applicazione}
