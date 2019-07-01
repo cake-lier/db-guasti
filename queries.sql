@@ -48,8 +48,8 @@ GROUP BY Guasti.NumeroTelefonoCliente, Guasti.DataRichiestaIntervento, Guasti.Ca
 
 /*SELECT Guasti.CategoriaProdotto, Interventi.Nazione, COUNT(*) AS '#'
 FROM Guasti JOIN Interventi ON Guasti.NumeroTelefonoCliente = Interventi.NumeroTelefonoCliente AND Guasti.DataRichiestaIntervento = Interventi.DataRichiesta
-WHERE Guasti.CodiceTipoDifetto IS NOT NULL AND Guasti.ComponentCode IS NOT NULL AND MONTH(Guasti.DataRichiestaIntervento) = MONTH(CURRENT_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT_TIMESTAMP);
-GROUP BY Interventi.Nazione, Guasti.CategoriaProdotto*/
+WHERE Guasti.CodiceTipoDifetto IS NOT NULL AND Guasti.ComponentCode IS NOT NULL AND MONTH(Guasti.DataRichiestaIntervento) = MONTH(CURRENT_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT_TIMESTAMP)
+GROUP BY Interventi.Nazione, Guasti.CategoriaProdotto;*/
 
 /*SELECT Guasti.CategoriaProdotto, Prodotti.PNC, Prodotti.SNC, Prodotti.CodiceGaranzia, Prodotti.Modello, DATEDIFF(d, Prodotti.DataAcquisto, Guasti.DataRichiestaIntervento) AS 'TTF (giorni)'
 FROM Guasti JOIN Prodotti ON Guasti.PNC = Prodotti.PNC AND Guasti.SNC = Prodotti.SNC
