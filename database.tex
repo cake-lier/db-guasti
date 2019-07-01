@@ -166,6 +166,8 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 	\caption{Schema scheletro dei concetti più rilevanti estrapolati dalle specifiche}
 \end{figure}
 
+\newpage
+
 \section{Raffinamenti proposti}
 
 \subsection{Gerarchia di persone}
@@ -364,6 +366,8 @@ Le principali operazioni che permettono di estrarre dati di interesse ai progett
 		andando ad indicare su quali parti di ciascun prodotto è necessario focalizzarsi per ridurre i costi di manutenzione dei prodotti stessi
 \end{itemize}
 
+\newpage
+
 Le operazioni che non vanno eseguite da una specifica categoria di dipendenti, ma riguardano informazioni utili all'azienda in generale, sono:
 
 \begin{itemize}
@@ -474,6 +478,8 @@ L'operazione di cancellazione è identica nelle operazioni, ne cambia sempliceme
 	\caption{Schema di navigazione per le operazioni O1 e O2}
 \end{figure}
 
+\newpage
+
 \subsection{T1 - Visualizzazione degli interventi aperti}
 
 Questa operazione visualizza tutti e soli gli interventi correntemente aperti, perciò i costrutti che coinvolge sono banali:
@@ -540,6 +546,8 @@ già stati preventivamente inseriti all'interno del \textit{database}.
 	\caption{Schema di navigazione per l'operazione T2}
 \end{figure}
 
+\newpage
+
 \subsection{P1 - Visualizzazione di tutti i dati inerenti ai guasti del mese corrente}
 
 Per visualizzare tutti i dati inerenti a tutti guasti accaduti nel mese corrente, occorre passare in rassegna tutti gli elementi dell'entità "guasto" e vedere la
@@ -592,6 +600,8 @@ di "guasto". Potrebbe sembrare necessario l'accesso all'entità "prodotto" e all
 chiave di "prodotto" e la data di richiesta dell'intervento è parte della chiave di "intervento", questi valori fanno parte della chiave di "guasto"
 e perciò non sarà necessario nessun accesso ad entità ulteriori.
 
+\newpage
+
 \begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
 	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
@@ -607,8 +617,8 @@ e perciò non sarà necessario nessun accesso ad entità ulteriori.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{images/P2.png}
-	\caption{Schema di navigazione per l'operazione P2}
+	\includegraphics{images/P2-P3.png}
+	\caption{Schema di navigazione per le operazioni P2 e P3}
 \end{figure}
 
 \subsection{P4 - I primi cinque component code maggiormente presenti nei guasti di questo mese}
@@ -635,7 +645,7 @@ Anche questa operazione si inserisce sulla scia di P3, con la differenza che, do
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{images/P4.png}
+	\includegraphics{images/P4.png}
 	\caption{Schema di navigazione per l'operazione P4}
 \end{figure}
 
@@ -645,6 +655,8 @@ L'operazione P5 non si discosta molto dalle precedenti perché si occupa, una vo
 ai ricambi necessari per ripararli. Una volta fatto, li si raggruppa per ricambio utilizzato e si prendono i primi cinque gruppi che presentano il maggior numero di membri.
 L'operazione P6 invece raggruppa i guasti per singolo intervento e ne calcola il costo, scegliendo poi i primi cinque gruppi che presentano il costo dato dalla riparazione maggiore
 di quello degli altri. In questo caso si tiene conto del numero dei ricambi utilizzati, ma anche del loro costo unitario.
+
+\newpage
 
 \begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
@@ -673,6 +685,8 @@ di quello degli altri. In questo caso si tiene conto del numero dei ricambi util
 	\includegraphics[width=\linewidth]{images/P5-P6.png}
 	\caption{Schema di navigazione per le operazioni P5 e P6}
 \end{figure}
+
+\newpage
 
 \subsection{P7 - I primi cinque paesi per numero di guasti di questo mese}
 
@@ -718,12 +732,6 @@ del prodotto, mentre l'operazione P9 alla data di installazione dello stesso. Pe
 sceglie come data di rottura dell'elettrodomestico la data di apertura dell'intervento associato, che abbiamo disponibile senza accessi aggiuntivi, e poi si risale
 al prodotto associato da cui si estrae l'altra data di interesse.
 
-\begin{figure}[H]
-	\centering
-%	\includegraphics[width=\linewidth]{images/P8-P9.png}
-	\caption{Schema di navigazione per le operazioni P8 e P9}
-\end{figure}
-
 \begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
 	\textbf{Costrutto\newline Coinvolto} & \textbf{Tipo\newline Costrutto} & \textbf{Accessi} & \textbf{Tipo\newline Accesso}\\
@@ -740,6 +748,12 @@ al prodotto associato da cui si estrae l'altra data di interesse.
 	\hline
 	\caption{Calcolo degli accessi delle operazioni P8 e P9}
 \end{tabularx}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{images/P8-P9.png}
+	\caption{Schema di navigazione per le operazioni P8 e P9}
+\end{figure}
 
 \subsection{P10 - Tempo medio di riparazione di un guasto per tipo di difetto}
 
@@ -863,6 +877,8 @@ dopo una chiamata alla sua chiusura dopo la visita di un tecnico.
 	\caption{Schema di navigazione per l'operazione V4}
 \end{figure}
 
+\newpage
+
 \section{Raffinamento dello schema concettuale}
 
 Per rendere traducibile lo schema "\textit{Entity-Relationship}" in uno schema relazionale, occorre effettuare alcune modifiche allo schema stesso
@@ -901,6 +917,8 @@ diminuendo i costi legati a quelle specifiche operazioni.
 	\includegraphics[width=\linewidth]{images/refined.png}
 	\caption{Schema E/R dopo i raffinamenti individuati nei paragrafi precedenti}
 \end{figure}
+
+\newpage
 
 \section{Analisi delle ridondanze}
 
@@ -983,6 +1001,8 @@ adeguato alla sua zona di residenza. Questa introduzione di ridondanza porterebb
 \end{table}
 \captionsetup[table]{skip=10pt}
 
+\newpage
+
 Perciò, abbiamo che il numero totale di accessi mensili supponendo di mantenere la ridondanza è di 928.253,600 contro i 3.893.400 accessi effettuati in caso di mancanza della
 ridondanza, rendendo utile il suo mantenimento.
 
@@ -1022,7 +1042,8 @@ ridondanza, rendendo utile il suo mantenimento.
 	\item \textbf{RICAMBI} (\underline{Codice}, Nome, CostoAcquisto, CostoInstallazione, ComponentCode, CodiceTipoDifetto)
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item[] FK: (ComponentCode, CodiceTipoDifetto) REFERENCES DIFETTI
-		\end{itemize}		
+		\end{itemize}
+	\newpage	
 	\item \textbf{GUASTI} (\underline{NumeroTelefonoCliente}, \underline{DataRichiestaIntervento}, \underline{PNC}, \underline{SNC}, DescrizioneCliente, DescrizioneTecnico*, CategoriaProdotto, ComponentCode*,
 	CodiceTipoDifetto*)
 		\begin{itemize}[leftmargin=*, topsep=0pt]
@@ -1048,6 +1069,8 @@ ridondanza, rendendo utile il suo mantenimento.
 	\includegraphics[width=\linewidth]{images/logic.png}
 	\caption{Schema logico relazionale ottenuto dal paragrafo precedente}
 \end{figure}
+
+\newpage
 
 \section{Traduzione delle operazioni in SQL}
 
@@ -1086,6 +1109,7 @@ ridondanza, rendendo utile il suo mantenimento.
 			\item UPDATE Prodotti SET Prodotti.DataAcquisto = ?, Prodotti.DataInstallazione = ?, Prodotti.CodiceGaranzia = ? FROM Prodotti WHERE Prodotti.PNC = ? AND Prodotti.SNC = ?;
 				\subitem (Nel caso avesse aiutato il cliente a ritrovare alcune informazioni sul prodotto, le informazioni ignote manterranno il campo con valore "NULL")
 		\end{itemize}
+	\newpage
 	\item[\textbf{P1 -}] Visualizzare tutti i dati inerenti ai guasti accaduti nel mese corrente
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item SELECT Guasti.CategoriaProdotto, Guasti.PNC, Guasti.SNC, Prodotti.Modello, Guasti.DataRichiestaIntervento, Interventi.DataVisita, Prodotti.DataAcquisto, Prodotti.DataInstallazione, Interventi.Nazione, Guasti.DescrizioneCliente, Guasti.DescrizioneTecnico, Guasti.ComponentCode, Difetti.NomeComponente, Guasti.CodiceTipoDifetto, Difetti.NomeTipo AS 'NomeTipoDifetto', Ricambi.Codice AS 'CodiceRicambio', Ricambi.Nome AS 'NomeRicambio', Ricambi.CostoAcquisto, Ricambi.CostoInstallazione\\
@@ -1126,6 +1150,7 @@ ridondanza, rendendo utile il suo mantenimento.
 			WHERE MONTH(Guasti.DataRichiestaIntervento) = MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP)\\
 			GROUP BY Guasti.NumeroTelefonoCliente, Guasti.DataRichiestaIntervento, Guasti.CategoriaProdotto ORDER BY 3 DESC;
 		\end{itemize}
+	\newpage
 	\item[\textbf{P7 -}] I primi cinque paesi per numero di guasti avvenuti in questo mese
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item SELECT Guasti.CategoriaProdotto, Interventi.Nazione, COUNT(*) AS '\#'\\
@@ -1145,6 +1170,7 @@ ridondanza, rendendo utile il suo mantenimento.
 			FROM Guasti JOIN Prodotti ON Guasti.PNC = Prodotti.PNC AND Guasti.SNC = Prodotti.SNC\\
 			WHERE Guasti.CodiceTipoDifetto IS NOT NULL AND Guasti.ComponentCode IS NOT NULL AND MONTH(Guasti.DataRichiestaIntervento) = \\MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP) AND Prodotti.DataInstallazione IS NOT NULL;
 		\end{itemize}
+	\newpage
 	\item[\textbf{P10 -}] Tempo medio di riparazione di un guasto per tipo di difetto
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item SELECT Guasti.CategoriaProdotto, Difetti.CodiceTipo, Difetti.NomeTipo, AVG(Interventi.TempoImpiegato) AS 'TempoMedioRiparazione'\\
@@ -1172,6 +1198,7 @@ ridondanza, rendendo utile il suo mantenimento.
 			FROM Interventi JOIN Tecnici ON Interventi.CodiceTecnico = Tecnici.Codice\\
 			GROUP BY Tecnici.Codice, Tecnici.CF, Tecnici.Nome, Tecnici.Cognome;
 		\end{itemize}
+	\newpage
 	\item[\textbf{V4 -}] Distanza temporale media tra ricezione della chiamata e visita del tecnico per centro assistenza
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item SELECT Centri\_Assistenza.CodiceNazionale, Centri\_Assistenza.Nazione, Centri\_Assistenza.Sede, Centri\_Assistenza.AreaCompetenza, AVG(CAST(DATEDIFF(d, Interventi.DataRichiesta, Interventi.DataVisita) AS REAL)) AS 'TempoMedioRiparazione'\\
