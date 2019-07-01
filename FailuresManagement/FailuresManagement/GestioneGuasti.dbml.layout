@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.5, 8.5" name="GestioneGuasti">
+  <DataContextMoniker Name="/GestioneGuastiDataContext" />
+  <nestedChildShapes>
+    <classShape Id="5134108c-73f3-4e4e-b2ac-3445dcf403de" absoluteBounds="0.5, 0.5, 2, 4.4631168619791666">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/AllFaults" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f6f960cf-b59c-4285-82b0-fe85fef479b7" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="700b19ed-f799-4dd5-aa51-b50bd028014d" absoluteBounds="3, 0.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/Progettisti" />
+      <nestedChildShapes>
+        <elementListCompartment Id="324c3c7c-8cd1-419d-9343-09ecdf8de557" absoluteBounds="3.015, 1.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="64bbd5a5-40ea-4d79-9500-28fbf30bc9a0" absoluteBounds="0.625, 5.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/TopPNC" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7ff38bb0-3d1f-4286-914e-16b0c9fc5361" absoluteBounds="0.64000000000000012, 5.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ef3be790-3d1a-47d1-9e0e-6f1e72f1ee8c" absoluteBounds="2.875, 3.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/TopComponentCode" />
+      <nestedChildShapes>
+        <elementListCompartment Id="35a74deb-d6f5-46ef-b4f4-0a299ce93405" absoluteBounds="2.89, 3.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="639139dd-93c9-426a-8c6d-401fe490df79" absoluteBounds="3, 5.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/AvgTime" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e8947eb7-7159-42d3-b6d3-2959d95c0b23" absoluteBounds="3.015, 5.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="296eeb3d-859b-49b8-a9c2-ad862da97c3e" absoluteBounds="5.875, 1.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/TopCostSpareParts" />
+      <nestedChildShapes>
+        <elementListCompartment Id="962da3be-c4dd-414d-9fb1-e97c4eb663ba" absoluteBounds="5.89, 1.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8c44ea46-6742-4ced-af67-eb10a1f9876c" absoluteBounds="6.125, 3.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/TopNations" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4acf551b-e70c-4ada-a62f-e6e9bf92be82" absoluteBounds="6.14, 3.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dfea0c70-db5c-44e6-94cf-afa529209694" absoluteBounds="5.625, 5.25, 2, 1.9631982421875">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/TopSpareParts" />
+      <nestedChildShapes>
+        <elementListCompartment Id="515098d3-d7b8-474e-b5af-81e532740dfa" absoluteBounds="5.64, 5.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2aeeadc5-0fda-4d86-ba36-176b87765954" absoluteBounds="8.875, 1.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/TTFInstallation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bc275a10-63a8-486b-8fc1-36cd093482ad" absoluteBounds="8.89, 1.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8ad5017b-f4d2-4a26-a8a0-26895738bac0" absoluteBounds="8.75, 4.125, 2, 1.9631982421875">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/TTFPurchase" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e545efc7-e46a-47e7-9f7e-ba6c02c7547b" absoluteBounds="8.765, 4.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9327ae2a-704e-4d68-9fb1-70aec048ba41" absoluteBounds="12.25, 1, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/Interessi" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9c76d48e-10d1-435c-83a3-d0957c5f0a23" absoluteBounds="12.265, 1.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5 : 1.21875); (12.25 : 1.21875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/GestioneGuastiDataContext/Progettisti/Progettisti_Interessi" />
+      <nodes>
+        <classShapeMoniker Id="700b19ed-f799-4dd5-aa51-b50bd028014d" />
+        <classShapeMoniker Id="9327ae2a-704e-4d68-9fb1-70aec048ba41" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d938a4a9-5ef2-4739-a6e8-30dc0801ee9b" absoluteBounds="11.375, 4.375, 2, 2.5401025390625">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/Guasti" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d8120253-2384-43eb-89fb-545d10a545a7" absoluteBounds="11.39, 4.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
