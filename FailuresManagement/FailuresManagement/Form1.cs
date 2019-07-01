@@ -24,6 +24,9 @@ namespace FailuresManagement
         private void Form1_Load(object sender, EventArgs e)
         {
             DesignerView.Hide();
+            TechnicianView.Hide();
+            AcceptButton = LoginButton;
+            FaultsView.ReadOnly = false;
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -36,8 +39,6 @@ namespace FailuresManagement
                                      select emp.CodiceCategoria;
                 if (designerCategories.Count() >= 1)
                 {
-                    StartPanel.Hide();
-                    DesignerView.Show();
                     AllFaultsView.DataSource = from row in db.AllFaults
                                                where designerCategories.Contains(row.CategoriaProdotto)
                                                select row;
@@ -65,8 +66,30 @@ namespace FailuresManagement
                     TTFInstallationView.DataSource = from row in db.TTFInstallation
                                                      where designerCategories.Contains(row.CategoriaProdotto)
                                                      select row;
+                    StartPanel.Hide();
+                    AcceptButton = null;
+                    DesignerView.Show();
                 }
-            } catch(FormatException)
+                else if ((from op in db.Operatori where op.Codice == empCode select op).Count() == 1)
+                {
+                    StartPanel.Hide();
+                    AcceptButton = null;
+                    //OperatorView.Show();
+                }
+                else if ((from tec in db.Tecnici where tec.Codice == empCode select tec).Count() == 1)
+                {
+                    InterventionView.DataSource = db.NewInterventions;
+                    InterventionView.ClearSelection();
+                    StartPanel.Hide();
+                    AcceptButton = null;
+                    TechnicianView.Show();
+                }
+                else
+                {
+                    LoginBox.BackColor = Color.Red;
+                }
+            }
+            catch (FormatException)
             {
                 LoginBox.BackColor = Color.Red;
             }
@@ -83,5 +106,38 @@ namespace FailuresManagement
                                     select new { fault.CategoriaProdotto, fault.PNC, fault.SNC, fault.DescrizioneCliente,
                                                  fault.DescrizioneTecnico, fault.ComponentCode, fault.CodiceTipoDifetto };
         }
+
+        private void InterventionView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                FaultsView.Columns.Clear();
+                FaultsView.DataSource = from fault in db.Guasti
+                                        where fault.NumeroTelefonoCliente == (string)InterventionView[0, e.RowIndex].Value
+                                              && fault.DataRichiestaIntervento == (DateTime)InterventionView[1, e.RowIndex].Value
+                                        select new { fault.DescrizioneCliente };
+                new List<string> { "DescrizioneTecnico", "CodiceTipoDifetto", "ComponentCode" }.ForEach(s => FaultsView.Columns
+                                                                                                                       .Add(s, s));
+                var products = from fault in db.Guasti
+                                          where fault.NumeroTelefonoCliente == (string)InterventionView[0, e.RowIndex].Value
+                                                && fault.DataRichiestaIntervento == (DateTime)InterventionView[1, e.RowIndex].Value
+                                          select new { fault.Prodotti.Categorie.Nome, fault.Prodotti.PNC, fault.Prodotti.SNC,
+                                                       fault.Prodotti.DataAcquisto, fault.Prodotti.DataInstallazione, fault.Prodotti.CodiceGaranzia, fault.Prodotti.Modello };
+                ProductsView.DataSource = from knowns in products
+                                          select new { knowns.Nome, knowns.PNC, knowns.SNC, knowns.Modello };
+                new List<string> { "DataAcquisto", "DataInstallazione", "CodiceGaranzia" }.ForEach(s => ProductsView.Columns
+                                                                                                                    .Add(s, s));
+                var i = 0;
+                var productsEnumerator = products.GetEnumerator();
+                while (productsEnumerator.MoveNext())
+                {
+                    ProductsView[4, i].Value = productsEnumerator.Current.DataAcquisto;
+                    ProductsView[5, i].Value = productsEnumerator.Current.DataInstallazione;
+                    ProductsView[6, i].Value = productsEnumerator.Current.CodiceGaranzia;
+                    i++;
+                }
+            }
+        }
+
     }
 }

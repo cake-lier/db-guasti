@@ -8,3 +8,13 @@ C:\Users\Matteo\Desktop\FailuresManagement\FailuresManagement\obj\Debug\Failures
 C:\Users\Matteo\Desktop\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.exe
 C:\Users\Matteo\Desktop\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.pdb
 C:\Users\Matteo\Desktop\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.MainWindow.resources
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\bin\Debug\FailuresManagement.exe.config
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\bin\Debug\FailuresManagement.exe
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\bin\Debug\FailuresManagement.pdb
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.csprojAssemblyReference.cache
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.MainWindow.resources
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.Properties.Resources.resources
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.csproj.GenerateResource.cache
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.csproj.CoreCompileInputs.cache
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.exe
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.pdb

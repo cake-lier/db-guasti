@@ -39,6 +39,21 @@ namespace FailuresManagement
     partial void InsertGuasti(Guasti instance);
     partial void UpdateGuasti(Guasti instance);
     partial void DeleteGuasti(Guasti instance);
+    partial void InsertOperatori(Operatori instance);
+    partial void UpdateOperatori(Operatori instance);
+    partial void DeleteOperatori(Operatori instance);
+    partial void InsertTecnici(Tecnici instance);
+    partial void UpdateTecnici(Tecnici instance);
+    partial void DeleteTecnici(Tecnici instance);
+    partial void InsertInterventi(Interventi instance);
+    partial void UpdateInterventi(Interventi instance);
+    partial void DeleteInterventi(Interventi instance);
+    partial void InsertProdotti(Prodotti instance);
+    partial void UpdateProdotti(Prodotti instance);
+    partial void DeleteProdotti(Prodotti instance);
+    partial void InsertCategorie(Categorie instance);
+    partial void UpdateCategorie(Categorie instance);
+    partial void DeleteCategorie(Categorie instance);
     #endregion
 		
 		public GestioneGuastiDataContext() : 
@@ -164,6 +179,54 @@ namespace FailuresManagement
 			get
 			{
 				return this.GetTable<Guasti>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Operatori> Operatori
+		{
+			get
+			{
+				return this.GetTable<Operatori>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tecnici> Tecnici
+		{
+			get
+			{
+				return this.GetTable<Tecnici>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Interventi> Interventi
+		{
+			get
+			{
+				return this.GetTable<Interventi>();
+			}
+		}
+		
+		public System.Data.Linq.Table<NewInterventions> NewInterventions
+		{
+			get
+			{
+				return this.GetTable<NewInterventions>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Prodotti> Prodotti
+		{
+			get
+			{
+				return this.GetTable<Prodotti>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Categorie> Categorie
+		{
+			get
+			{
+				return this.GetTable<Categorie>();
 			}
 		}
 	}
@@ -1112,7 +1175,7 @@ namespace FailuresManagement
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[#]", Storage="___", DbType="Int")]
-		public System.Nullable<int> __
+		public System.Nullable<int> Numero
 		{
 			get
 			{
@@ -1491,6 +1554,8 @@ namespace FailuresManagement
 		
 		private EntityRef<Progettisti> _Progettisti;
 		
+		private EntityRef<Categorie> _Categorie;
+		
     #region Definizioni metodo Extensibility
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1504,6 +1569,7 @@ namespace FailuresManagement
 		public Interessi()
 		{
 			this._Progettisti = default(EntityRef<Progettisti>);
+			this._Categorie = default(EntityRef<Categorie>);
 			OnCreated();
 		}
 		
@@ -1518,6 +1584,10 @@ namespace FailuresManagement
 			{
 				if ((this._CodiceCategoria != value))
 				{
+					if (this._Categorie.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnCodiceCategoriaChanging(value);
 					this.SendPropertyChanging();
 					this._CodiceCategoria = value;
@@ -1585,6 +1655,40 @@ namespace FailuresManagement
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categorie_Interessi", Storage="_Categorie", ThisKey="CodiceCategoria", OtherKey="Codice", IsForeignKey=true)]
+		public Categorie Categorie
+		{
+			get
+			{
+				return this._Categorie.Entity;
+			}
+			set
+			{
+				Categorie previousValue = this._Categorie.Entity;
+				if (((previousValue != value) 
+							|| (this._Categorie.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Categorie.Entity = null;
+						previousValue.Interessi.Remove(this);
+					}
+					this._Categorie.Entity = value;
+					if ((value != null))
+					{
+						value.Interessi.Add(this);
+						this._CodiceCategoria = value.Codice;
+					}
+					else
+					{
+						this._CodiceCategoria = default(decimal);
+					}
+					this.SendPropertyChanged("Categorie");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1630,6 +1734,10 @@ namespace FailuresManagement
 		
 		private System.Nullable<decimal> _CodiceTipoDifetto;
 		
+		private EntityRef<Interventi> _Interventi;
+		
+		private EntityRef<Prodotti> _Prodotti;
+		
     #region Definizioni metodo Extensibility
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1656,6 +1764,8 @@ namespace FailuresManagement
 		
 		public Guasti()
 		{
+			this._Interventi = default(EntityRef<Interventi>);
+			this._Prodotti = default(EntityRef<Prodotti>);
 			OnCreated();
 		}
 		
@@ -1670,6 +1780,10 @@ namespace FailuresManagement
 			{
 				if ((this._NumeroTelefonoCliente != value))
 				{
+					if (this._Interventi.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnNumeroTelefonoClienteChanging(value);
 					this.SendPropertyChanging();
 					this._NumeroTelefonoCliente = value;
@@ -1690,6 +1804,10 @@ namespace FailuresManagement
 			{
 				if ((this._DataRichiestaIntervento != value))
 				{
+					if (this._Interventi.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnDataRichiestaInterventoChanging(value);
 					this.SendPropertyChanging();
 					this._DataRichiestaIntervento = value;
@@ -1710,6 +1828,10 @@ namespace FailuresManagement
 			{
 				if ((this._PNC != value))
 				{
+					if (this._Prodotti.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnPNCChanging(value);
 					this.SendPropertyChanging();
 					this._PNC = value;
@@ -1730,6 +1852,10 @@ namespace FailuresManagement
 			{
 				if ((this._SNC != value))
 				{
+					if (this._Prodotti.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnSNCChanging(value);
 					this.SendPropertyChanging();
 					this._SNC = value;
@@ -1839,6 +1965,78 @@ namespace FailuresManagement
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Interventi_Guasti", Storage="_Interventi", ThisKey="NumeroTelefonoCliente,DataRichiestaIntervento", OtherKey="NumeroTelefonoCliente,DataRichiesta", IsForeignKey=true)]
+		public Interventi Interventi
+		{
+			get
+			{
+				return this._Interventi.Entity;
+			}
+			set
+			{
+				Interventi previousValue = this._Interventi.Entity;
+				if (((previousValue != value) 
+							|| (this._Interventi.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Interventi.Entity = null;
+						previousValue.Guasti.Remove(this);
+					}
+					this._Interventi.Entity = value;
+					if ((value != null))
+					{
+						value.Guasti.Add(this);
+						this._NumeroTelefonoCliente = value.NumeroTelefonoCliente;
+						this._DataRichiestaIntervento = value.DataRichiesta;
+					}
+					else
+					{
+						this._NumeroTelefonoCliente = default(string);
+						this._DataRichiestaIntervento = default(System.DateTime);
+					}
+					this.SendPropertyChanged("Interventi");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prodotti_Guasti", Storage="_Prodotti", ThisKey="PNC,SNC", OtherKey="PNC,SNC", IsForeignKey=true)]
+		public Prodotti Prodotti
+		{
+			get
+			{
+				return this._Prodotti.Entity;
+			}
+			set
+			{
+				Prodotti previousValue = this._Prodotti.Entity;
+				if (((previousValue != value) 
+							|| (this._Prodotti.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Prodotti.Entity = null;
+						previousValue.Guasti.Remove(this);
+					}
+					this._Prodotti.Entity = value;
+					if ((value != null))
+					{
+						value.Guasti.Add(this);
+						this._PNC = value.PNC;
+						this._SNC = value.SNC;
+					}
+					else
+					{
+						this._PNC = default(decimal);
+						this._SNC = default(decimal);
+					}
+					this.SendPropertyChanged("Prodotti");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1857,6 +2055,1444 @@ namespace FailuresManagement
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Operatori")]
+	public partial class Operatori : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private decimal _Codice;
+		
+		private string _CF;
+		
+		private string _Nome;
+		
+		private string _Cognome;
+		
+		private System.DateTime _DataNascita;
+		
+		private string _LuogoNascita;
+		
+		private string _Residenza;
+		
+		private float _Stipendio;
+		
+		private decimal _CodiceNazionaleCentro;
+		
+		private string _NazioneCentro;
+		
+		private EntitySet<Interventi> _Interventi;
+		
+    #region Definizioni metodo Extensibility
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodiceChanging(decimal value);
+    partial void OnCodiceChanged();
+    partial void OnCFChanging(string value);
+    partial void OnCFChanged();
+    partial void OnNomeChanging(string value);
+    partial void OnNomeChanged();
+    partial void OnCognomeChanging(string value);
+    partial void OnCognomeChanged();
+    partial void OnDataNascitaChanging(System.DateTime value);
+    partial void OnDataNascitaChanged();
+    partial void OnLuogoNascitaChanging(string value);
+    partial void OnLuogoNascitaChanged();
+    partial void OnResidenzaChanging(string value);
+    partial void OnResidenzaChanged();
+    partial void OnStipendioChanging(float value);
+    partial void OnStipendioChanged();
+    partial void OnCodiceNazionaleCentroChanging(decimal value);
+    partial void OnCodiceNazionaleCentroChanged();
+    partial void OnNazioneCentroChanging(string value);
+    partial void OnNazioneCentroChanged();
+    #endregion
+		
+		public Operatori()
+		{
+			this._Interventi = new EntitySet<Interventi>(new Action<Interventi>(this.attach_Interventi), new Action<Interventi>(this.detach_Interventi));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codice", DbType="Decimal(6,0) NOT NULL", IsPrimaryKey=true)]
+		public decimal Codice
+		{
+			get
+			{
+				return this._Codice;
+			}
+			set
+			{
+				if ((this._Codice != value))
+				{
+					this.OnCodiceChanging(value);
+					this.SendPropertyChanging();
+					this._Codice = value;
+					this.SendPropertyChanged("Codice");
+					this.OnCodiceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CF", DbType="Char(16) NOT NULL", CanBeNull=false)]
+		public string CF
+		{
+			get
+			{
+				return this._CF;
+			}
+			set
+			{
+				if ((this._CF != value))
+				{
+					this.OnCFChanging(value);
+					this.SendPropertyChanging();
+					this._CF = value;
+					this.SendPropertyChanged("CF");
+					this.OnCFChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this.OnNomeChanging(value);
+					this.SendPropertyChanging();
+					this._Nome = value;
+					this.SendPropertyChanged("Nome");
+					this.OnNomeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cognome", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Cognome
+		{
+			get
+			{
+				return this._Cognome;
+			}
+			set
+			{
+				if ((this._Cognome != value))
+				{
+					this.OnCognomeChanging(value);
+					this.SendPropertyChanging();
+					this._Cognome = value;
+					this.SendPropertyChanged("Cognome");
+					this.OnCognomeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataNascita", DbType="Date NOT NULL")]
+		public System.DateTime DataNascita
+		{
+			get
+			{
+				return this._DataNascita;
+			}
+			set
+			{
+				if ((this._DataNascita != value))
+				{
+					this.OnDataNascitaChanging(value);
+					this.SendPropertyChanging();
+					this._DataNascita = value;
+					this.SendPropertyChanged("DataNascita");
+					this.OnDataNascitaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LuogoNascita", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string LuogoNascita
+		{
+			get
+			{
+				return this._LuogoNascita;
+			}
+			set
+			{
+				if ((this._LuogoNascita != value))
+				{
+					this.OnLuogoNascitaChanging(value);
+					this.SendPropertyChanging();
+					this._LuogoNascita = value;
+					this.SendPropertyChanged("LuogoNascita");
+					this.OnLuogoNascitaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Residenza", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string Residenza
+		{
+			get
+			{
+				return this._Residenza;
+			}
+			set
+			{
+				if ((this._Residenza != value))
+				{
+					this.OnResidenzaChanging(value);
+					this.SendPropertyChanging();
+					this._Residenza = value;
+					this.SendPropertyChanged("Residenza");
+					this.OnResidenzaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stipendio", DbType="Real NOT NULL")]
+		public float Stipendio
+		{
+			get
+			{
+				return this._Stipendio;
+			}
+			set
+			{
+				if ((this._Stipendio != value))
+				{
+					this.OnStipendioChanging(value);
+					this.SendPropertyChanging();
+					this._Stipendio = value;
+					this.SendPropertyChanged("Stipendio");
+					this.OnStipendioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodiceNazionaleCentro", DbType="Decimal(3,0) NOT NULL")]
+		public decimal CodiceNazionaleCentro
+		{
+			get
+			{
+				return this._CodiceNazionaleCentro;
+			}
+			set
+			{
+				if ((this._CodiceNazionaleCentro != value))
+				{
+					this.OnCodiceNazionaleCentroChanging(value);
+					this.SendPropertyChanging();
+					this._CodiceNazionaleCentro = value;
+					this.SendPropertyChanged("CodiceNazionaleCentro");
+					this.OnCodiceNazionaleCentroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazioneCentro", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string NazioneCentro
+		{
+			get
+			{
+				return this._NazioneCentro;
+			}
+			set
+			{
+				if ((this._NazioneCentro != value))
+				{
+					this.OnNazioneCentroChanging(value);
+					this.SendPropertyChanging();
+					this._NazioneCentro = value;
+					this.SendPropertyChanged("NazioneCentro");
+					this.OnNazioneCentroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Operatori_Interventi", Storage="_Interventi", ThisKey="Codice", OtherKey="CodiceOperatore")]
+		public EntitySet<Interventi> Interventi
+		{
+			get
+			{
+				return this._Interventi;
+			}
+			set
+			{
+				this._Interventi.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Interventi(Interventi entity)
+		{
+			this.SendPropertyChanging();
+			entity.Operatori = this;
+		}
+		
+		private void detach_Interventi(Interventi entity)
+		{
+			this.SendPropertyChanging();
+			entity.Operatori = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tecnici")]
+	public partial class Tecnici : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private decimal _Codice;
+		
+		private string _CF;
+		
+		private string _Nome;
+		
+		private string _Cognome;
+		
+		private System.DateTime _DataNascita;
+		
+		private string _LuogoNascita;
+		
+		private string _Residenza;
+		
+		private float _Stipendio;
+		
+		private bool _DipendenteInterno;
+		
+		private decimal _CodiceNazionaleCentro;
+		
+		private string _NazioneCentro;
+		
+		private EntitySet<Interventi> _Interventi;
+		
+    #region Definizioni metodo Extensibility
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodiceChanging(decimal value);
+    partial void OnCodiceChanged();
+    partial void OnCFChanging(string value);
+    partial void OnCFChanged();
+    partial void OnNomeChanging(string value);
+    partial void OnNomeChanged();
+    partial void OnCognomeChanging(string value);
+    partial void OnCognomeChanged();
+    partial void OnDataNascitaChanging(System.DateTime value);
+    partial void OnDataNascitaChanged();
+    partial void OnLuogoNascitaChanging(string value);
+    partial void OnLuogoNascitaChanged();
+    partial void OnResidenzaChanging(string value);
+    partial void OnResidenzaChanged();
+    partial void OnStipendioChanging(float value);
+    partial void OnStipendioChanged();
+    partial void OnDipendenteInternoChanging(bool value);
+    partial void OnDipendenteInternoChanged();
+    partial void OnCodiceNazionaleCentroChanging(decimal value);
+    partial void OnCodiceNazionaleCentroChanged();
+    partial void OnNazioneCentroChanging(string value);
+    partial void OnNazioneCentroChanged();
+    #endregion
+		
+		public Tecnici()
+		{
+			this._Interventi = new EntitySet<Interventi>(new Action<Interventi>(this.attach_Interventi), new Action<Interventi>(this.detach_Interventi));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codice", DbType="Decimal(6,0) NOT NULL", IsPrimaryKey=true)]
+		public decimal Codice
+		{
+			get
+			{
+				return this._Codice;
+			}
+			set
+			{
+				if ((this._Codice != value))
+				{
+					this.OnCodiceChanging(value);
+					this.SendPropertyChanging();
+					this._Codice = value;
+					this.SendPropertyChanged("Codice");
+					this.OnCodiceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CF", DbType="Char(16) NOT NULL", CanBeNull=false)]
+		public string CF
+		{
+			get
+			{
+				return this._CF;
+			}
+			set
+			{
+				if ((this._CF != value))
+				{
+					this.OnCFChanging(value);
+					this.SendPropertyChanging();
+					this._CF = value;
+					this.SendPropertyChanged("CF");
+					this.OnCFChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this.OnNomeChanging(value);
+					this.SendPropertyChanging();
+					this._Nome = value;
+					this.SendPropertyChanged("Nome");
+					this.OnNomeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cognome", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Cognome
+		{
+			get
+			{
+				return this._Cognome;
+			}
+			set
+			{
+				if ((this._Cognome != value))
+				{
+					this.OnCognomeChanging(value);
+					this.SendPropertyChanging();
+					this._Cognome = value;
+					this.SendPropertyChanged("Cognome");
+					this.OnCognomeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataNascita", DbType="Date NOT NULL")]
+		public System.DateTime DataNascita
+		{
+			get
+			{
+				return this._DataNascita;
+			}
+			set
+			{
+				if ((this._DataNascita != value))
+				{
+					this.OnDataNascitaChanging(value);
+					this.SendPropertyChanging();
+					this._DataNascita = value;
+					this.SendPropertyChanged("DataNascita");
+					this.OnDataNascitaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LuogoNascita", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string LuogoNascita
+		{
+			get
+			{
+				return this._LuogoNascita;
+			}
+			set
+			{
+				if ((this._LuogoNascita != value))
+				{
+					this.OnLuogoNascitaChanging(value);
+					this.SendPropertyChanging();
+					this._LuogoNascita = value;
+					this.SendPropertyChanged("LuogoNascita");
+					this.OnLuogoNascitaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Residenza", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string Residenza
+		{
+			get
+			{
+				return this._Residenza;
+			}
+			set
+			{
+				if ((this._Residenza != value))
+				{
+					this.OnResidenzaChanging(value);
+					this.SendPropertyChanging();
+					this._Residenza = value;
+					this.SendPropertyChanged("Residenza");
+					this.OnResidenzaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stipendio", DbType="Real NOT NULL")]
+		public float Stipendio
+		{
+			get
+			{
+				return this._Stipendio;
+			}
+			set
+			{
+				if ((this._Stipendio != value))
+				{
+					this.OnStipendioChanging(value);
+					this.SendPropertyChanging();
+					this._Stipendio = value;
+					this.SendPropertyChanged("Stipendio");
+					this.OnStipendioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DipendenteInterno", DbType="Bit NOT NULL")]
+		public bool DipendenteInterno
+		{
+			get
+			{
+				return this._DipendenteInterno;
+			}
+			set
+			{
+				if ((this._DipendenteInterno != value))
+				{
+					this.OnDipendenteInternoChanging(value);
+					this.SendPropertyChanging();
+					this._DipendenteInterno = value;
+					this.SendPropertyChanged("DipendenteInterno");
+					this.OnDipendenteInternoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodiceNazionaleCentro", DbType="Decimal(3,0) NOT NULL")]
+		public decimal CodiceNazionaleCentro
+		{
+			get
+			{
+				return this._CodiceNazionaleCentro;
+			}
+			set
+			{
+				if ((this._CodiceNazionaleCentro != value))
+				{
+					this.OnCodiceNazionaleCentroChanging(value);
+					this.SendPropertyChanging();
+					this._CodiceNazionaleCentro = value;
+					this.SendPropertyChanged("CodiceNazionaleCentro");
+					this.OnCodiceNazionaleCentroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazioneCentro", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string NazioneCentro
+		{
+			get
+			{
+				return this._NazioneCentro;
+			}
+			set
+			{
+				if ((this._NazioneCentro != value))
+				{
+					this.OnNazioneCentroChanging(value);
+					this.SendPropertyChanging();
+					this._NazioneCentro = value;
+					this.SendPropertyChanged("NazioneCentro");
+					this.OnNazioneCentroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tecnici_Interventi", Storage="_Interventi", ThisKey="Codice", OtherKey="CodiceTecnico")]
+		public EntitySet<Interventi> Interventi
+		{
+			get
+			{
+				return this._Interventi;
+			}
+			set
+			{
+				this._Interventi.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Interventi(Interventi entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tecnici = this;
+		}
+		
+		private void detach_Interventi(Interventi entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tecnici = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Interventi")]
+	public partial class Interventi : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _NumeroTelefonoCliente;
+		
+		private System.DateTime _DataRichiesta;
+		
+		private char _Stato;
+		
+		private System.DateTime _DataVisita;
+		
+		private System.Nullable<decimal> _TempoImpiegato;
+		
+		private string _Nazione;
+		
+		private decimal _CodiceOperatore;
+		
+		private System.Nullable<decimal> _CodiceTecnico;
+		
+		private EntitySet<Guasti> _Guasti;
+		
+		private EntityRef<Operatori> _Operatori;
+		
+		private EntityRef<Tecnici> _Tecnici;
+		
+    #region Definizioni metodo Extensibility
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnNumeroTelefonoClienteChanging(string value);
+    partial void OnNumeroTelefonoClienteChanged();
+    partial void OnDataRichiestaChanging(System.DateTime value);
+    partial void OnDataRichiestaChanged();
+    partial void OnStatoChanging(char value);
+    partial void OnStatoChanged();
+    partial void OnDataVisitaChanging(System.DateTime value);
+    partial void OnDataVisitaChanged();
+    partial void OnTempoImpiegatoChanging(System.Nullable<decimal> value);
+    partial void OnTempoImpiegatoChanged();
+    partial void OnNazioneChanging(string value);
+    partial void OnNazioneChanged();
+    partial void OnCodiceOperatoreChanging(decimal value);
+    partial void OnCodiceOperatoreChanged();
+    partial void OnCodiceTecnicoChanging(System.Nullable<decimal> value);
+    partial void OnCodiceTecnicoChanged();
+    #endregion
+		
+		public Interventi()
+		{
+			this._Guasti = new EntitySet<Guasti>(new Action<Guasti>(this.attach_Guasti), new Action<Guasti>(this.detach_Guasti));
+			this._Operatori = default(EntityRef<Operatori>);
+			this._Tecnici = default(EntityRef<Tecnici>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroTelefonoCliente", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string NumeroTelefonoCliente
+		{
+			get
+			{
+				return this._NumeroTelefonoCliente;
+			}
+			set
+			{
+				if ((this._NumeroTelefonoCliente != value))
+				{
+					this.OnNumeroTelefonoClienteChanging(value);
+					this.SendPropertyChanging();
+					this._NumeroTelefonoCliente = value;
+					this.SendPropertyChanged("NumeroTelefonoCliente");
+					this.OnNumeroTelefonoClienteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataRichiesta", DbType="DateTime NOT NULL", IsPrimaryKey=true)]
+		public System.DateTime DataRichiesta
+		{
+			get
+			{
+				return this._DataRichiesta;
+			}
+			set
+			{
+				if ((this._DataRichiesta != value))
+				{
+					this.OnDataRichiestaChanging(value);
+					this.SendPropertyChanging();
+					this._DataRichiesta = value;
+					this.SendPropertyChanged("DataRichiesta");
+					this.OnDataRichiestaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stato", DbType="Char(1) NOT NULL")]
+		public char Stato
+		{
+			get
+			{
+				return this._Stato;
+			}
+			set
+			{
+				if ((this._Stato != value))
+				{
+					this.OnStatoChanging(value);
+					this.SendPropertyChanging();
+					this._Stato = value;
+					this.SendPropertyChanged("Stato");
+					this.OnStatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataVisita", DbType="DateTime NOT NULL")]
+		public System.DateTime DataVisita
+		{
+			get
+			{
+				return this._DataVisita;
+			}
+			set
+			{
+				if ((this._DataVisita != value))
+				{
+					this.OnDataVisitaChanging(value);
+					this.SendPropertyChanging();
+					this._DataVisita = value;
+					this.SendPropertyChanged("DataVisita");
+					this.OnDataVisitaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TempoImpiegato", DbType="Decimal(2,0)")]
+		public System.Nullable<decimal> TempoImpiegato
+		{
+			get
+			{
+				return this._TempoImpiegato;
+			}
+			set
+			{
+				if ((this._TempoImpiegato != value))
+				{
+					this.OnTempoImpiegatoChanging(value);
+					this.SendPropertyChanging();
+					this._TempoImpiegato = value;
+					this.SendPropertyChanged("TempoImpiegato");
+					this.OnTempoImpiegatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nazione", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string Nazione
+		{
+			get
+			{
+				return this._Nazione;
+			}
+			set
+			{
+				if ((this._Nazione != value))
+				{
+					this.OnNazioneChanging(value);
+					this.SendPropertyChanging();
+					this._Nazione = value;
+					this.SendPropertyChanged("Nazione");
+					this.OnNazioneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodiceOperatore", DbType="Decimal(6,0) NOT NULL")]
+		public decimal CodiceOperatore
+		{
+			get
+			{
+				return this._CodiceOperatore;
+			}
+			set
+			{
+				if ((this._CodiceOperatore != value))
+				{
+					if (this._Operatori.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCodiceOperatoreChanging(value);
+					this.SendPropertyChanging();
+					this._CodiceOperatore = value;
+					this.SendPropertyChanged("CodiceOperatore");
+					this.OnCodiceOperatoreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodiceTecnico", DbType="Decimal(6,0)")]
+		public System.Nullable<decimal> CodiceTecnico
+		{
+			get
+			{
+				return this._CodiceTecnico;
+			}
+			set
+			{
+				if ((this._CodiceTecnico != value))
+				{
+					if (this._Tecnici.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCodiceTecnicoChanging(value);
+					this.SendPropertyChanging();
+					this._CodiceTecnico = value;
+					this.SendPropertyChanged("CodiceTecnico");
+					this.OnCodiceTecnicoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Interventi_Guasti", Storage="_Guasti", ThisKey="NumeroTelefonoCliente,DataRichiesta", OtherKey="NumeroTelefonoCliente,DataRichiestaIntervento")]
+		public EntitySet<Guasti> Guasti
+		{
+			get
+			{
+				return this._Guasti;
+			}
+			set
+			{
+				this._Guasti.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Operatori_Interventi", Storage="_Operatori", ThisKey="CodiceOperatore", OtherKey="Codice", IsForeignKey=true)]
+		public Operatori Operatori
+		{
+			get
+			{
+				return this._Operatori.Entity;
+			}
+			set
+			{
+				Operatori previousValue = this._Operatori.Entity;
+				if (((previousValue != value) 
+							|| (this._Operatori.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Operatori.Entity = null;
+						previousValue.Interventi.Remove(this);
+					}
+					this._Operatori.Entity = value;
+					if ((value != null))
+					{
+						value.Interventi.Add(this);
+						this._CodiceOperatore = value.Codice;
+					}
+					else
+					{
+						this._CodiceOperatore = default(decimal);
+					}
+					this.SendPropertyChanged("Operatori");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tecnici_Interventi", Storage="_Tecnici", ThisKey="CodiceTecnico", OtherKey="Codice", IsForeignKey=true)]
+		public Tecnici Tecnici
+		{
+			get
+			{
+				return this._Tecnici.Entity;
+			}
+			set
+			{
+				Tecnici previousValue = this._Tecnici.Entity;
+				if (((previousValue != value) 
+							|| (this._Tecnici.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tecnici.Entity = null;
+						previousValue.Interventi.Remove(this);
+					}
+					this._Tecnici.Entity = value;
+					if ((value != null))
+					{
+						value.Interventi.Add(this);
+						this._CodiceTecnico = value.Codice;
+					}
+					else
+					{
+						this._CodiceTecnico = default(Nullable<decimal>);
+					}
+					this.SendPropertyChanged("Tecnici");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Guasti(Guasti entity)
+		{
+			this.SendPropertyChanging();
+			entity.Interventi = this;
+		}
+		
+		private void detach_Guasti(Guasti entity)
+		{
+			this.SendPropertyChanging();
+			entity.Interventi = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NewInterventions")]
+	public partial class NewInterventions
+	{
+		
+		private string _NumeroTelefonoCliente;
+		
+		private System.DateTime _DataRichiesta;
+		
+		public NewInterventions()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroTelefonoCliente", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string NumeroTelefonoCliente
+		{
+			get
+			{
+				return this._NumeroTelefonoCliente;
+			}
+			set
+			{
+				if ((this._NumeroTelefonoCliente != value))
+				{
+					this._NumeroTelefonoCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataRichiesta", DbType="DateTime NOT NULL")]
+		public System.DateTime DataRichiesta
+		{
+			get
+			{
+				return this._DataRichiesta;
+			}
+			set
+			{
+				if ((this._DataRichiesta != value))
+				{
+					this._DataRichiesta = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Prodotti")]
+	public partial class Prodotti : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private decimal _PNC;
+		
+		private decimal _SNC;
+		
+		private string _Modello;
+		
+		private System.Nullable<System.DateTime> _DataAcquisto;
+		
+		private System.Nullable<System.DateTime> _DataInstallazione;
+		
+		private System.Nullable<decimal> _CodiceGaranzia;
+		
+		private decimal _CodiceCategoria;
+		
+		private EntitySet<Guasti> _Guasti;
+		
+		private EntityRef<Categorie> _Categorie;
+		
+    #region Definizioni metodo Extensibility
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPNCChanging(decimal value);
+    partial void OnPNCChanged();
+    partial void OnSNCChanging(decimal value);
+    partial void OnSNCChanged();
+    partial void OnModelloChanging(string value);
+    partial void OnModelloChanged();
+    partial void OnDataAcquistoChanging(System.Nullable<System.DateTime> value);
+    partial void OnDataAcquistoChanged();
+    partial void OnDataInstallazioneChanging(System.Nullable<System.DateTime> value);
+    partial void OnDataInstallazioneChanged();
+    partial void OnCodiceGaranziaChanging(System.Nullable<decimal> value);
+    partial void OnCodiceGaranziaChanged();
+    partial void OnCodiceCategoriaChanging(decimal value);
+    partial void OnCodiceCategoriaChanged();
+    #endregion
+		
+		public Prodotti()
+		{
+			this._Guasti = new EntitySet<Guasti>(new Action<Guasti>(this.attach_Guasti), new Action<Guasti>(this.detach_Guasti));
+			this._Categorie = default(EntityRef<Categorie>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PNC", DbType="Decimal(11,0) NOT NULL", IsPrimaryKey=true)]
+		public decimal PNC
+		{
+			get
+			{
+				return this._PNC;
+			}
+			set
+			{
+				if ((this._PNC != value))
+				{
+					this.OnPNCChanging(value);
+					this.SendPropertyChanging();
+					this._PNC = value;
+					this.SendPropertyChanged("PNC");
+					this.OnPNCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SNC", DbType="Decimal(8,0) NOT NULL", IsPrimaryKey=true)]
+		public decimal SNC
+		{
+			get
+			{
+				return this._SNC;
+			}
+			set
+			{
+				if ((this._SNC != value))
+				{
+					this.OnSNCChanging(value);
+					this.SendPropertyChanging();
+					this._SNC = value;
+					this.SendPropertyChanged("SNC");
+					this.OnSNCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Modello", DbType="VarChar(11) NOT NULL", CanBeNull=false)]
+		public string Modello
+		{
+			get
+			{
+				return this._Modello;
+			}
+			set
+			{
+				if ((this._Modello != value))
+				{
+					this.OnModelloChanging(value);
+					this.SendPropertyChanging();
+					this._Modello = value;
+					this.SendPropertyChanged("Modello");
+					this.OnModelloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataAcquisto", DbType="Date")]
+		public System.Nullable<System.DateTime> DataAcquisto
+		{
+			get
+			{
+				return this._DataAcquisto;
+			}
+			set
+			{
+				if ((this._DataAcquisto != value))
+				{
+					this.OnDataAcquistoChanging(value);
+					this.SendPropertyChanging();
+					this._DataAcquisto = value;
+					this.SendPropertyChanged("DataAcquisto");
+					this.OnDataAcquistoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataInstallazione", DbType="Date")]
+		public System.Nullable<System.DateTime> DataInstallazione
+		{
+			get
+			{
+				return this._DataInstallazione;
+			}
+			set
+			{
+				if ((this._DataInstallazione != value))
+				{
+					this.OnDataInstallazioneChanging(value);
+					this.SendPropertyChanging();
+					this._DataInstallazione = value;
+					this.SendPropertyChanged("DataInstallazione");
+					this.OnDataInstallazioneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodiceGaranzia", DbType="Decimal(2,0)")]
+		public System.Nullable<decimal> CodiceGaranzia
+		{
+			get
+			{
+				return this._CodiceGaranzia;
+			}
+			set
+			{
+				if ((this._CodiceGaranzia != value))
+				{
+					this.OnCodiceGaranziaChanging(value);
+					this.SendPropertyChanging();
+					this._CodiceGaranzia = value;
+					this.SendPropertyChanged("CodiceGaranzia");
+					this.OnCodiceGaranziaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodiceCategoria", DbType="Decimal(2,0) NOT NULL")]
+		public decimal CodiceCategoria
+		{
+			get
+			{
+				return this._CodiceCategoria;
+			}
+			set
+			{
+				if ((this._CodiceCategoria != value))
+				{
+					if (this._Categorie.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCodiceCategoriaChanging(value);
+					this.SendPropertyChanging();
+					this._CodiceCategoria = value;
+					this.SendPropertyChanged("CodiceCategoria");
+					this.OnCodiceCategoriaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prodotti_Guasti", Storage="_Guasti", ThisKey="PNC,SNC", OtherKey="PNC,SNC")]
+		public EntitySet<Guasti> Guasti
+		{
+			get
+			{
+				return this._Guasti;
+			}
+			set
+			{
+				this._Guasti.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categorie_Prodotti", Storage="_Categorie", ThisKey="CodiceCategoria", OtherKey="Codice", IsForeignKey=true)]
+		public Categorie Categorie
+		{
+			get
+			{
+				return this._Categorie.Entity;
+			}
+			set
+			{
+				Categorie previousValue = this._Categorie.Entity;
+				if (((previousValue != value) 
+							|| (this._Categorie.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Categorie.Entity = null;
+						previousValue.Prodotti.Remove(this);
+					}
+					this._Categorie.Entity = value;
+					if ((value != null))
+					{
+						value.Prodotti.Add(this);
+						this._CodiceCategoria = value.Codice;
+					}
+					else
+					{
+						this._CodiceCategoria = default(decimal);
+					}
+					this.SendPropertyChanged("Categorie");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Guasti(Guasti entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prodotti = this;
+		}
+		
+		private void detach_Guasti(Guasti entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prodotti = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorie")]
+	public partial class Categorie : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private decimal _Codice;
+		
+		private string _Nome;
+		
+		private EntitySet<Interessi> _Interessi;
+		
+		private EntitySet<Prodotti> _Prodotti;
+		
+    #region Definizioni metodo Extensibility
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodiceChanging(decimal value);
+    partial void OnCodiceChanged();
+    partial void OnNomeChanging(string value);
+    partial void OnNomeChanged();
+    #endregion
+		
+		public Categorie()
+		{
+			this._Interessi = new EntitySet<Interessi>(new Action<Interessi>(this.attach_Interessi), new Action<Interessi>(this.detach_Interessi));
+			this._Prodotti = new EntitySet<Prodotti>(new Action<Prodotti>(this.attach_Prodotti), new Action<Prodotti>(this.detach_Prodotti));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codice", DbType="Decimal(2,0) NOT NULL", IsPrimaryKey=true)]
+		public decimal Codice
+		{
+			get
+			{
+				return this._Codice;
+			}
+			set
+			{
+				if ((this._Codice != value))
+				{
+					this.OnCodiceChanging(value);
+					this.SendPropertyChanging();
+					this._Codice = value;
+					this.SendPropertyChanged("Codice");
+					this.OnCodiceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this.OnNomeChanging(value);
+					this.SendPropertyChanging();
+					this._Nome = value;
+					this.SendPropertyChanged("Nome");
+					this.OnNomeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categorie_Interessi", Storage="_Interessi", ThisKey="Codice", OtherKey="CodiceCategoria")]
+		public EntitySet<Interessi> Interessi
+		{
+			get
+			{
+				return this._Interessi;
+			}
+			set
+			{
+				this._Interessi.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categorie_Prodotti", Storage="_Prodotti", ThisKey="Codice", OtherKey="CodiceCategoria")]
+		public EntitySet<Prodotti> Prodotti
+		{
+			get
+			{
+				return this._Prodotti;
+			}
+			set
+			{
+				this._Prodotti.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Interessi(Interessi entity)
+		{
+			this.SendPropertyChanging();
+			entity.Categorie = this;
+		}
+		
+		private void detach_Interessi(Interessi entity)
+		{
+			this.SendPropertyChanging();
+			entity.Categorie = null;
+		}
+		
+		private void attach_Prodotti(Prodotti entity)
+		{
+			this.SendPropertyChanging();
+			entity.Categorie = this;
+		}
+		
+		private void detach_Prodotti(Prodotti entity)
+		{
+			this.SendPropertyChanging();
+			entity.Categorie = null;
 		}
 	}
 }

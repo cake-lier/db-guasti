@@ -70,7 +70,7 @@
     <Type Name="TopNations">
       <Column Name="CategoriaProdotto" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
       <Column Name="Nazione" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
-      <Column Name="[#]" Member="__" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[#]" Member="Numero" Storage="___" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.TopSpareParts" Member="TopSpareParts">
@@ -108,6 +108,7 @@
       <Column Name="CodiceCategoria" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CodiceProgettista" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="Progettisti_Interessi" Member="Progettisti" ThisKey="CodiceProgettista" OtherKey="Codice" Type="Progettisti" IsForeignKey="true" />
+      <Association Name="Categorie_Interessi" Member="Categorie" ThisKey="CodiceCategoria" OtherKey="Codice" Type="Categorie" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Guasti" Member="Guasti">
@@ -121,6 +122,81 @@
       <Column Name="CategoriaProdotto" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
       <Column Name="ComponentCode" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
       <Column Name="CodiceTipoDifetto" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Association Name="Interventi_Guasti" Member="Interventi" ThisKey="NumeroTelefonoCliente,DataRichiestaIntervento" OtherKey="NumeroTelefonoCliente,DataRichiesta" Type="Interventi" IsForeignKey="true" />
+      <Association Name="Prodotti_Guasti" Member="Prodotti" ThisKey="PNC,SNC" OtherKey="PNC,SNC" Type="Prodotti" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Operatori" Member="Operatori">
+    <Type Name="Operatori">
+      <Column Name="Codice" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CF" Type="System.String" DbType="Char(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Cognome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DataNascita" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LuogoNascita" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Residenza" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Stipendio" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="CodiceNazionaleCentro" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="NazioneCentro" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Association Name="Operatori_Interventi" Member="Interventi" ThisKey="Codice" OtherKey="CodiceOperatore" Type="Interventi" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tecnici" Member="Tecnici">
+    <Type Name="Tecnici">
+      <Column Name="Codice" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CF" Type="System.String" DbType="Char(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Cognome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DataNascita" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LuogoNascita" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Residenza" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Stipendio" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="DipendenteInterno" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CodiceNazionaleCentro" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="NazioneCentro" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Association Name="Tecnici_Interventi" Member="Interventi" ThisKey="Codice" OtherKey="CodiceTecnico" Type="Interventi" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Interventi" Member="Interventi">
+    <Type Name="Interventi">
+      <Column Name="NumeroTelefonoCliente" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DataRichiesta" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Stato" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="DataVisita" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TempoImpiegato" Type="System.Decimal" DbType="Decimal(2,0)" CanBeNull="true" />
+      <Column Name="Nazione" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="CodiceOperatore" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" CanBeNull="false" />
+      <Column Name="CodiceTecnico" Type="System.Decimal" DbType="Decimal(6,0)" CanBeNull="true" />
+      <Association Name="Interventi_Guasti" Member="Guasti" ThisKey="NumeroTelefonoCliente,DataRichiesta" OtherKey="NumeroTelefonoCliente,DataRichiestaIntervento" Type="Guasti" />
+      <Association Name="Operatori_Interventi" Member="Operatori" ThisKey="CodiceOperatore" OtherKey="Codice" Type="Operatori" IsForeignKey="true" />
+      <Association Name="Tecnici_Interventi" Member="Tecnici" ThisKey="CodiceTecnico" OtherKey="Codice" Type="Tecnici" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NewInterventions" Member="NewInterventions">
+    <Type Name="NewInterventions">
+      <Column Name="NumeroTelefonoCliente" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DataRichiesta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Prodotti" Member="Prodotti">
+    <Type Name="Prodotti">
+      <Column Name="PNC" Type="System.Decimal" DbType="Decimal(11,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SNC" Type="System.Decimal" DbType="Decimal(8,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Modello" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="DataAcquisto" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="DataInstallazione" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CodiceGaranzia" Type="System.Decimal" DbType="Decimal(2,0)" CanBeNull="true" />
+      <Column Name="CodiceCategoria" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Association Name="Prodotti_Guasti" Member="Guasti" ThisKey="PNC,SNC" OtherKey="PNC,SNC" Type="Guasti" />
+      <Association Name="Categorie_Prodotti" Member="Categorie" ThisKey="CodiceCategoria" OtherKey="Codice" Type="Categorie" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categorie" Member="Categorie">
+    <Type Name="Categorie">
+      <Column Name="Codice" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Categorie_Interessi" Member="Interessi" ThisKey="Codice" OtherKey="CodiceCategoria" Type="Interessi" />
+      <Association Name="Categorie_Prodotti" Member="Prodotti" ThisKey="Codice" OtherKey="CodiceCategoria" Type="Prodotti" />
     </Type>
   </Table>
 </Database>

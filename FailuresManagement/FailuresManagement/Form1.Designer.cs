@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.LoginButton = new System.Windows.Forms.Button();
             this.LoginBox = new System.Windows.Forms.TextBox();
             this.Title = new System.Windows.Forms.Label();
@@ -59,6 +59,10 @@
             this.TTFInstallationView = new System.Windows.Forms.DataGridView();
             this.AvgTime = new System.Windows.Forms.TabPage();
             this.AvgTimeView = new System.Windows.Forms.DataGridView();
+            this.TechnicianView = new System.Windows.Forms.Panel();
+            this.FaultsView = new System.Windows.Forms.DataGridView();
+            this.InterventionView = new System.Windows.Forms.DataGridView();
+            this.ProductsView = new System.Windows.Forms.DataGridView();
             this.StartPanel.SuspendLayout();
             this.DesignerView.SuspendLayout();
             this.Keyword.SuspendLayout();
@@ -81,6 +85,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.TTFInstallationView)).BeginInit();
             this.AvgTime.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AvgTimeView)).BeginInit();
+            this.TechnicianView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FaultsView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InterventionView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductsView)).BeginInit();
             this.SuspendLayout();
             // 
             // LoginButton
@@ -110,7 +118,7 @@
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(824, 69);
             this.Title.TabIndex = 2;
-            this.Title.Text = "Failures Management Service";
+            this.Title.Text = "Failures Management System";
             // 
             // LoginTitle
             // 
@@ -167,33 +175,33 @@
             // 
             // SearchView
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SearchView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SearchView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.SearchView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SearchView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SearchView.DefaultCellStyle = dataGridViewCellStyle11;
             this.SearchView.Location = new System.Drawing.Point(0, 46);
             this.SearchView.Name = "SearchView";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SearchView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SearchView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.SearchView.Size = new System.Drawing.Size(1053, 607);
             this.SearchView.TabIndex = 2;
             // 
@@ -422,15 +430,58 @@
             this.AvgTimeView.Size = new System.Drawing.Size(1053, 653);
             this.AvgTimeView.TabIndex = 0;
             // 
+            // TechnicianView
+            // 
+            this.TechnicianView.Controls.Add(this.ProductsView);
+            this.TechnicianView.Controls.Add(this.FaultsView);
+            this.TechnicianView.Controls.Add(this.InterventionView);
+            this.TechnicianView.Location = new System.Drawing.Point(0, 0);
+            this.TechnicianView.Name = "TechnicianView";
+            this.TechnicianView.Size = new System.Drawing.Size(1064, 682);
+            this.TechnicianView.TabIndex = 3;
+            // 
+            // FaultsView
+            // 
+            this.FaultsView.AllowUserToAddRows = false;
+            this.FaultsView.AllowUserToDeleteRows = false;
+            this.FaultsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.FaultsView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.FaultsView.Location = new System.Drawing.Point(295, 22);
+            this.FaultsView.Name = "FaultsView";
+            this.FaultsView.Size = new System.Drawing.Size(757, 205);
+            this.FaultsView.TabIndex = 1;
+            // 
+            // InterventionView
+            // 
+            this.InterventionView.AllowUserToAddRows = false;
+            this.InterventionView.AllowUserToDeleteRows = false;
+            this.InterventionView.AllowUserToOrderColumns = true;
+            this.InterventionView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.InterventionView.Location = new System.Drawing.Point(13, 22);
+            this.InterventionView.Name = "InterventionView";
+            this.InterventionView.ReadOnly = true;
+            this.InterventionView.Size = new System.Drawing.Size(269, 426);
+            this.InterventionView.TabIndex = 0;
+            this.InterventionView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InterventionView_CellContentClick);
+            // 
+            // ProductsView
+            // 
+            this.ProductsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductsView.Location = new System.Drawing.Point(295, 233);
+            this.ProductsView.Name = "ProductsView";
+            this.ProductsView.Size = new System.Drawing.Size(756, 215);
+            this.ProductsView.TabIndex = 2;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.Controls.Add(this.TechnicianView);
             this.Controls.Add(this.DesignerView);
             this.Controls.Add(this.StartPanel);
             this.Name = "MainWindow";
-            this.Text = "Failures Management Service";
+            this.Text = "Failures Management System";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.StartPanel.ResumeLayout(false);
             this.StartPanel.PerformLayout();
@@ -456,6 +507,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.TTFInstallationView)).EndInit();
             this.AvgTime.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AvgTimeView)).EndInit();
+            this.TechnicianView.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.FaultsView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InterventionView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductsView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -490,6 +545,10 @@
         private System.Windows.Forms.DataGridView SearchView;
         private System.Windows.Forms.TextBox SearchBox;
         private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.Panel TechnicianView;
+        private System.Windows.Forms.DataGridView FaultsView;
+        private System.Windows.Forms.DataGridView InterventionView;
+        private System.Windows.Forms.DataGridView ProductsView;
     }
 }
 
