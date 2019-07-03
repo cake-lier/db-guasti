@@ -229,6 +229,38 @@ namespace FailuresManagement
 				return this.GetTable<Categorie>();
 			}
 		}
+		
+		public System.Data.Linq.Table<CentersIntervAvg> CentersIntervAvg
+		{
+			get
+			{
+				return this.GetTable<CentersIntervAvg>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OperatorsIntervCount> OperatorsIntervCount
+		{
+			get
+			{
+				return this.GetTable<OperatorsIntervCount>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TechniciansIntervCount> TechniciansIntervCount
+		{
+			get
+			{
+				return this.GetTable<TechniciansIntervCount>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TechniciansIntervAvg> TechniciansIntervAvg
+		{
+			get
+			{
+				return this.GetTable<TechniciansIntervAvg>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AllFaults")]
@@ -3493,6 +3525,348 @@ namespace FailuresManagement
 		{
 			this.SendPropertyChanging();
 			entity.Categorie = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CentersIntervAvg")]
+	public partial class CentersIntervAvg
+	{
+		
+		private decimal _CodiceNazionale;
+		
+		private string _Nazione;
+		
+		private string _Sede;
+		
+		private string _AreaCompetenza;
+		
+		private System.Nullable<double> _TempoMedioRiparazione;
+		
+		public CentersIntervAvg()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodiceNazionale", DbType="Decimal(3,0) NOT NULL")]
+		public decimal CodiceNazionale
+		{
+			get
+			{
+				return this._CodiceNazionale;
+			}
+			set
+			{
+				if ((this._CodiceNazionale != value))
+				{
+					this._CodiceNazionale = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nazione", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string Nazione
+		{
+			get
+			{
+				return this._Nazione;
+			}
+			set
+			{
+				if ((this._Nazione != value))
+				{
+					this._Nazione = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sede", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string Sede
+		{
+			get
+			{
+				return this._Sede;
+			}
+			set
+			{
+				if ((this._Sede != value))
+				{
+					this._Sede = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AreaCompetenza", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string AreaCompetenza
+		{
+			get
+			{
+				return this._AreaCompetenza;
+			}
+			set
+			{
+				if ((this._AreaCompetenza != value))
+				{
+					this._AreaCompetenza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TempoMedioRiparazione", DbType="Float")]
+		public System.Nullable<double> TempoMedioRiparazione
+		{
+			get
+			{
+				return this._TempoMedioRiparazione;
+			}
+			set
+			{
+				if ((this._TempoMedioRiparazione != value))
+				{
+					this._TempoMedioRiparazione = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OperatorsIntervCount")]
+	public partial class OperatorsIntervCount
+	{
+		
+		private string _CF;
+		
+		private string _Nome;
+		
+		private string _Cognome;
+		
+		private System.Nullable<int> _Numero;
+		
+		public OperatorsIntervCount()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CF", DbType="Char(16) NOT NULL", CanBeNull=false)]
+		public string CF
+		{
+			get
+			{
+				return this._CF;
+			}
+			set
+			{
+				if ((this._CF != value))
+				{
+					this._CF = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this._Nome = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cognome", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Cognome
+		{
+			get
+			{
+				return this._Cognome;
+			}
+			set
+			{
+				if ((this._Cognome != value))
+				{
+					this._Cognome = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[#]", Storage="_Numero", DbType="Int")]
+		public System.Nullable<int> Numero
+		{
+			get
+			{
+				return this._Numero;
+			}
+			set
+			{
+				if ((this._Numero != value))
+				{
+					this._Numero = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TechniciansIntervCount")]
+	public partial class TechniciansIntervCount
+	{
+		
+		private string _CF;
+		
+		private string _Nome;
+		
+		private string _Cognome;
+		
+		private System.Nullable<int> _Numero;
+		
+		public TechniciansIntervCount()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CF", DbType="Char(16) NOT NULL", CanBeNull=false)]
+		public string CF
+		{
+			get
+			{
+				return this._CF;
+			}
+			set
+			{
+				if ((this._CF != value))
+				{
+					this._CF = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this._Nome = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cognome", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Cognome
+		{
+			get
+			{
+				return this._Cognome;
+			}
+			set
+			{
+				if ((this._Cognome != value))
+				{
+					this._Cognome = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[#]", Storage="_Numero", DbType="Int")]
+		public System.Nullable<int> Numero
+		{
+			get
+			{
+				return this._Numero;
+			}
+			set
+			{
+				if ((this._Numero != value))
+				{
+					this._Numero = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TechniciansIntervAvg")]
+	public partial class TechniciansIntervAvg
+	{
+		
+		private string _CF;
+		
+		private string _Nome;
+		
+		private string _Cognome;
+		
+		private System.Nullable<decimal> _TempoMedioImpiegato;
+		
+		public TechniciansIntervAvg()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CF", DbType="Char(16) NOT NULL", CanBeNull=false)]
+		public string CF
+		{
+			get
+			{
+				return this._CF;
+			}
+			set
+			{
+				if ((this._CF != value))
+				{
+					this._CF = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this._Nome = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cognome", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Cognome
+		{
+			get
+			{
+				return this._Cognome;
+			}
+			set
+			{
+				if ((this._Cognome != value))
+				{
+					this._Cognome = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TempoMedioImpiegato", DbType="Decimal(38,6)")]
+		public System.Nullable<decimal> TempoMedioImpiegato
+		{
+			get
+			{
+				return this._TempoMedioImpiegato;
+			}
+			set
+			{
+				if ((this._TempoMedioImpiegato != value))
+				{
+					this._TempoMedioImpiegato = value;
+				}
+			}
 		}
 	}
 }

@@ -199,4 +199,37 @@
       <Association Name="Categorie_Prodotti" Member="Prodotti" ThisKey="Codice" OtherKey="CodiceCategoria" Type="Prodotti" />
     </Type>
   </Table>
+  <Table Name="dbo.CentersIntervAvg" Member="CentersIntervAvg">
+    <Type Name="CentersIntervAvg">
+      <Column Name="CodiceNazionale" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Nazione" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Sede" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="AreaCompetenza" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="TempoMedioRiparazione" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OperatorsIntervCount" Member="OperatorsIntervCount">
+    <Type Name="OperatorsIntervCount">
+      <Column Name="CF" Type="System.String" DbType="Char(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Cognome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[#]" Member="Numero" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TechniciansIntervCount" Member="TechniciansIntervCount">
+    <Type Name="TechniciansIntervCount">
+      <Column Name="CF" Type="System.String" DbType="Char(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Cognome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[#]" Member="Numero" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TechniciansIntervAvg" Member="TechniciansIntervAvg">
+    <Type Name="TechniciansIntervAvg">
+      <Column Name="CF" Type="System.String" DbType="Char(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Cognome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="TempoMedioImpiegato" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

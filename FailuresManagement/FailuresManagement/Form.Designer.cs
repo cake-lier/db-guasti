@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.LoginButton = new System.Windows.Forms.Button();
             this.LoginBox = new System.Windows.Forms.TextBox();
             this.Title = new System.Windows.Forms.Label();
@@ -60,9 +60,29 @@
             this.AvgTime = new System.Windows.Forms.TabPage();
             this.AvgTimeView = new System.Windows.Forms.DataGridView();
             this.TechnicianView = new System.Windows.Forms.Panel();
+            this.EditButton = new System.Windows.Forms.Button();
+            this.ProductsView = new System.Windows.Forms.DataGridView();
             this.FaultsView = new System.Windows.Forms.DataGridView();
             this.InterventionView = new System.Windows.Forms.DataGridView();
-            this.ProductsView = new System.Windows.Forms.DataGridView();
+            this.OperatorView = new System.Windows.Forms.Panel();
+            this.VisitDateBox = new System.Windows.Forms.TextBox();
+            this.TelephoneBox = new System.Windows.Forms.TextBox();
+            this.VisitDateLabel = new System.Windows.Forms.Label();
+            this.TelephoneLabel = new System.Windows.Forms.Label();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.InsertButton = new System.Windows.Forms.Button();
+            this.AddProductsView = new System.Windows.Forms.DataGridView();
+            this.AddFaultsView = new System.Windows.Forms.DataGridView();
+            this.ManagementView = new System.Windows.Forms.TabControl();
+            this.OperatorsPage = new System.Windows.Forms.TabPage();
+            this.OperatorsCountView = new System.Windows.Forms.DataGridView();
+            this.TechniciansPage = new System.Windows.Forms.TabPage();
+            this.TechniciansCountView = new System.Windows.Forms.DataGridView();
+            this.AvgTechPage = new System.Windows.Forms.TabPage();
+            this.TechniciansAvgView = new System.Windows.Forms.DataGridView();
+            this.AvgCenterPage = new System.Windows.Forms.TabPage();
+            this.CentersAvgView = new System.Windows.Forms.DataGridView();
             this.StartPanel.SuspendLayout();
             this.DesignerView.SuspendLayout();
             this.Keyword.SuspendLayout();
@@ -86,9 +106,21 @@
             this.AvgTime.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AvgTimeView)).BeginInit();
             this.TechnicianView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FaultsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InterventionView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductsView)).BeginInit();
+            this.OperatorView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AddProductsView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddFaultsView)).BeginInit();
+            this.ManagementView.SuspendLayout();
+            this.OperatorsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OperatorsCountView)).BeginInit();
+            this.TechniciansPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TechniciansCountView)).BeginInit();
+            this.AvgTechPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TechniciansAvgView)).BeginInit();
+            this.AvgCenterPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CentersAvgView)).BeginInit();
             this.SuspendLayout();
             // 
             // LoginButton
@@ -123,10 +155,10 @@
             // LoginTitle
             // 
             this.LoginTitle.AutoSize = true;
-            this.LoginTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginTitle.Location = new System.Drawing.Point(288, 230);
+            this.LoginTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoginTitle.Location = new System.Drawing.Point(288, 242);
             this.LoginTitle.Name = "LoginTitle";
-            this.LoginTitle.Size = new System.Drawing.Size(189, 39);
+            this.LoginTitle.Size = new System.Drawing.Size(150, 31);
             this.LoginTitle.TabIndex = 3;
             this.LoginTitle.Text = "Credenziali";
             // 
@@ -175,33 +207,33 @@
             // 
             // SearchView
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SearchView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SearchView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.SearchView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SearchView.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SearchView.DefaultCellStyle = dataGridViewCellStyle8;
             this.SearchView.Location = new System.Drawing.Point(0, 46);
             this.SearchView.Name = "SearchView";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SearchView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SearchView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.SearchView.Size = new System.Drawing.Size(1053, 607);
             this.SearchView.TabIndex = 2;
             // 
@@ -432,6 +464,7 @@
             // 
             // TechnicianView
             // 
+            this.TechnicianView.Controls.Add(this.EditButton);
             this.TechnicianView.Controls.Add(this.ProductsView);
             this.TechnicianView.Controls.Add(this.FaultsView);
             this.TechnicianView.Controls.Add(this.InterventionView);
@@ -440,15 +473,38 @@
             this.TechnicianView.Size = new System.Drawing.Size(1064, 682);
             this.TechnicianView.TabIndex = 3;
             // 
+            // EditButton
+            // 
+            this.EditButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditButton.Location = new System.Drawing.Point(963, 640);
+            this.EditButton.Name = "EditButton";
+            this.EditButton.Size = new System.Drawing.Size(88, 29);
+            this.EditButton.TabIndex = 3;
+            this.EditButton.Text = "Modifica";
+            this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
+            // 
+            // ProductsView
+            // 
+            this.ProductsView.AllowUserToAddRows = false;
+            this.ProductsView.AllowUserToDeleteRows = false;
+            this.ProductsView.AllowUserToOrderColumns = true;
+            this.ProductsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductsView.Location = new System.Drawing.Point(330, 343);
+            this.ProductsView.Name = "ProductsView";
+            this.ProductsView.Size = new System.Drawing.Size(721, 287);
+            this.ProductsView.TabIndex = 2;
+            // 
             // FaultsView
             // 
             this.FaultsView.AllowUserToAddRows = false;
             this.FaultsView.AllowUserToDeleteRows = false;
+            this.FaultsView.AllowUserToOrderColumns = true;
             this.FaultsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FaultsView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.FaultsView.Location = new System.Drawing.Point(295, 22);
+            this.FaultsView.Location = new System.Drawing.Point(330, 22);
             this.FaultsView.Name = "FaultsView";
-            this.FaultsView.Size = new System.Drawing.Size(757, 205);
+            this.FaultsView.Size = new System.Drawing.Size(722, 304);
             this.FaultsView.TabIndex = 1;
             // 
             // InterventionView
@@ -458,31 +514,229 @@
             this.InterventionView.AllowUserToOrderColumns = true;
             this.InterventionView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.InterventionView.Location = new System.Drawing.Point(13, 22);
+            this.InterventionView.MultiSelect = false;
             this.InterventionView.Name = "InterventionView";
-            this.InterventionView.ReadOnly = true;
-            this.InterventionView.Size = new System.Drawing.Size(269, 426);
+            this.InterventionView.Size = new System.Drawing.Size(311, 608);
             this.InterventionView.TabIndex = 0;
-            this.InterventionView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InterventionView_CellContentClick);
+            this.InterventionView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InterventionView_CellClick);
             // 
-            // ProductsView
+            // OperatorView
             // 
-            this.ProductsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ProductsView.Location = new System.Drawing.Point(295, 233);
-            this.ProductsView.Name = "ProductsView";
-            this.ProductsView.Size = new System.Drawing.Size(756, 215);
-            this.ProductsView.TabIndex = 2;
+            this.OperatorView.Controls.Add(this.VisitDateBox);
+            this.OperatorView.Controls.Add(this.TelephoneBox);
+            this.OperatorView.Controls.Add(this.VisitDateLabel);
+            this.OperatorView.Controls.Add(this.TelephoneLabel);
+            this.OperatorView.Controls.Add(this.ClearButton);
+            this.OperatorView.Controls.Add(this.DeleteButton);
+            this.OperatorView.Controls.Add(this.InsertButton);
+            this.OperatorView.Controls.Add(this.AddProductsView);
+            this.OperatorView.Controls.Add(this.AddFaultsView);
+            this.OperatorView.Location = new System.Drawing.Point(0, 0);
+            this.OperatorView.Name = "OperatorView";
+            this.OperatorView.Size = new System.Drawing.Size(1064, 682);
+            this.OperatorView.TabIndex = 4;
+            // 
+            // VisitDateBox
+            // 
+            this.VisitDateBox.Location = new System.Drawing.Point(533, 42);
+            this.VisitDateBox.Name = "VisitDateBox";
+            this.VisitDateBox.Size = new System.Drawing.Size(524, 20);
+            this.VisitDateBox.TabIndex = 14;
+            // 
+            // TelephoneBox
+            // 
+            this.TelephoneBox.Location = new System.Drawing.Point(7, 42);
+            this.TelephoneBox.Name = "TelephoneBox";
+            this.TelephoneBox.Size = new System.Drawing.Size(520, 20);
+            this.TelephoneBox.TabIndex = 11;
+            // 
+            // VisitDateLabel
+            // 
+            this.VisitDateLabel.AutoSize = true;
+            this.VisitDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VisitDateLabel.Location = new System.Drawing.Point(529, 17);
+            this.VisitDateLabel.Name = "VisitDateLabel";
+            this.VisitDateLabel.Size = new System.Drawing.Size(87, 20);
+            this.VisitDateLabel.TabIndex = 7;
+            this.VisitDateLabel.Text = "Data Visita";
+            // 
+            // TelephoneLabel
+            // 
+            this.TelephoneLabel.AutoSize = true;
+            this.TelephoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TelephoneLabel.Location = new System.Drawing.Point(7, 17);
+            this.TelephoneLabel.Name = "TelephoneLabel";
+            this.TelephoneLabel.Size = new System.Drawing.Size(143, 20);
+            this.TelephoneLabel.TabIndex = 6;
+            this.TelephoneLabel.Text = "Numero di telefono";
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearButton.Location = new System.Drawing.Point(982, 640);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(75, 29);
+            this.ClearButton.TabIndex = 5;
+            this.ClearButton.Text = "Pulisci";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteButton.Location = new System.Drawing.Point(891, 640);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(85, 29);
+            this.DeleteButton.TabIndex = 4;
+            this.DeleteButton.Text = "Cancella";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            // 
+            // InsertButton
+            // 
+            this.InsertButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InsertButton.Location = new System.Drawing.Point(799, 640);
+            this.InsertButton.Name = "InsertButton";
+            this.InsertButton.Size = new System.Drawing.Size(86, 29);
+            this.InsertButton.TabIndex = 3;
+            this.InsertButton.Text = "Inserisci";
+            this.InsertButton.UseVisualStyleBackColor = true;
+            this.InsertButton.Click += new System.EventHandler(this.InsertButton_Click);
+            // 
+            // AddProductsView
+            // 
+            this.AddProductsView.AllowUserToOrderColumns = true;
+            this.AddProductsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AddProductsView.Location = new System.Drawing.Point(7, 76);
+            this.AddProductsView.Name = "AddProductsView";
+            this.AddProductsView.Size = new System.Drawing.Size(1050, 270);
+            this.AddProductsView.TabIndex = 2;
+            // 
+            // AddFaultsView
+            // 
+            this.AddFaultsView.AllowUserToOrderColumns = true;
+            this.AddFaultsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AddFaultsView.Location = new System.Drawing.Point(7, 360);
+            this.AddFaultsView.Name = "AddFaultsView";
+            this.AddFaultsView.Size = new System.Drawing.Size(1050, 270);
+            this.AddFaultsView.TabIndex = 1;
+            // 
+            // ManagementView
+            // 
+            this.ManagementView.Controls.Add(this.OperatorsPage);
+            this.ManagementView.Controls.Add(this.TechniciansPage);
+            this.ManagementView.Controls.Add(this.AvgTechPage);
+            this.ManagementView.Controls.Add(this.AvgCenterPage);
+            this.ManagementView.Location = new System.Drawing.Point(0, 0);
+            this.ManagementView.Name = "ManagementView";
+            this.ManagementView.SelectedIndex = 0;
+            this.ManagementView.Size = new System.Drawing.Size(1064, 679);
+            this.ManagementView.TabIndex = 4;
+            // 
+            // OperatorsPage
+            // 
+            this.OperatorsPage.Controls.Add(this.OperatorsCountView);
+            this.OperatorsPage.Location = new System.Drawing.Point(4, 22);
+            this.OperatorsPage.Name = "OperatorsPage";
+            this.OperatorsPage.Padding = new System.Windows.Forms.Padding(3);
+            this.OperatorsPage.Size = new System.Drawing.Size(1056, 653);
+            this.OperatorsPage.TabIndex = 0;
+            this.OperatorsPage.Text = "Interventi aperti operatori";
+            this.OperatorsPage.UseVisualStyleBackColor = true;
+            // 
+            // OperatorsCountView
+            // 
+            this.OperatorsCountView.AllowUserToAddRows = false;
+            this.OperatorsCountView.AllowUserToDeleteRows = false;
+            this.OperatorsCountView.AllowUserToOrderColumns = true;
+            this.OperatorsCountView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OperatorsCountView.Location = new System.Drawing.Point(0, 0);
+            this.OperatorsCountView.Name = "OperatorsCountView";
+            this.OperatorsCountView.ReadOnly = true;
+            this.OperatorsCountView.Size = new System.Drawing.Size(1056, 653);
+            this.OperatorsCountView.TabIndex = 0;
+            // 
+            // TechniciansPage
+            // 
+            this.TechniciansPage.Controls.Add(this.TechniciansCountView);
+            this.TechniciansPage.Location = new System.Drawing.Point(4, 22);
+            this.TechniciansPage.Name = "TechniciansPage";
+            this.TechniciansPage.Padding = new System.Windows.Forms.Padding(3);
+            this.TechniciansPage.Size = new System.Drawing.Size(1056, 653);
+            this.TechniciansPage.TabIndex = 1;
+            this.TechniciansPage.Text = "Interventi chiusi tecnici";
+            this.TechniciansPage.UseVisualStyleBackColor = true;
+            // 
+            // TechniciansCountView
+            // 
+            this.TechniciansCountView.AllowUserToAddRows = false;
+            this.TechniciansCountView.AllowUserToDeleteRows = false;
+            this.TechniciansCountView.AllowUserToOrderColumns = true;
+            this.TechniciansCountView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TechniciansCountView.Location = new System.Drawing.Point(-1, 0);
+            this.TechniciansCountView.Name = "TechniciansCountView";
+            this.TechniciansCountView.ReadOnly = true;
+            this.TechniciansCountView.Size = new System.Drawing.Size(1057, 653);
+            this.TechniciansCountView.TabIndex = 0;
+            // 
+            // AvgTechPage
+            // 
+            this.AvgTechPage.Controls.Add(this.TechniciansAvgView);
+            this.AvgTechPage.Location = new System.Drawing.Point(4, 22);
+            this.AvgTechPage.Name = "AvgTechPage";
+            this.AvgTechPage.Padding = new System.Windows.Forms.Padding(3);
+            this.AvgTechPage.Size = new System.Drawing.Size(1056, 653);
+            this.AvgTechPage.TabIndex = 2;
+            this.AvgTechPage.Text = "Tempo medio chiusura per tecnico";
+            this.AvgTechPage.UseVisualStyleBackColor = true;
+            // 
+            // TechniciansAvgView
+            // 
+            this.TechniciansAvgView.AllowUserToAddRows = false;
+            this.TechniciansAvgView.AllowUserToDeleteRows = false;
+            this.TechniciansAvgView.AllowUserToOrderColumns = true;
+            this.TechniciansAvgView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TechniciansAvgView.Location = new System.Drawing.Point(0, 0);
+            this.TechniciansAvgView.Name = "TechniciansAvgView";
+            this.TechniciansAvgView.ReadOnly = true;
+            this.TechniciansAvgView.Size = new System.Drawing.Size(1056, 653);
+            this.TechniciansAvgView.TabIndex = 0;
+            // 
+            // AvgCenterPage
+            // 
+            this.AvgCenterPage.Controls.Add(this.CentersAvgView);
+            this.AvgCenterPage.Location = new System.Drawing.Point(4, 22);
+            this.AvgCenterPage.Name = "AvgCenterPage";
+            this.AvgCenterPage.Padding = new System.Windows.Forms.Padding(3);
+            this.AvgCenterPage.Size = new System.Drawing.Size(1056, 653);
+            this.AvgCenterPage.TabIndex = 3;
+            this.AvgCenterPage.Text = "Tempo medio chiusura per centro assistenza";
+            this.AvgCenterPage.UseVisualStyleBackColor = true;
+            // 
+            // CentersAvgView
+            // 
+            this.CentersAvgView.AllowUserToAddRows = false;
+            this.CentersAvgView.AllowUserToDeleteRows = false;
+            this.CentersAvgView.AllowUserToOrderColumns = true;
+            this.CentersAvgView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CentersAvgView.Location = new System.Drawing.Point(0, 0);
+            this.CentersAvgView.Name = "CentersAvgView";
+            this.CentersAvgView.ReadOnly = true;
+            this.CentersAvgView.Size = new System.Drawing.Size(1056, 653);
+            this.CentersAvgView.TabIndex = 0;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.Controls.Add(this.OperatorView);
             this.Controls.Add(this.TechnicianView);
+            this.Controls.Add(this.ManagementView);
             this.Controls.Add(this.DesignerView);
             this.Controls.Add(this.StartPanel);
             this.Name = "MainWindow";
             this.Text = "Failures Management System";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.StartPanel.ResumeLayout(false);
             this.StartPanel.PerformLayout();
             this.DesignerView.ResumeLayout(false);
@@ -508,9 +762,22 @@
             this.AvgTime.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AvgTimeView)).EndInit();
             this.TechnicianView.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ProductsView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FaultsView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InterventionView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductsView)).EndInit();
+            this.OperatorView.ResumeLayout(false);
+            this.OperatorView.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AddProductsView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddFaultsView)).EndInit();
+            this.ManagementView.ResumeLayout(false);
+            this.OperatorsPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.OperatorsCountView)).EndInit();
+            this.TechniciansPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TechniciansCountView)).EndInit();
+            this.AvgTechPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TechniciansAvgView)).EndInit();
+            this.AvgCenterPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CentersAvgView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -549,6 +816,26 @@
         private System.Windows.Forms.DataGridView FaultsView;
         private System.Windows.Forms.DataGridView InterventionView;
         private System.Windows.Forms.DataGridView ProductsView;
+        private System.Windows.Forms.Button EditButton;
+        private System.Windows.Forms.TabControl ManagementView;
+        private System.Windows.Forms.TabPage OperatorsPage;
+        private System.Windows.Forms.TabPage TechniciansPage;
+        private System.Windows.Forms.TabPage AvgTechPage;
+        private System.Windows.Forms.TabPage AvgCenterPage;
+        private System.Windows.Forms.DataGridView OperatorsCountView;
+        private System.Windows.Forms.DataGridView TechniciansCountView;
+        private System.Windows.Forms.DataGridView TechniciansAvgView;
+        private System.Windows.Forms.DataGridView CentersAvgView;
+        private System.Windows.Forms.Panel OperatorView;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button InsertButton;
+        private System.Windows.Forms.DataGridView AddProductsView;
+        private System.Windows.Forms.DataGridView AddFaultsView;
+        private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.TextBox VisitDateBox;
+        private System.Windows.Forms.TextBox TelephoneBox;
+        private System.Windows.Forms.Label VisitDateLabel;
+        private System.Windows.Forms.Label TelephoneLabel;
     }
 }
 
