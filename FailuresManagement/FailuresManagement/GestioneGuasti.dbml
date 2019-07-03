@@ -170,6 +170,7 @@
       <Association Name="Interventi_Guasti" Member="Guasti" ThisKey="NumeroTelefonoCliente,DataRichiesta" OtherKey="NumeroTelefonoCliente,DataRichiestaIntervento" Type="Guasti" />
       <Association Name="Operatori_Interventi" Member="Operatori" ThisKey="CodiceOperatore" OtherKey="Codice" Type="Operatori" IsForeignKey="true" />
       <Association Name="Tecnici_Interventi" Member="Tecnici" ThisKey="CodiceTecnico" OtherKey="Codice" Type="Tecnici" IsForeignKey="true" />
+      <Association Name="Clienti_Interventi" Member="Clienti" ThisKey="NumeroTelefonoCliente" OtherKey="NumeroTelefono" Type="Clienti" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.NewInterventions" Member="NewInterventions">
@@ -230,6 +231,16 @@
       <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="Cognome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="TempoMedioImpiegato" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Clienti" Member="Clienti">
+    <Type Name="Clienti">
+      <Column Name="NumeroTelefono" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Cognome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Recapito" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Association Name="Clienti_Interventi" Member="Interventi" ThisKey="NumeroTelefono" OtherKey="NumeroTelefonoCliente" Type="Interventi" />
     </Type>
   </Table>
 </Database>

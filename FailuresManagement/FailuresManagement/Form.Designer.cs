@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.LoginButton = new System.Windows.Forms.Button();
             this.LoginBox = new System.Windows.Forms.TextBox();
             this.Title = new System.Windows.Forms.Label();
@@ -65,7 +65,15 @@
             this.FaultsView = new System.Windows.Forms.DataGridView();
             this.InterventionView = new System.Windows.Forms.DataGridView();
             this.OperatorView = new System.Windows.Forms.Panel();
-            this.VisitDateBox = new System.Windows.Forms.TextBox();
+            this.EmailLabel = new System.Windows.Forms.Label();
+            this.AddressLabel = new System.Windows.Forms.Label();
+            this.EmailBox = new System.Windows.Forms.TextBox();
+            this.AddressBox = new System.Windows.Forms.TextBox();
+            this.SurnameLabel = new System.Windows.Forms.Label();
+            this.NameLabel = new System.Windows.Forms.Label();
+            this.VisitDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.SurnameBox = new System.Windows.Forms.TextBox();
+            this.NameBox = new System.Windows.Forms.TextBox();
             this.TelephoneBox = new System.Windows.Forms.TextBox();
             this.VisitDateLabel = new System.Windows.Forms.Label();
             this.TelephoneLabel = new System.Windows.Forms.Label();
@@ -73,7 +81,6 @@
             this.DeleteButton = new System.Windows.Forms.Button();
             this.InsertButton = new System.Windows.Forms.Button();
             this.AddProductsView = new System.Windows.Forms.DataGridView();
-            this.AddFaultsView = new System.Windows.Forms.DataGridView();
             this.ManagementView = new System.Windows.Forms.TabControl();
             this.OperatorsPage = new System.Windows.Forms.TabPage();
             this.OperatorsCountView = new System.Windows.Forms.DataGridView();
@@ -111,7 +118,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.InterventionView)).BeginInit();
             this.OperatorView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AddProductsView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddFaultsView)).BeginInit();
             this.ManagementView.SuspendLayout();
             this.OperatorsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OperatorsCountView)).BeginInit();
@@ -188,7 +194,7 @@
             this.DesignerView.Location = new System.Drawing.Point(0, 0);
             this.DesignerView.Name = "DesignerView";
             this.DesignerView.SelectedIndex = 0;
-            this.DesignerView.Size = new System.Drawing.Size(1061, 679);
+            this.DesignerView.Size = new System.Drawing.Size(1064, 679);
             this.DesignerView.TabIndex = 4;
             // 
             // Keyword
@@ -200,40 +206,40 @@
             this.Keyword.Location = new System.Drawing.Point(4, 22);
             this.Keyword.Name = "Keyword";
             this.Keyword.Padding = new System.Windows.Forms.Padding(3);
-            this.Keyword.Size = new System.Drawing.Size(1053, 653);
+            this.Keyword.Size = new System.Drawing.Size(1056, 653);
             this.Keyword.TabIndex = 0;
             this.Keyword.Text = "Cerca per parola chiave";
             this.Keyword.UseVisualStyleBackColor = true;
             // 
             // SearchView
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SearchView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SearchView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.SearchView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SearchView.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SearchView.DefaultCellStyle = dataGridViewCellStyle26;
             this.SearchView.Location = new System.Drawing.Point(0, 46);
             this.SearchView.Name = "SearchView";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SearchView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SearchView.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.SearchView.Size = new System.Drawing.Size(1053, 607);
             this.SearchView.TabIndex = 2;
             // 
@@ -522,7 +528,15 @@
             // 
             // OperatorView
             // 
-            this.OperatorView.Controls.Add(this.VisitDateBox);
+            this.OperatorView.Controls.Add(this.EmailLabel);
+            this.OperatorView.Controls.Add(this.AddressLabel);
+            this.OperatorView.Controls.Add(this.EmailBox);
+            this.OperatorView.Controls.Add(this.AddressBox);
+            this.OperatorView.Controls.Add(this.SurnameLabel);
+            this.OperatorView.Controls.Add(this.NameLabel);
+            this.OperatorView.Controls.Add(this.VisitDatePicker);
+            this.OperatorView.Controls.Add(this.SurnameBox);
+            this.OperatorView.Controls.Add(this.NameBox);
             this.OperatorView.Controls.Add(this.TelephoneBox);
             this.OperatorView.Controls.Add(this.VisitDateLabel);
             this.OperatorView.Controls.Add(this.TelephoneLabel);
@@ -530,22 +544,90 @@
             this.OperatorView.Controls.Add(this.DeleteButton);
             this.OperatorView.Controls.Add(this.InsertButton);
             this.OperatorView.Controls.Add(this.AddProductsView);
-            this.OperatorView.Controls.Add(this.AddFaultsView);
             this.OperatorView.Location = new System.Drawing.Point(0, 0);
             this.OperatorView.Name = "OperatorView";
             this.OperatorView.Size = new System.Drawing.Size(1064, 682);
             this.OperatorView.TabIndex = 4;
             // 
-            // VisitDateBox
+            // EmailLabel
             // 
-            this.VisitDateBox.Location = new System.Drawing.Point(533, 42);
-            this.VisitDateBox.Name = "VisitDateBox";
-            this.VisitDateBox.Size = new System.Drawing.Size(524, 20);
-            this.VisitDateBox.TabIndex = 14;
+            this.EmailLabel.AutoSize = true;
+            this.EmailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmailLabel.Location = new System.Drawing.Point(529, 120);
+            this.EmailLabel.Name = "EmailLabel";
+            this.EmailLabel.Size = new System.Drawing.Size(48, 20);
+            this.EmailLabel.TabIndex = 24;
+            this.EmailLabel.Text = "Email";
+            // 
+            // AddressLabel
+            // 
+            this.AddressLabel.AutoSize = true;
+            this.AddressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddressLabel.Location = new System.Drawing.Point(7, 120);
+            this.AddressLabel.Name = "AddressLabel";
+            this.AddressLabel.Size = new System.Drawing.Size(73, 20);
+            this.AddressLabel.TabIndex = 23;
+            this.AddressLabel.Text = "Recapito";
+            // 
+            // EmailBox
+            // 
+            this.EmailBox.Location = new System.Drawing.Point(533, 143);
+            this.EmailBox.Name = "EmailBox";
+            this.EmailBox.Size = new System.Drawing.Size(524, 20);
+            this.EmailBox.TabIndex = 22;
+            // 
+            // AddressBox
+            // 
+            this.AddressBox.Location = new System.Drawing.Point(7, 143);
+            this.AddressBox.Name = "AddressBox";
+            this.AddressBox.Size = new System.Drawing.Size(520, 20);
+            this.AddressBox.TabIndex = 21;
+            // 
+            // SurnameLabel
+            // 
+            this.SurnameLabel.AutoSize = true;
+            this.SurnameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SurnameLabel.Location = new System.Drawing.Point(529, 66);
+            this.SurnameLabel.Name = "SurnameLabel";
+            this.SurnameLabel.Size = new System.Drawing.Size(78, 20);
+            this.SurnameLabel.TabIndex = 20;
+            this.SurnameLabel.Text = "Cognome";
+            // 
+            // NameLabel
+            // 
+            this.NameLabel.AutoSize = true;
+            this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameLabel.Location = new System.Drawing.Point(7, 66);
+            this.NameLabel.Name = "NameLabel";
+            this.NameLabel.Size = new System.Drawing.Size(51, 20);
+            this.NameLabel.TabIndex = 19;
+            this.NameLabel.Text = "Nome";
+            // 
+            // VisitDatePicker
+            // 
+            this.VisitDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.VisitDatePicker.Location = new System.Drawing.Point(533, 37);
+            this.VisitDatePicker.Name = "VisitDatePicker";
+            this.VisitDatePicker.Size = new System.Drawing.Size(524, 20);
+            this.VisitDatePicker.TabIndex = 18;
+            // 
+            // SurnameBox
+            // 
+            this.SurnameBox.Location = new System.Drawing.Point(533, 89);
+            this.SurnameBox.Name = "SurnameBox";
+            this.SurnameBox.Size = new System.Drawing.Size(524, 20);
+            this.SurnameBox.TabIndex = 16;
+            // 
+            // NameBox
+            // 
+            this.NameBox.Location = new System.Drawing.Point(7, 89);
+            this.NameBox.Name = "NameBox";
+            this.NameBox.Size = new System.Drawing.Size(520, 20);
+            this.NameBox.TabIndex = 15;
             // 
             // TelephoneBox
             // 
-            this.TelephoneBox.Location = new System.Drawing.Point(7, 42);
+            this.TelephoneBox.Location = new System.Drawing.Point(7, 37);
             this.TelephoneBox.Name = "TelephoneBox";
             this.TelephoneBox.Size = new System.Drawing.Size(520, 20);
             this.TelephoneBox.TabIndex = 11;
@@ -554,7 +636,7 @@
             // 
             this.VisitDateLabel.AutoSize = true;
             this.VisitDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VisitDateLabel.Location = new System.Drawing.Point(529, 17);
+            this.VisitDateLabel.Location = new System.Drawing.Point(529, 12);
             this.VisitDateLabel.Name = "VisitDateLabel";
             this.VisitDateLabel.Size = new System.Drawing.Size(87, 20);
             this.VisitDateLabel.TabIndex = 7;
@@ -564,7 +646,7 @@
             // 
             this.TelephoneLabel.AutoSize = true;
             this.TelephoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TelephoneLabel.Location = new System.Drawing.Point(7, 17);
+            this.TelephoneLabel.Location = new System.Drawing.Point(7, 12);
             this.TelephoneLabel.Name = "TelephoneLabel";
             this.TelephoneLabel.Size = new System.Drawing.Size(143, 20);
             this.TelephoneLabel.TabIndex = 6;
@@ -572,6 +654,7 @@
             // 
             // ClearButton
             // 
+            this.ClearButton.Enabled = false;
             this.ClearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClearButton.Location = new System.Drawing.Point(982, 640);
             this.ClearButton.Name = "ClearButton";
@@ -583,6 +666,7 @@
             // 
             // DeleteButton
             // 
+            this.DeleteButton.Enabled = false;
             this.DeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteButton.Location = new System.Drawing.Point(891, 640);
             this.DeleteButton.Name = "DeleteButton";
@@ -590,6 +674,7 @@
             this.DeleteButton.TabIndex = 4;
             this.DeleteButton.Text = "Cancella";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // InsertButton
             // 
@@ -606,19 +691,10 @@
             // 
             this.AddProductsView.AllowUserToOrderColumns = true;
             this.AddProductsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AddProductsView.Location = new System.Drawing.Point(7, 76);
+            this.AddProductsView.Location = new System.Drawing.Point(7, 183);
             this.AddProductsView.Name = "AddProductsView";
-            this.AddProductsView.Size = new System.Drawing.Size(1050, 270);
+            this.AddProductsView.Size = new System.Drawing.Size(1050, 447);
             this.AddProductsView.TabIndex = 2;
-            // 
-            // AddFaultsView
-            // 
-            this.AddFaultsView.AllowUserToOrderColumns = true;
-            this.AddFaultsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AddFaultsView.Location = new System.Drawing.Point(7, 360);
-            this.AddFaultsView.Name = "AddFaultsView";
-            this.AddFaultsView.Size = new System.Drawing.Size(1050, 270);
-            this.AddFaultsView.TabIndex = 1;
             // 
             // ManagementView
             // 
@@ -729,11 +805,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.Controls.Add(this.DesignerView);
             this.Controls.Add(this.OperatorView);
             this.Controls.Add(this.TechnicianView);
             this.Controls.Add(this.ManagementView);
-            this.Controls.Add(this.DesignerView);
             this.Controls.Add(this.StartPanel);
+            this.IsMdiContainer = true;
             this.Name = "MainWindow";
             this.Text = "Failures Management System";
             this.Load += new System.EventHandler(this.Form_Load);
@@ -768,7 +845,6 @@
             this.OperatorView.ResumeLayout(false);
             this.OperatorView.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AddProductsView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddFaultsView)).EndInit();
             this.ManagementView.ResumeLayout(false);
             this.OperatorsPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.OperatorsCountView)).EndInit();
@@ -830,12 +906,19 @@
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Button InsertButton;
         private System.Windows.Forms.DataGridView AddProductsView;
-        private System.Windows.Forms.DataGridView AddFaultsView;
         private System.Windows.Forms.Button ClearButton;
-        private System.Windows.Forms.TextBox VisitDateBox;
         private System.Windows.Forms.TextBox TelephoneBox;
         private System.Windows.Forms.Label VisitDateLabel;
         private System.Windows.Forms.Label TelephoneLabel;
+        private System.Windows.Forms.DateTimePicker VisitDatePicker;
+        private System.Windows.Forms.TextBox SurnameBox;
+        private System.Windows.Forms.TextBox NameBox;
+        private System.Windows.Forms.Label NameLabel;
+        private System.Windows.Forms.Label EmailLabel;
+        private System.Windows.Forms.Label AddressLabel;
+        private System.Windows.Forms.TextBox EmailBox;
+        private System.Windows.Forms.TextBox AddressBox;
+        private System.Windows.Forms.Label SurnameLabel;
     }
 }
 

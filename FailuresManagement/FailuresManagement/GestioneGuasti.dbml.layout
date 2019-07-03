@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.25, 13.375" name="GestioneGuasti">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18, 13.375" name="GestioneGuasti">
   <DataContextMoniker Name="/GestioneGuastiDataContext" />
   <nestedChildShapes>
     <classShape Id="5134108c-73f3-4e4e-b2ac-3445dcf403de" absoluteBounds="0.5, 0.5, 2, 4.4631168619791666">
@@ -183,5 +183,18 @@
         <elementListCompartment Id="d3170652-a7ad-4bf9-b152-a2012c6cc896" absoluteBounds="2.7649999999999997, 9.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="89a88664-58ea-43ed-a340-d24fbf620aca" absoluteBounds="15.75, 2.625, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/GestioneGuastiDataContext/Clienti" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1b4fb3a-fbc6-47f1-8ef5-0e25a0959b11" absoluteBounds="15.765, 3.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(15.75 : 3.48640055338542); (14.875 : 3.48640055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/GestioneGuastiDataContext/Clienti/Clienti_Interventi" />
+      <nodes>
+        <classShapeMoniker Id="89a88664-58ea-43ed-a340-d24fbf620aca" />
+        <classShapeMoniker Id="a7af4dbf-7c16-4a47-a190-2538b85e16a7" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
