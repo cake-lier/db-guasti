@@ -18,3 +18,7 @@ C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debu
 C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.csproj.CoreCompileInputs.cache
 C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.exe
 C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.pdb
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.DesignerForm.resources
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.ManagementForm.resources
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.OperatorForm.resources
+C:\Users\Matteo\Desktop\db-guasti\FailuresManagement\FailuresManagement\obj\Debug\FailuresManagement.TechnicianForm.resources

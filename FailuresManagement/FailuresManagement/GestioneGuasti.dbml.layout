@@ -189,7 +189,7 @@
         <elementListCompartment Id="c1b4fb3a-fbc6-47f1-8ef5-0e25a0959b11" absoluteBounds="15.765, 3.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(15.75 : 3.48640055338542); (14.875 : 3.48640055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(15.75 : 3.48640055338542); (14.875 : 3.48640055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GestioneGuastiDataContext/Clienti/Clienti_Interventi" />
       <nodes>
         <classShapeMoniker Id="89a88664-58ea-43ed-a340-d24fbf620aca" />

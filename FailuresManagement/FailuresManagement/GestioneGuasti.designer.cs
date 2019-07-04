@@ -3130,8 +3130,8 @@ namespace FailuresManagement
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroTelefonoCliente", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string NumeroTelefonoCliente
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="NumeroTelefonoCliente", Storage="_NumeroTelefonoCliente", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Numero_di_telefono_cliente
 		{
 			get
 			{
@@ -3146,8 +3146,8 @@ namespace FailuresManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataRichiesta", DbType="DateTime NOT NULL")]
-		public System.DateTime DataRichiesta
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="DataRichiesta", Storage="_DataRichiesta", DbType="DateTime NOT NULL")]
+		public System.DateTime Data_richiesta
 		{
 			get
 			{
@@ -3598,8 +3598,8 @@ namespace FailuresManagement
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodiceNazionale", DbType="Decimal(3,0) NOT NULL")]
-		public decimal CodiceNazionale
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="CodiceNazionale", Storage="_CodiceNazionale", DbType="Decimal(3,0) NOT NULL")]
+		public decimal Codice_nazionale
 		{
 			get
 			{
@@ -3646,8 +3646,8 @@ namespace FailuresManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AreaCompetenza", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
-		public string AreaCompetenza
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="AreaCompetenza", Storage="_AreaCompetenza", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string Area_di_competenza
 		{
 			get
 			{
@@ -3662,8 +3662,8 @@ namespace FailuresManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TempoMedioRiparazione", DbType="Float")]
-		public System.Nullable<double> TempoMedioRiparazione
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="TempoMedioRiparazione", Storage="_TempoMedioRiparazione", DbType="Float")]
+		public System.Nullable<double> Tempo_di_riparazione_medio
 		{
 			get
 			{
@@ -3905,8 +3905,8 @@ namespace FailuresManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TempoMedioImpiegato", DbType="Decimal(38,6)")]
-		public System.Nullable<decimal> TempoMedioImpiegato
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="TempoMedioImpiegato", Storage="_TempoMedioImpiegato", DbType="Decimal(38,6)")]
+		public System.Nullable<decimal> Tempo_impiegato_in_media
 		{
 			get
 			{

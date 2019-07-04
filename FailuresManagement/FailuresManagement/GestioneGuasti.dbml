@@ -175,8 +175,8 @@
   </Table>
   <Table Name="dbo.NewInterventions" Member="NewInterventions">
     <Type Name="NewInterventions">
-      <Column Name="NumeroTelefonoCliente" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="DataRichiesta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NumeroTelefonoCliente" Member="Numero_di_telefono_cliente" Storage="_NumeroTelefonoCliente" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DataRichiesta" Member="Data_richiesta" Storage="_DataRichiesta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Prodotti" Member="Prodotti">
@@ -202,11 +202,11 @@
   </Table>
   <Table Name="dbo.CentersIntervAvg" Member="CentersIntervAvg">
     <Type Name="CentersIntervAvg">
-      <Column Name="CodiceNazionale" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="CodiceNazionale" Member="Codice_nazionale" Storage="_CodiceNazionale" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
       <Column Name="Nazione" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
       <Column Name="Sede" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
-      <Column Name="AreaCompetenza" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
-      <Column Name="TempoMedioRiparazione" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AreaCompetenza" Member="Area_di_competenza" Storage="_AreaCompetenza" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="TempoMedioRiparazione" Member="Tempo_di_riparazione_medio" Storage="_TempoMedioRiparazione" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.OperatorsIntervCount" Member="OperatorsIntervCount">
@@ -230,7 +230,7 @@
       <Column Name="CF" Type="System.String" DbType="Char(16) NOT NULL" CanBeNull="false" />
       <Column Name="Nome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="Cognome" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="TempoMedioImpiegato" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="TempoMedioImpiegato" Member="Tempo_impiegato_in_media" Storage="_TempoMedioImpiegato" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Clienti" Member="Clienti">
