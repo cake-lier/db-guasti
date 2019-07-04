@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FailuresManagement
 {
     public partial class OperatorForm : Form
     {
+        private const string dateTimeFormat = "dd/MM/yyyy HH:mm";
         private const string MissingDataTitle = "Mancanza dati";
         private const string MissingData = "È necessario inserire il campo \"";
         private const string ErrorTitle = "Errore";
@@ -21,6 +18,10 @@ namespace FailuresManagement
         private const string WrongCategoryError = "La categoria del prodotto non è stata correttamente inserita";
         private const string SuccessTitle = "Successo";
         private const string InsertSuccess = "Inserimento effettuato con successo";
+        private const string ProductFaultNotFound = "Il guasto o il relativo prodotto non sono stati trovati, non verranno cancellati";
+        private const string CannotDeleteFault = "Non è possibile cancellare il guasto alla riga ";
+        private const string InterventionNotFound = "L'intervento non è stato trovato, non verrà cancellato";
+        private const string CannotDeleteIntervention = "Non è possibile cancellare i dati senza il numero di telefono del cliente chiamante";
 
         private DateTime lastInsertionTime;
         private readonly GestioneGuastiDataContext db;
@@ -47,7 +48,7 @@ namespace FailuresManagement
                 "Codice_garanzia",
                 "Categoria"
             }.ForEach(c => AddProductsView.Columns.Add(c, c));
-            VisitDatePicker.CustomFormat = "dd/MM/yyyy HH:mm";
+            VisitDatePicker.CustomFormat = dateTimeFormat;
             VisitDatePicker.Value = new DateTime(DateTime.Now.Year,
                                                  DateTime.Now.Month,
                                                  DateTime.Now.Day,
@@ -250,24 +251,35 @@ namespace FailuresManagement
                     var SNC = stringSNC == null ? null : (decimal?)decimal.Parse(stringSNC);
                     if (PNC != null && SNC != null)
                     {
-                        db.Guasti.DeleteOnSubmit((from g in db.Guasti
-                                                  where g.NumeroTelefonoCliente == TelephoneBox.Text
-                                                        && g.DataRichiestaIntervento == lastInsertionTime
-                                                        && g.PNC == PNC
-                                                        && g.SNC == SNC
-                                                  select g).Single());
-                        db.SubmitChanges();
-                        if ((from g in db.Guasti where g.PNC == PNC && g.SNC == SNC select g).Count() == 0)
+                        try
                         {
-                            db.Prodotti.DeleteOnSubmit((from p in db.Prodotti
-                                                        where p.PNC == PNC && p.SNC == SNC
-                                                        select p).Single());
+                            db.Guasti.DeleteOnSubmit((from g in db.Guasti
+                                                      where g.NumeroTelefonoCliente == TelephoneBox.Text
+                                                            && g.DataRichiestaIntervento == lastInsertionTime
+                                                            && g.PNC == PNC
+                                                            && g.SNC == SNC
+                                                      select g).Single());
                             db.SubmitChanges();
+                            if ((from g in db.Guasti where g.PNC == PNC && g.SNC == SNC select g).Count() == 0)
+                            {
+                                db.Prodotti.DeleteOnSubmit((from p in db.Prodotti
+                                                            where p.PNC == PNC && p.SNC == SNC
+                                                            select p).Single());
+                                db.SubmitChanges();
+                            }
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            MessageBox.Show(ProductFaultNotFound, ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ClearButton_Click(sender, e);
+                            return;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Il guasto alla riga " + i + " non può essere cancellato");
+                        MessageBox.Show(CannotDeleteFault + i, ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        ClearButton_Click(sender, e);
+                        return;
                     }
                 }
                 if ((from g in db.Guasti
@@ -275,26 +287,32 @@ namespace FailuresManagement
                            && g.DataRichiestaIntervento == lastInsertionTime
                      select g).Count() == 0)
                 {
-                    db.Interventi.DeleteOnSubmit((from i in db.Interventi
-                                                  where i.NumeroTelefonoCliente == TelephoneBox.Text
-                                                        && i.DataRichiesta == lastInsertionTime
-                                                  select i).Single());
-                    db.SubmitChanges();
-                    if ((from i in db.Interventi
-                         where i.NumeroTelefonoCliente == TelephoneBox.Text
-                         select i).Count() == 0)
+                    try
                     {
-                        db.Clienti.DeleteOnSubmit((from c in db.Clienti
-                                                   where c.NumeroTelefono == TelephoneBox.Text
-                                                   select c).Single());
+                        db.Interventi.DeleteOnSubmit((from i in db.Interventi
+                                                      where i.NumeroTelefonoCliente == TelephoneBox.Text
+                                                            && i.DataRichiesta == lastInsertionTime
+                                                      select i).Single());
                         db.SubmitChanges();
+                        if ((from i in db.Interventi
+                             where i.NumeroTelefonoCliente == TelephoneBox.Text
+                             select i).Count() == 0)
+                        {
+                            db.Clienti.DeleteOnSubmit((from c in db.Clienti
+                                                       where c.NumeroTelefono == TelephoneBox.Text
+                                                       select c).Single());
+                            db.SubmitChanges();
+                        }
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        MessageBox.Show(InterventionNotFound, ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                db.SubmitChanges();
             }
             else
             {
-                MessageBox.Show("Non è possibile cancellare i dati senza il numero di telefono del cliente chiamante");
+                MessageBox.Show(CannotDeleteIntervention, ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ClearButton_Click(sender, e);
         }

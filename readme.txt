@@ -11,8 +11,9 @@
     presenza di una copia locale dello stesso o meno.
 
 *   Per ricreare il database da zero in locale è presente lo script "create_db.sql" che è stato fatto generare in automatico da Microsoft SQL
-    Server Management Studio e testato su Windows 10 su SQL Server Management Studio stesso e su Azure Data Studio per Linux.
-    Basta mettere in esecuzione lo script per poter effetturare la creazione del database.
+    Server Management Studio e testato su Windows 10 su SQL Server Management Studio stesso. Occorre prima creare il database, poi
+    connettendosi ad esso si possono lanciare tutti i comandi che seguono "CREATE DATABASE" per impostare le sue proprietà e poi popolarlo
+    con tabelle, viste e infine con i dati stessi.
 
 *   Per poter provare le varie parti dell'applicazione si possono usare le seguenti credenziali:
     **  "1", "2", "3" : Operatore

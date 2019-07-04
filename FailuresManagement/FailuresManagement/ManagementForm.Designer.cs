@@ -55,7 +55,7 @@
             this.ManagementView.Controls.Add(this.TechniciansPage);
             this.ManagementView.Controls.Add(this.AvgTechPage);
             this.ManagementView.Controls.Add(this.AvgCenterPage);
-            this.ManagementView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ManagementView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ManagementView.Location = new System.Drawing.Point(0, 1);
             this.ManagementView.Name = "ManagementView";
             this.ManagementView.SelectedIndex = 0;
@@ -65,10 +65,10 @@
             // OperatorsPage
             // 
             this.OperatorsPage.Controls.Add(this.OperatorsCountView);
-            this.OperatorsPage.Location = new System.Drawing.Point(4, 29);
+            this.OperatorsPage.Location = new System.Drawing.Point(4, 25);
             this.OperatorsPage.Name = "OperatorsPage";
             this.OperatorsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.OperatorsPage.Size = new System.Drawing.Size(1056, 646);
+            this.OperatorsPage.Size = new System.Drawing.Size(1056, 650);
             this.OperatorsPage.TabIndex = 0;
             this.OperatorsPage.Text = "Interventi aperti operatori";
             this.OperatorsPage.UseVisualStyleBackColor = true;
@@ -88,10 +88,10 @@
             // TechniciansPage
             // 
             this.TechniciansPage.Controls.Add(this.TechniciansCountView);
-            this.TechniciansPage.Location = new System.Drawing.Point(4, 25);
+            this.TechniciansPage.Location = new System.Drawing.Point(4, 29);
             this.TechniciansPage.Name = "TechniciansPage";
             this.TechniciansPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TechniciansPage.Size = new System.Drawing.Size(1056, 650);
+            this.TechniciansPage.Size = new System.Drawing.Size(1056, 646);
             this.TechniciansPage.TabIndex = 1;
             this.TechniciansPage.Text = "Interventi chiusi tecnici";
             this.TechniciansPage.UseVisualStyleBackColor = true;
@@ -111,10 +111,10 @@
             // AvgTechPage
             // 
             this.AvgTechPage.Controls.Add(this.TechniciansAvgView);
-            this.AvgTechPage.Location = new System.Drawing.Point(4, 25);
+            this.AvgTechPage.Location = new System.Drawing.Point(4, 29);
             this.AvgTechPage.Name = "AvgTechPage";
             this.AvgTechPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AvgTechPage.Size = new System.Drawing.Size(1056, 650);
+            this.AvgTechPage.Size = new System.Drawing.Size(1056, 646);
             this.AvgTechPage.TabIndex = 2;
             this.AvgTechPage.Text = "Tempo medio chiusura per tecnico";
             this.AvgTechPage.UseVisualStyleBackColor = true;
@@ -134,10 +134,10 @@
             // AvgCenterPage
             // 
             this.AvgCenterPage.Controls.Add(this.CentersAvgView);
-            this.AvgCenterPage.Location = new System.Drawing.Point(4, 25);
+            this.AvgCenterPage.Location = new System.Drawing.Point(4, 29);
             this.AvgCenterPage.Name = "AvgCenterPage";
             this.AvgCenterPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AvgCenterPage.Size = new System.Drawing.Size(1056, 650);
+            this.AvgCenterPage.Size = new System.Drawing.Size(1056, 646);
             this.AvgCenterPage.TabIndex = 3;
             this.AvgCenterPage.Text = "Tempo medio chiusura per centro assistenza";
             this.AvgCenterPage.UseVisualStyleBackColor = true;
