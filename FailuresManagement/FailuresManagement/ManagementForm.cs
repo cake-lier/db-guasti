@@ -10,6 +10,7 @@ namespace FailuresManagement
         {
             db = new GestioneGuastiDataContext();
             InitializeComponent();
+            MaximizeBox = false;
         }
 
         private void ManagementForm_Load(object sender, System.EventArgs e)

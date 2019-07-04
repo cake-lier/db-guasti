@@ -31,6 +31,7 @@ namespace FailuresManagement
             db = new GestioneGuastiDataContext();
             this.operatorCode = operatorCode;
             InitializeComponent();
+            MaximizeBox = false;
         }
 
         private void OperatorForm_Load(object sender, EventArgs e)

@@ -20,7 +20,7 @@ namespace FailuresManagement
         {
             db = new GestioneGuastiDataContext();
             InitializeComponent();
-            AcceptButton = LoginButton;
+            MaximizeBox = false;
         }
 
         private void LaunchSubForm(Form subform)

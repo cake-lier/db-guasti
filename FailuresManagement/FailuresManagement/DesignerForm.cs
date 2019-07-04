@@ -18,6 +18,7 @@ namespace FailuresManagement
                                  where emp.CodiceProgettista == designerCode
                                  select emp.CodiceCategoria;
             InitializeComponent();
+            MaximizeBox = false;
         }
 
         private void DesignerForm_Load(object sender, EventArgs e)

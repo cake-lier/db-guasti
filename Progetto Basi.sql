@@ -183,7 +183,7 @@ alter table Tecnici add constraint FKAfferenza_Tec
      foreign key (CodiceNazionaleCentro, NazioneCentro)
      references Centri_Assistenza;
 
-/*GO
+GO
 
 create function IDInterventi_CHK_func() returns bit as
 begin
@@ -211,4 +211,4 @@ GO
 alter table Progettisti with check add constraint IDProgettisti_CHK
      check(dbo.IDProgettisti_CHK_func() = 1); 
 
-GO*/
+GO
