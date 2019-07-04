@@ -1209,4 +1209,74 @@ ridondanza, rendendo utile il suo mantenimento.
 
 \chapter{Progettazione dell'applicazione}
 
+L'applicazione è stata sviluppata attraverso l'utilizzo del linguaggio C\#, fornito attraverso il .Net Framework 4.7.2, avvalendosi in particolar modo del servizio per la realizzazione di \textit{GUI} interattive "\textit{Windows Forms}" per il sistema operativo Windows 10 offerto dal linguaggio stesso. Il \textit{DBMS} sui cui l'applicazione si basa è \textit{Microsoft SQL Server} che gestisce un database contenuto in un server virtuale del servizio cloud "\textit{Microsoft Azure}".\newline
+L'applicazione nella sua struttura ricalca la divisione tra gli utenti che utilizzano il database evidenziata in precedenza. Essa può essere suddivisa in cinque schermate.
+
+\section{Schermata di login}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{images/loginScreen.png}
+	\caption{Immagine della schermata di login}
+\end{figure}
+
+La schermata di login è estremamente essenziale e in quanto tale permette un'interazione con l'utente minimale. Qui l'utente può inserire il proprio codice dipendente ed accedere
+ad una seconda schermata con i dati di suo interesse, una diversa per ogni categoria di utente che utilizza il database. Oltre alle tre categorie elencate in precedenza - operatori,
+tecnici e progettisti - è stata considerata una quarta categoria di utenti, gli amministratori. Gli amministratori sono coloro che eseguono le operazioni che non appartengono ad una
+categoria specifica di utenti, perché cercano di ottenere informazioni generali, che riguardano i dipendenti che vi appartengono in generale, come ad esempio le prestazioni di ogni
+singolo dipendente. La loro schermata si preoccuperà perciò di mostrare le operazioni dalla V1 alla V4. Essendo senza un codice dipendente, per accedere alla loro interfaccia
+occorre digitare come codice dipendente il simbolo "*".
+
+\section{Schermata degli amministratori}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{images/managementScreen.png}
+	\caption{Immagine della schermata per gli amministratori}
+\end{figure}
+
+Un amministratore può passare in rassegna i dati inerenti alle operazioni di sua competenza scorrendo tra i \textit{tab} che costituiscono la sua schermata.
+
+\section{Schermata dei progettisti}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{images/designerScreen.png}
+	\caption{Schema logico relazionale ottenuto dal paragrafo precedente}
+\end{figure}
+
+Un progettista, come un amministratore, può vedere i dati inerenti a ciascuna delle operazioni di sua competenza attraverso le \textit{tab} disponibili nella sua schermata. In particolar
+modo, nella \textit{tab} denominata "Cerca per parola chiave" può effettuare una ricerca tra tutti guasti che appartengono alle categorie di sua competenza trattenendo solamente quelli
+la cui descrizione fatta dal tecnico contiene una determinata stringa di caratteri.
+
+\section{Schermata degli operatori}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{images/operatorScreen.png}
+	\caption{Schema logico relazionale ottenuto dal paragrafo precedente}
+\end{figure}
+
+Questa schermata invece permette una maggior interazione tra l'utente e il sistema, essendo stata progettata per inserire nuovi interventi e relativi guasti nel sistema. I campi di 
+testo iniziali servono per inserire i dati di un cliente e se non è mai stato inserito all'interno del \textit{database} sarà esso stesso a deciderlo con un controllo preventivo.
+La griglia subito sotto permette di inserire i dati relativi ad un prodotto che ha subito un guasto - e anche in questo caso sarà il sistema in automatico a determinare se è già
+stato inserito in passato o meno - nonché sul guasto associato. Utilizzando i dati precedenti assieme a questi ultimi, inoltre, verrà aggiunto un nuovo \textit{record} inerente
+all'intervento appena aperto. Subito dopo che l'intervento è stato inserito, in caso di rilevato errore, con le informazioni ancora inseriti nel \textit{form}, è possibile rimuovere
+i dati inseriti per poterli correggere e reinserire successivamente tramite il tasto "Cancella". Se invece si è convinti dei dati inseriti, il pulsante "Pulisci" svuota tutti i
+campi del \textit{form} e permette di effettuare un nuovo inserimento da capo. Se parte dei dati sono stati rimossi, o alterati, il sistema cancellerà solamente quei dati che riuscirà
+a trovare nel \textit{database}, a patto che non siano utili per identificare altri interventi o altri guasti.
+
+\section{Schermata dei tecnici}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{images/technicianScreen.png}
+	\caption{Schema logico relazionale ottenuto dal paragrafo precedente}
+\end{figure}
+
+Un tecnico si trova davanti ad una schermata inizialmente con un solo riquadro riempito con una griglia. Questa contiene informazioni sugli interventi che sono ancora aperti e che
+possono essere scelti per poter essere chiusi dopo la riparazione. Cliccare sui dati inerenti ad un intervento permetterà la comparsa negli altri due riquadri dei dati inerenti ai
+guasti e ai prodotti coinvolti in quello specifico intervento. In particolar modo, compariranno anche i campi vuoti che è responsabilità del tecnico riempire dopo essersi recato a
+casa del cliente e dopo aver effettuato la riparazione. Una volta inseriti tutti i dati necessari, verranno inseriti all'interno del database alla pressione del pulsante "Modifica".
+
 \end{document}
