@@ -57,7 +57,7 @@ create table Interventi (
      Stato char(1) not null,
      DataVisita datetime not null,
      TempoImpiegato numeric(2),
-     Nazione char(2) not null,
+     Zona varchar(40) not null,
      CodiceOperatore numeric(6) not null,
      CodiceTecnico numeric(6),
      constraint IDInterventi_ID primary key (NumeroTelefonoCliente, DataRichiesta));

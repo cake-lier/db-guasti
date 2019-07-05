@@ -9,7 +9,7 @@
 \usepackage{enumitem}
 \renewcommand{\familydefault}{\sfdefault}
 
-\title{"Progetto di una base di dati per la gestione del ciclo di vita del difetto nella produzione dell'elettrodomestico"}
+\title{``Progetto di una base di dati per la gestione del ciclo di vita del difetto nella produzione di un elettrodomestico"}
 \author{Castellucci Matteo\\Matricola 0000825436\\Anno accademico 2018-2019}
 \date{\today}
 
@@ -20,12 +20,12 @@
 \tableofcontents
 
 \chapter{Introduzione}
-In questo progetto si vuole realizzare una base di dati a supporto della gestione dei difetti nella realizzazione dell'elettrodomestico,
+In questo progetto si vuole realizzare una base di dati a supporto della gestione dei difetti nella realizzazione di un elettrodomestico,
 chiudendo la "catena dell'informazione" tra cliente ed azienda nella fase terminale del ciclo di vita del prodotto. Lo scopo è fornire
 all'azienda tutte le informazioni necessarie sugli elettrodomestici dopo essere arrivati nelle mani del cliente finale, così da poter
 ottenere informazioni sul campo e capire quali sono gli obiettivi portati a termine e quali no. In particolar modo, l'attenzione è posta sull'elemento
 principe per quanto riguarda l'analisi del comportamento di un bene di consumo: il difetto, in tutti i suoi aspetti. Sarà permesso a tutti gli
-attori in gioco, tecnici, telefonisti, analisti dei dati e progettisti, di poter avere una visione a tutto tondo del problema che riguarda
+attori in gioco - tecnici, telefonisti, analisti dei dati e progettisti - di poter avere una visione a tutto tondo dei problemi che riguardano
 il prodotto: le tempistiche di manifestazione, di risoluzione, il tipo di guasto ed altro ancora. Questo permetterà all'azienda di poter
 avere più controllo sullo sviluppo e la messa in produzione di futuri progetti avendo a disposizione più informazioni strategiche.
 
@@ -48,7 +48,7 @@ assistenza. L'operatore per ogni elettrodomestico ne chiede la categoria, il mod
 Number Code}) e "SNC" (\textit{Serial Number Code}), codici che lo identificano univocamente trattenendo informazioni sulle caratteristiche tecniche e
 la data di produzione. L'operatore richiede inoltre la data di acquisto dell'elettrodomestico e la data di installazione dello stesso e le registra qualora 
 il cliente le abbia a disposizione o se ne ricordi. In assenza di data di acquisto sarà compito del tecnico, una volta recatosi a casa del cliente, 
-recuperare almeno questa informazione e in caso la garanzia del prodotto sia scaduta o non sia trovata, far pagare il cliente. Il cliente potrebbe avere 
+provare a recuperare queste informazioni e in caso la garanzia del prodotto sia scaduta o non sia trovata, far pagare il cliente. Il cliente potrebbe avere 
 aderito opzionalmente ad un programma di estensione della garanzia, identificato da un codice, informazione che deve fornire, se non fase in chiamata, 
 almeno al momento della visita. Da ultimo, l'operatore chiede al cliente di farsi descrivere il guasto o i guasti subiti e registra la data corrente come data di apertura 
 della pratica, ponendo lo stato dell'intervento come aperto e concorda con il cliente la data di visita del tecnico a casa per la riparazione.\newline
@@ -59,11 +59,18 @@ sia in termini di costo del ricambio stesso, che del costo di manodopera per l'i
 Un tecnico, che afferisce ad un centro assistenza come l'operatore, si preoccuperà, una volta raccolte le informazioni necessarie dalla chiamata,
 di recarsi a casa del cliente e registrare a sua volta una descrizione personale del guasto o dei guasti del cliente, dopodiché possibilmente li riparerà
 e si preoccuperà di chiudere la richiesta di assistenza pendente. Specificherà anche il tempo che ha impiegato nel risolvere il problema del cliente
-espresso in quarti d'ora. Un tecnico può lavorare direttamente per l'azienda o è assunto tramite un'impresa terza per l'azienda stessa. \newline
+espresso in quarti d'ora, ma non i dati sull'eventuale pagamento effettuato dal cliente stesso nei suoi confronti, essendo irrilevanti per l'analisi dei dati successiva.
+Un tecnico può lavorare direttamente per l'azienda o essere assunto tramite un'impresa terza per l'azienda stessa. \newline
 Un progettista di elettrodomestici dovrà poi periodicamente recuperare le informazioni riguardanti i guasti che si sono verificati sui prodotti che
 gli competono, indicati dalla o dalle categorie di prodotto a cui è assegnato, e stilare classifiche che possano aiutare l'azienda a migliorare la produzione.
 
 \section{Analisi ed eliminazione delle ambiguità}
+
+Il termine "elettrodomestico" verrà da qui in avanti sostituito dal termine "prodotto", in quanto dotato di un più adeguato carattere di astrattezza
+e generalità, benché il caso in esame coinvolga un'azienda che produce elettrodomestici. I termini come "chiamata", "richiesta di
+assistenza", "intervento" e loro sinonimi vengono tutti raccolti sotto il termine "intervento" poiché di fatto descrivono le varie fasi dello
+stesso, dalla richiesta iniziale del cliente, alla visita del tecnico dell'assistenza, fino alla riparazione del prodotto indicato. Si intende
+che ogni intervento sarà raccolto in un'unica pratica e perciò anche quest'ultimo termine indica lo stesso concetto.
 
 \begin{tabularx}{\linewidth}{X|X}
 	\hline
@@ -82,41 +89,35 @@ gli competono, indicati dalla o dalle categorie di prodotto a cui è assegnato, 
 	\hline
 	Riparazione & Intervento\\
 	\hline
-	\caption{Associazioni termine-sinonimo per formulare specifiche non ambigue}
+	\caption{Associazioni termine-sinonimo}
 \end{tabularx}
 
-Il termine "elettrodomestico" verrà da qui in avanti sostituito dal termine "prodotto", in quanto dotato di un più adeguato carattere di astrattezza
-e generalità, benché il caso in esame coinvolga un'azienda che produce elettrodomestici. I termini come "chiamata", "richiesta di
-assistenza", "intervento" e loro sinonimi vengono tutti raccolti sotto il termine "intervento" poiché di fatto descrivono le varie fasi dello
-stesso, dalla richiesta iniziale del cliente, alla visita del tecnico dell'assistenza, fino alla riparazione del prodotto indicato. Si intende
-che ogni intervento sarà raccolto in un'unica pratica e perciò anche quest'ultimo termine indica lo stesso concetto.
-
 \section{Definizione delle specifiche ed estrapolazione dei concetti}
-Si vuole realizzare una base di dati che permetta di gestire tutte le informazioni che riguardano un \textbf{guasto} di un \textbf{prodotto}.
+Si vuole realizzare una base di dati che permetta di gestire tutte le informazioni che riguardano un \textbf{\underline{guasto}} di un \textbf{\underline{prodotto}}.
 Un prodotto è univocamente identificato da una combinazione di codici detti "PNC" (\textit{Product Number Code}) e "SNC" (\textit{Serial Number Code}) ed è caratterizzato
-da una \textbf{categoria} e un \textbf{modello} sotto forma di codice. Un prodotto possiede inoltre una data di acquisto e una di installazione, insieme ad 
-un'estensione di garanzia identificata da un codice, informazioni che però possono essere disponibili o meno, a seconda che il \textbf{cliente}
+da una \textbf{\underline{categoria}} e un \textbf{\underline{modello}} sotto forma di codice. Un prodotto possiede inoltre una data di acquisto e una di installazione, insieme ad 
+un'estensione di garanzia identificata da un codice, informazioni che però possono essere disponibili o meno, a seconda che il \textbf{\underline{cliente}}
 che lo possiede ne abbia tenuto traccia o meno.\newline
 Al verificarsi di un guasto, il cliente si preoccupa di chiamare l'assistenza clienti dell'azienda produttrice per richiedere un
-\textbf{intervento}. Ogni cliente verrà identificato dal suo numero di telefono e verranno registrati il suo nome, il suo cognome,
-il recapito presso il quale inviare il \textbf{tecnico} per la riparazione del prodotto ed opzionalmente il suo indirizzo \textit{email},
+\textbf{\underline{intervento}}. Ogni cliente verrà identificato dal suo numero di telefono e verranno registrati il suo nome, il suo cognome,
+il recapito presso il quale inviare il \textbf{\underline{tecnico}} per riparare il prodotto ed opzionalmente il suo indirizzo \textit{email},
 solamente nel caso il cliente lo possedesse.\newline
-Il cliente parlerà con un \textbf{operatore}, che chiederà al cliente tutte le informazioni relative al prodotto o ai prodotti
+Il cliente parlerà con un \textbf{\underline{operatore}}, che chiederà al cliente tutte le informazioni relative al prodotto o ai prodotti
 che hanno subito un guasto insieme alle descrizioni dei guasti stessi che vengono anch'esse registrate. Viene inoltre concordata una data di
 visita del tecnico affinché possa riparare il prodotto. Infine, vengono registrati la data della chiamata del cliente e viene
 aggiornato lo stato dell'intervento come aperto. Quando il tecnico visiterà il cliente, uno solo per intervento, registrerà una sua descrizione
 del guasto per ognuno di essi e dopo averli riparati segnerà lo stato dell'intervento come chiuso. Indicherà anche il tempo speso per farlo in quarti d'ora.\newline
-Un guasto è associato ad uno specifico \textbf{difetto}, il quale è univocamente determinato da due codici: il "\textit{Component Code}"
+Un guasto è associato ad uno specifico \textbf{\underline{difetto}}, il quale è univocamente determinato da due codici: il "\textit{Component Code}"
 che identifica il componente del prodotto coinvolto e un codice che identifica il tipo del difetto su quello specifico componente. Nella
-riparazione di un difetto possono essere utilizzati uno o più \textbf{ricambi} e nel caso il tipo di difetto li richiedesse, il loro uso non è opzionale.
+riparazione di un difetto possono essere utilizzati uno o più \textbf{\underline{ricambi}} e nel caso il tipo di difetto li richiedesse, il loro uso non è opzionale.
 Ognuno dei ricambi è identificato da un codice e vi è associato sia un costo di acquisto per il ricambio stesso che di manodopera per l'installazione.\newline
 L'azienda possiede per i suoi dipendenti informazioni come il codice fiscale, il nome, il cognome, la data e il luogo di nascita, luogo di
 residenza e lo stipendio percepito e li identifica mediante un codice univoco tra tutti i dipendenti. I dipendenti presi in considerazione sono gli operatori, i tecnici e i
-\textbf{progettisti}. Gli operatori e i tecnici afferiscono ad uno specifico \textbf{centro assistenza} dell'azienda,
+\textbf{\underline{progettisti}}. Gli operatori e i tecnici afferiscono ad uno specifico \textbf{\underline{centro assistenza}} dell'azienda,
 mentre i progettisti sono interessati ad analizzare i dati dei guasti di una o più categorie di prodotto stilando delle classifiche. Un tecnico
 inoltre può essere dipendente interno dell'azienda oppure no.\newline
 Un centro assistenza ha sede in una città e possiede una determinata area di competenza, nella quale tutte le telefonate che vengono fatte
-per l'assistenza vengono inoltrate a quello specifico centro. Esso è identificato da un codice univoco, ma solo nella nazione in cui si trova.\newline
+per l'assistenza vengono inoltrate a quello specifico centro. Esso è identificato da un codice univoco, ma solo per la nazione in cui si trova.\newline
 
 \begin{tabularx}{\linewidth}{>{\hsize=0.375\hsize}X|X|>{\hsize=0.475\hsize}X}
 	\hline
@@ -151,7 +152,8 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 	\hline
 	Centro Assistenza & Parte dell'azienda volta all'impiego di operatori e tecnici di assistenza & Operatore,\newline Tecnico\\
 	\hline
-	Categoria & Un'insieme di prodotti che rappresentano lo stesso tipo di elettrodomestico (ad esempio: "Forno", "Lavatrice", ecc.) & Prodotto\\
+	Categoria & Un'insieme di prodotti che rappresentano lo stesso tipo di elettrodomestico (ad esempio: "Forno", "Lavatrice", ecc.) 
+	e viene usata dai progettisti per suddividersi i guasti da analizzare & Prodotto,\newline Progettista\\
 	\hline
 	\caption{Glossario dei termini}
 \end{tabularx}
@@ -172,9 +174,9 @@ per l'assistenza vengono inoltrate a quello specifico centro. Esso è identifica
 
 \subsection{Gerarchia di persone}
 
-Nelle specifiche sono specificati quattro concetti - "cliente", "operatore", "tecnico" e "progettista" - che si prestano a diventare entità, ma
-che ruotano tutte attorno alla nozione di persona. Tutte queste infatti sono persone e in quanto tali condividono almeno informazioni come il nome
-ed il cognome; è perciò significativo metterle assieme in una gerarchia che discende da persona. Inoltre, tutti e tre i concetti meno che "cliente"
+Nelle specifiche sono indicati quattro concetti - "cliente", "operatore", "tecnico" e "progettista" - che si prestano a diventare entità, ma
+che ruotano tutte attorno alla nozione di "persona". Tutte queste infatti sono persone e in quanto tali condividono almeno le informazioni come il nome
+ed il cognome; è perciò significativo metterle assieme in una gerarchia che discende da "persona". Inoltre, tutti e tre i concetti meno che "cliente"
 sono di fatto dipendenti dell'azienda e in quanto tali le informazioni che l'azienda trattiene su di essi sono le stesse, pur intrattenendo con gli
 altri concetti rapporti diversi a seconda della mansione che svolgono. Anche per questi tre concetti è opportuno raccoglierli attraverso una seconda
 gerarchia che origini da dipendente, che a sua volta è una persona. I concetti di "operatore" e "tecnico" saranno poi legati a "centro assistenza"
@@ -187,13 +189,13 @@ di cui si occupa per quanto riguarda l'analisi dei guasti.
 	\caption{Schema raffinato dei concetti riguardanti "persone"}
 \end{figure}
 
+\newpage
+
 \subsection{Necessità di un entità separata per i guasti}
 
 Dai concetti di "persone" è poi immediato spostarsi sui quelli di "intervento" e "guasto" che li coinvolgono più direttamente. Benché il testo
 specifichi che siano i prodotti, a causa dei loro guasti, ad essere in numero di uno o più presenti in un intervento, è più adatto frapporre il
-concetto di "guasto" tra essi e quello di "intervento". È infatti facile immaginare come un cliente potrebbe voler riportare la presenza
-di un guasto solamente dopo che un secondo si è verificato, magari perché il primo non era così urgente, e lo farebbe all'interno dello stesso intervento.
-Se eliminassimo il concetto di "guasto", sostituendo a questo il concetto di "prodotto", questo non sarebbe possibile e inoltre provocherebbe problemi anche con la nozione di "difetto". Potendo
+concetto di "guasto" tra essi e quello di "intervento". Se non lo facessimo, questo provocherebbe problemi con la nozione di "difetto". Potendo
 un prodotto essere afflitto anche da più guasti, infatti, potrebbero essere più di uno i difetti legati ad un prodotto, anche ripetuti nel tempo,
 ma una schematizzazione del genere impedirebbe proprio la loro ripetizione. Potrebbe ad esempio verificarsi un guasto diverso in un momento successivo,
 che verrà incluso poi in un intervento successivo, ma la cui origine è sempre lo stesso difetto di progettazione.\newline I dati che sono di competenza del tecnico
@@ -206,7 +208,7 @@ stesso giorno.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{images/interventi.png}
-	\caption{Schema raffinato dei concetti "intervento", "guasto" e "difetto"}
+	\caption{Schema raffinato dei concetti "intervento", "guasto", "difetto" e ricambio"}
 \end{figure}
 
 \subsection{Modellazione del concetto di "prodotto"}
@@ -218,7 +220,7 @@ prodotto, richiede una modellazione specifica. In particolar modo, queste inform
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{images/prodotti.png}
-	\caption{Schema raffinato del concetto "prodotto" e "modello"}
+	\caption{Schema raffinato del concetto "prodotto"}
 \end{figure}
 
 \section{Schema finale}
@@ -231,9 +233,8 @@ prodotto, richiede una modellazione specifica. In particolar modo, queste inform
 
 I vincoli che questo schema non può modellare sono chiaramente quelli inerenti allo stato delle entità nel tempo, non è infatti lo schema adatto per poter
 specificare chi e come dovrà modificare lo stato dell'intervento una volta creatone uno nuovo. Inoltre, non è possibile vincolare il fatto che la data di
-apertura dell'intervento dovrà essere chiaramente successiva a quella di chiusura della stessa ed entrambe dovranno essere successive a quelle di acquisto e
-installazione dei prodotti contenuti nello stesso. Infine, non abbiamo modo di determinare se la categoria a cui viene associato un prodotto sia veramente
-quella corretta.
+apertura dell'intervento dovrà essere chiaramente successiva a quella di chiusura dello stesso ed entrambe dovranno essere successive a quelle di acquisto e
+installazione dei prodotti coinvolti nell'intervento.
 
 \chapter{Progettazione logica}
 
@@ -305,7 +306,7 @@ possiamo assumere che i volumi dei dati indicati restino all'incirca costanti ne
 
 \section{Descrizione e frequenza delle principali operazioni}
 
-Le principali operazioni che possono essere fatti sulla base di dati possono essere divise in tre categorie, a seconda del dipendente
+Le principali operazioni che possono essere fatte sulla base di dati possono essere divise in tre categorie, a seconda del dipendente
 dell'azienda che interessano. Se prendiamo in considerazione un operatore, le operazioni più frequenti che deve eseguire sono:
 
 \begin{itemize}
@@ -319,18 +320,18 @@ dell'azienda che interessano. Se prendiamo in considerazione un operatore, le op
 Se consideriamo invece un tecnico, le operazioni più frequenti che riguardano l'esecuzione delle sue mansioni sono:
 
 \begin{itemize}
-	\item[\textbf{T1 -}] Vista di tutti gli interventi correntemente aperti non già assegnati ad un altro tecnico, ordinati per urgenza
-		\subitem Prima di iniziare a lavorare, un tecnico dovrà capire quali sono gli interventi sui quali potrà dedicarsi e per poter scegliere, deve poterli avere a
-		disposizione tutti quanti. In particolar modo, sarebbe più utile organizzarli per urgenza, qui intesa come tempo trascorso dalla data della chiamata
+	\item[\textbf{T1 -}] Vista di tutti gli interventi correntemente aperti, ordinati per urgenza
+		\subitem Prima di iniziare a lavorare, un tecnico dovrà capire quali sono gli interventi sui quali potrà dedicarsi e per poter scegliere, deve poter avere a
+		disposizione tutti quanti quelli aperti. In particolar modo, sarebbe più utile organizzarli per urgenza, qui intesa come tempo trascorso dalla data della chiamata
 	\item[\textbf{T2 -}] Chiusura di un intervento
 		\subitem Una volta recatosi a casa di un cliente, il tecnico avrà avuto la possibilità di aggiungere al sistema le informazioni sul prodotto che il cliente
 		non era riuscito a fornire. Inoltre, dopo aver eseguito la riparazione, sarà necessario che aggiunga anche le informazioni sull'intervento di sua sola competenza
 \end{itemize}
 
 Da ultimo, ci sono i progettisti che necessiteranno di stilare rapporti sotto forma di classifiche sulle principali caratteristiche dei guasti. Per poter migliorare le prestazioni,
-non applichiamo il filtro sui dati a ciascuna operazione così che vengano restituiti solo i guasti di interesse ad un singolo progettista, ma eseguiamo le operazioni sulla totalità
+non applichiamo il filtro sui dati a ciascuna operazione così da restituire solo i guasti di interesse ad un singolo progettista, ma eseguiamo le operazioni sulla totalità
 dei dati. Ci preoccuperemo di filtrare i dati solamente una volta che verranno richiesti dallo specifico progettista, mostrandogli una vista creata specificatamente per lui, così
-da poter effettuare le \textit{query} in modalità "\textit{batch}", fuori orario rispetto a quando i dati prodotti verranno utilizzati, ed averli sempre pronti senza dover attendere.
+da poter effettuare le operazioni in modalità "\textit{batch}", fuori orario rispetto a quando i dati prodotti verranno utilizzati, ed averli sempre pronti senza dover attendere.
 Le principali operazioni che permettono di estrarre dati di interesse ai progettisti sono:
 
 \begin{itemize}
@@ -353,9 +354,10 @@ Le principali operazioni che permettono di estrarre dati di interesse ai progett
 	\item[\textbf{P6 -}] I primi cinque interventi più costosi a partire dai ricambi nel mese corrente
 		\subitem Il costo di un intervento è principalmente determinato dal costo dei ricambi utilizzati nella sua riparazione, è perciò interessante
 		determinare per l'analisi dei costi i cinque interventi più costosi del mese in termini di ricambi impiegati
-	\item[\textbf{P7 -}] I primi cinque paesi per numero di guasti avvenuti in questo mese
-		\subitem Per dare una "localizzazione spaziale" ai guasti, cioè individuare quali paesi hanno gli stabilimenti produttivi con un tasso di difettosità più alto, è bene
-		poter classificare i vari paesi sulla base del numero di guasti riparati dai centri assistenza che si trovano sul territorio del paese stesso nel mese corrente.
+	\item[\textbf{P7 -}] Le prime cinque zone per numero di guasti avvenuti in questo mese
+		\subitem Si vuole anche dare una "localizzazione spaziale" ai guasti, cioè individuare quali zone, indicate tramite le aree di competenza dei centri assistenza,
+		hanno un tasso di difettosità più alto. Per poterlo fare, è bene poter classificare le varie aree sulla base del numero di guasti riparati dai centri assistenza
+		che coprono quelle zone nel mese corrente.
 	\item[\textbf{P8 -}] I \textit{Time To Failure} rispetto alla data di acquisto di ciascun prodotto coinvolto nei guasti di questo mese
 		\subitem Un altro indicatore spesso utilizzato nell'elaborazione dei guasti è il cosiddetto "\textit{Time To Failure}", cioè il tempo impiegato da un particolare elettrodomestico
 		per subire un guasto. In questo caso è calcolato a partire dal momento in cui l'elettrodomestico è stato acquistato.
@@ -368,15 +370,16 @@ Le principali operazioni che permettono di estrarre dati di interesse ai progett
 
 \newpage
 
-Le operazioni che non vanno eseguite da una specifica categoria di dipendenti, ma riguardano informazioni utili all'azienda in generale, sono:
+Alle tre categorie di operazioni precedenti possiamo aggiungerne una quarta, la quale contiene operazioni che non vanno eseguite da una specifica categoria di dipendenti,
+ma riguardano informazioni utili all'azienda in generale. Le operazioni contenute sono:
 
 \begin{itemize}
 	\item[\textbf{V1} -] Conteggio di tutti gli interventi aperti nel mese da ciascun operatore
-		\subitem Per valutare l'efficienza e la preparazione degli operatori dei centri assistenza, nonché pagare gli stipendi a ciascun operatore, deve essere
+		\subitem Per valutare l'efficienza e la preparazione degli operatori dei centri assistenza deve essere
 		possibile visualizzare il conteggio degli interventi aperti nel mese corrente da ciascun operatore
 	\item[\textbf{V2 -}] Conteggio di tutti gli interventi chiusi nel mese corrente da ciascun tecnico
-		\subitem Per valutare l'efficienza e la preparazione dei tecnici dei centri assistenza, nonché per poter pagare gli stipendi, deve essere
-		possibile visualizzare il conteggio degli interventi chiusi nel mese corrente da ciascun operatore
+		\subitem Per valutare l'efficienza e la preparazione dei tecnici dei centri assistenza deve essere
+		possibile visualizzare il conteggio degli interventi chiusi nel mese corrente da ciascun tecnico
 	\item[\textbf{V3 -}] Tempo medio di riparazione di un guasto per ciascun tecnico
 		\subitem Altro parametro di interesse nell'analisi dell'efficienza e della preparazione di un tecnico è il tempo impiegato in media per riparare i guasti
 		che decide di voler sottoporre alla sua attenzione
@@ -412,11 +415,11 @@ Le operazioni che non vanno eseguite da una specifica categoria di dipendenti, m
 	\hline
 	P7 & 5 volte al mese & B\\
 	\hline
-	P8 & 2 volte al mese & B\\
+	P8 & 5 volte al mese & B\\
 	\hline
-	P9 & 2 volte al mese & B\\
+	P9 & 5 volte al mese & B\\
 	\hline
-	P10 & 2 volte al mese & B\\
+	P10 & 5 volte al mese & B\\
 	\hline
 	V1 & 1 volta al mese & B\\
 	\hline
@@ -428,8 +431,6 @@ Le operazioni che non vanno eseguite da una specifica categoria di dipendenti, m
 	\hline
 	\caption{Tabella della frequenza delle principali operazioni}
 \end{tabularx}
-
-Nella precedente tabella vengono riassunte le frequenze e i tipi di tutte le operazioni che sono state individuate.
 
 \section{Schemi di navigazione e tabelle degli accessi delle principali operazioni}
 
@@ -550,11 +551,11 @@ già stati preventivamente inseriti all'interno del \textit{database}.
 
 \subsection{P1 - Visualizzazione di tutti i dati inerenti ai guasti del mese corrente}
 
-Per visualizzare tutti i dati inerenti a tutti guasti accaduti nel mese corrente, occorre passare in rassegna tutti gli elementi dell'entità "guasto" e vedere la
-data di apertura dell'intervento a cui sono associati per vedere se sono del mese corrente oppure no. Dopodiché, è necessario associare loro i prodotti che hanno
+Per visualizzare tutti i dati inerenti a tutti guasti accaduti nel mese corrente, occorre passare in rassegna tutti gli elementi dell'entità "guasto" e da questi risalire ai dati
+degli interventi a cui sono associati. Dopodiché, è necessario associare loro i prodotti che hanno
 coinvolto e i difetti che li hanno causati con tanto di ricambi utilizzati. D'ora in poi, per questa e per tutte le operazioni successive, si supporrà che tutti i \textit{record}
 nel \textit{database} siano equamente distribuiti tra i mesi, in modo tale che basti dividere per dodici per trovare il numero di record effettivamente interessati da un'operazione.
-Naturalmente, supporremo, come nella realtà, di non sapere a priori quali sono i \textit{record} appartenenti a quale mese e perciò dovremo fare almeno una ricerca preventiva.
+Supporremo di non sapere a priori quali sono i \textit{record} appartenenti a quale mese e perciò dovremo passare in rassegna preventivamente tutti i guasti.
 
 \begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
@@ -688,11 +689,11 @@ di quello degli altri. In questo caso si tiene conto del numero dei ricambi util
 
 \newpage
 
-\subsection{P7 - I primi cinque paesi per numero di guasti di questo mese}
+\subsection{P7 - Le prime cinque zone per numero di guasti di questo mese}
 
 In questa operazione, come nelle precedenti, si prendono in considerazione i guasti del mese corrente, per poi risalire sempre tramite agli interventi che contengono i guasti,
-agli operatori che hanno registrato gli interventi e infine attraverso questi ai centri assistenza che hanno accolto la richiesta, identificando la nazione da cui proviene
-l'intervento. A questo punto, non resta che raggruppare per nazione e visualizzare i primi cinque gruppi per numero di membri.
+agli operatori che hanno registrato gli interventi e infine attraverso questi ai centri assistenza che hanno accolto la richiesta, identificando l'area di competenza da cui proviene
+l'intervento. A questo punto, non resta che raggruppare per area e visualizzare i primi cinque gruppi per numero di membri.
 
 \begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
@@ -757,9 +758,7 @@ al prodotto associato da cui si estrae l'altra data di interesse.
 
 \subsection{P10 - Tempo medio di riparazione di un guasto per tipo di difetto}
 
-Per poter calcolare il tempo medio di riparazione di un guasto occorre per prima cosa accedere all'intervento che lo contiene ed estrarre da questo la data di
-chiusura dell'intervento, così da poter calcolare il tempo impiegato per ripararlo. Dopodiché, per ogni guasto è necessario accedere al difetto che lo ha causato
-così da poter raggruppare i guasti per difetto.
+Per poter calcolare il tempo medio di riparazione di un guasto occorre per prima cosa accedere all'intervento che lo contiene ed estrarre da questo il tempo impiegato per ripararlo. Dopodiché, per ogni guasto è necessario accedere al difetto che lo ha causato così da poter raggruppare i guasti per difetto.
 
 \begin{tabularx}{\linewidth}{X|>{\hsize=0.4\hsize}X|X|>{\hsize=0.375\hsize}X}
 	\hline
@@ -774,7 +773,7 @@ così da poter raggruppare i guasti per difetto.
 	\hline
 	Causa & A & 158.640 & L\\
 	\hline
-	Difetto & A & 158.640 & L\\
+	Difetto & E & 158.640 & L\\
 	\hline
 	\hline
 	\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 793.200 accessi }\\\hline
@@ -888,13 +887,13 @@ cercando di mantenere quanto più possibile alta la fedeltà dei concetti rappre
 
 La rimozione della gerarchia che discende direttamente da persona è, delle due presenti, la più semplice. L'entità persona, volta esclusivamente a fattorizzare
 i campi comuni, non ha nessuna utilità pratica oltre quella citata all'interno dello schema. Si procede perciò ad eliminarla con un collasso verso il basso,
-duplicando i campi "Nome" e "Cognome" per le entità "Cliente" e "Dipendente". Per la seconda gerarchia, quella che origina da "Dipendente", si decide anche in questo
-caso di effettuare un collasso verso il basso perché, osservando le principali operazioni individuate, nessuna richiede l'accesso ai dei dipendenti tutti assieme,
+duplicando i campi "Nome" e "Cognome" per le entità "cliente" e "dipendente". Per la seconda gerarchia, quella che origina da "dipendente", si decide anche in questo
+caso di effettuare un collasso verso il basso perché, osservando le principali operazioni individuate, nessuna richiede l'accesso ai dipendenti nel loro assieme,
 anzi, al contrario. Ben tre operazioni vengono effettuate su una specifica categoria di dipendenti in maniera indipendente dagli altri e se decidessimo di creare un'unica
 relazione con tutti i dipendenti finirebbero per aumentare il loro costo in termini di "\textit{I/O}". Inoltre, in entrambe le gerarchie, non abbiamo nessun tipo di associazione
 che figura legata all'entità padre, perciò nessuno vi farà mai accesso e non saranno presenti dopo la modifica associazioni duplicate. Quello che succede è che però
-vengono persi alcuni vincoli che vanno implementati a parte, ovvero che l'unicità degli attributi "Codice Fiscale" e "Codice" deve valere non solo all'interno della singola
-relazione, ma anche tra tutte e tre le relazioni che discendono da "dipendente".
+vengono persi alcuni vincoli che vanno implementati a parte, ovvero che l'unicità degli attributi "CF" e "Codice" deve valere non solo all'interno delle singole
+relazioni, ma anche tra tutte e tre le relazioni che discendono da "dipendente".
 
 \subsection{Eliminazione di attributi multipli o composti}
 
@@ -906,7 +905,7 @@ per quegli attributi una volta che creeremo la relazione corrispondente.
 
 Lo schema "\textit{Entity-Relationship}" evidenzia già in maniera chiara gli attributi che concorrono ad essere potenziali chiavi primarie e si decide di utilizzare quelle
 indicate senza effettuare ulteriori modifiche. Molte chiavi infatti sono già dei semplici codici e perciò non è necessario semplificarle. Le chiavi più complesse che appaiono nello
-schema sono quelle di "Intervento" e "Guasto". La prima entità è individuata da un "Cliente" e da una data. "Cliente" però è identificato univocamente dal solo numero di telefono,
+schema sono quelle di "intervento" e "guasto". La prima entità è individuata da un "cliente" e da una data. "Cliente" però è identificato univocamente dal solo numero di telefono,
 facendo perciò in modo che un intervento sia identificato da una data e un numero di telefono. Conseguentemente, un guasto viene identificato da un numero di telefono, una data e i
 due codici identificativi di prodotto. Entrambi questi due identificatori perciò non appaiono essere troppo complessi e in particolar modo l'identificatore di guasto presenta alcuni
 attributi - "DataIntervento", "PNC" - utilizzati in alcune operazioni che coinvolgono i guasti, permettendo di averli già disponibili senza effettuare ulteriori accessi ad altre relazioni,
@@ -922,25 +921,25 @@ diminuendo i costi legati a quelle specifiche operazioni.
 
 \section{Analisi delle ridondanze}
 
-Le associazioni che figurano come ridondanti nello schema sono due: "Analisi", tra "Progettista" e "Guasto", e "Proprietà", tra "Cliente" e "Prodotto". Queste due associazioni
+Le associazioni che figurano come ridondanti nello schema sono due: "analisi", tra "progettista" e "guasto", e "proprietà", tra "cliente" e "prodotto". Queste due associazioni
 condividono il fatto che nessuna delle due è utilizzata delle principali operazioni individuate e in particolar modo, nessuna delle due è particolarmente utile ai nostri scopi.\newline
-L'associazione "Analisi", infatti, dovrebbe tenere conto di tutti i possibili guasti che sono di interesse per ciascuno dei progettisti, che però provocherebbe non poche ridondanze
+L'associazione "analisi", infatti, dovrebbe tenere conto di tutti i possibili guasti che sono di interesse per ciascuno dei progettisti, che però provocherebbe non poche ridondanze
 a livello di record per nessun utilizzo. Vero è che abbiamo indicato che non tutti i progettisti sono interessati a visionare tutti i guasti, ma filtrare questi dati può essere effettuato
 anche senza la presenza esplicita di questa associazione, tanto più che abbiamo indicato le operazioni di creazione delle statistiche come "\textit{batch}", quindi da eseguire in
 un momento diverso, possibilmente antecedente, rispetto a quello in cui i progettisti accederanno ai dati. Sarà poi quando un progettista richiederà la visualizzazione dei dati che
 essi saranno filtrati sulla base delle categorie di suo interesse.\newline
-Per quanto riguarda invece "Proprietà", pur essendo vero che il cliente effettua una telefonata per un elettrodomestico che possiede, non abbiamo alcun interesse ad utilizzare mai
+Per quanto riguarda invece "proprietà", pur essendo vero che il cliente effettua una telefonata per un elettrodomestico che possiede, non abbiamo alcun interesse ad utilizzare mai
 questa nozione. Il fatto che sia presente il cliente associato ad un intervento è perché necessitiamo di sapere presso chi mandare il tecnico per la riparazione. Quale che sia il prodotto
 che possiede è a noi indifferente, poiché non ci interessano statistiche di vendita o similari. Nell'estremo caso volessimo risalire, per un dato cliente, a quali elettrodomestici
-ha comprato - e gli si sono necessariamente guastati - possiamo sempre farlo attraverso "Intervento" e "Guasto".\newline
-Attributi ridondanti eliminabili già presenti nello schema "\textit{Entity-Relationship}" non sono presenti. Per semplificare le operazioni da effettuare su base mensile, si può pensare di importare la data di apertura dell'intervento all'interno dell'entità "Guasto", cosa che però viene già effettuata in quanto "Intervento" è parte integrante della chiave di "Guasto" e perciò
-non è richiesta alcuna modifica ulteriore.\newline
+ha comprato - e gli si sono necessariamente guastati - possiamo sempre farlo attraverso "intervento" e "guasto".\newline
+Attributi ridondanti eliminabili già presenti nello schema "\textit{Entity-Relationship}" non sono presenti. Per semplificare le operazioni da effettuare su base mensile, si può pensare di importare la data di apertura dell'intervento all'interno dell'entità "guasto", cosa che però viene già effettuata in quanto "Intervento" è parte integrante della chiave di "guasto" e perciò
+non è richiesta alcuna modifica ulteriore. Come visto in precedenza, lo stesso discorso è applicabile anche all'attributo "\textit{PNC}" di "prodotto" e "guasto".\newline
 Inoltre, per mantenere i costi di accesso delle operazioni uguali a quelli individuati nella sezione dedicata, dobbiamo poter permettere che si possa immediatamente
 individuare se un dato guasto è utile ad un dato progettista, perché ricade nella sua categoria di interesse, oppure no, senza ulteriori costi aggiuntivi. Questo può essere fatto
-copiando il valore dell'attributo "codice" dell'istanza dell'entità "categoria" a cui il prodotto associato al guasto interessato è a sua volta associato. Non abbiamo nessuna
+copiando il valore dell'attributo "Codice" dell'istanza dell'entità "categoria" a cui il prodotto associato al guasto interessato è a sua volta associato. Non abbiamo nessuna
 variazione dei costi per l'inserimento nel caso peggiore, restano identici a come li avevamo calcolati, perciò abbiamo un deciso guadagno in termini di numero di accessi.\newline
-Un'altra modifica che si può effettuare è importare la nazione in cui l'intervento viene aperto all'interno dell'entità "Intervento" stessa. Questo attributo "Nazione" sarebbe perciò
-la nazione di appartenenza del centro assistenza a cui l'operatore che riceve la chiamata fa capo, in quanto si suppone che ogni cliente che chiama venga diretto al centro assistenza 
+Un'altra modifica che si può effettuare è importare l'area in cui l'intervento viene aperto all'interno dell'entità "intervento" stessa. Questo attributo "Zona" sarebbe perciò
+l'area di competenza del centro assistenza a cui l'operatore che riceve la chiamata fa capo, in quanto si suppone che ogni cliente che chiama venga diretto al centro assistenza 
 adeguato alla sua zona di residenza. Questa introduzione di ridondanza porterebbe all'aumento del costo dell'operazione O1, ma ad una diminuzione del costo di P7.
 
 \captionsetup[table]{skip=-10pt}
@@ -952,6 +951,8 @@ adeguato alla sua zona di residenza. Questa introduzione di ridondanza porterebb
 		\hline
 		\hline
 		Afferenza\_Op & A & 1 & L\\
+		\hline
+		Centro\_Assistenza & E & 1 & L\\
 		\hline
 		Cliente & E & 1 & S\\
 		\hline
@@ -971,10 +972,10 @@ adeguato alla sua zona di residenza. Questa introduzione di ridondanza porterebb
 		\hline
 		Proprietà & A & 1,002 & S\\
 		\hline
-		\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 19,024 accessi }\\
+		\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 20,024 accessi }\\
 		\hline
 		\hline
-		\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE MENSILE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 19,024 * 5 accessi/giorno * 30 giorno/mese = 2.853,600 accessi/mese }\\
+		\multicolumn{2}{>{\hsize=2\hsize}X|}{TOTALE MENSILE} & \multicolumn{2}{>{\hsize=2\hsize}X}{ 20,024 * 5 accessi/giorno * 30 giorno/mese = 3.003,600 accessi/mese }\\
 		\hline
 		\hline
 	\end{tabularx}
@@ -1003,7 +1004,7 @@ adeguato alla sua zona di residenza. Questa introduzione di ridondanza porterebb
 
 \newpage
 
-Perciò, abbiamo che il numero totale di accessi mensili supponendo di mantenere la ridondanza è di 928.253,600 contro i 3.893.400 accessi effettuati in caso di mancanza della
+Perciò, abbiamo che il numero totale di accessi mensili supponendo di mantenere la ridondanza è di 928.403,600 contro i 1.192.503,600 accessi effettuati in caso di mancanza della
 ridondanza, rendendo utile il suo mantenimento.
 
 \begin{figure}[H]
@@ -1027,7 +1028,7 @@ ridondanza, rendendo utile il suo mantenimento.
 			\item[] Unique(CF)
 		\end{itemize}
 	\item \textbf{CLIENTI} (\underline{NumeroTelefono}, Nome, Cognome, Recapito, Email*)
-	\item \textbf{INTERVENTI} (\underline{NumeroTelefonoCliente}, \underline{DataRichiesta}, Stato, DataVisita, TempoImpiegato*, Nazione, CodiceOperatore, CodiceTecnico*)
+	\item \textbf{INTERVENTI} (\underline{NumeroTelefonoCliente}, \underline{DataRichiesta}, Stato, DataVisita, TempoImpiegato*, Zona, CodiceOperatore, CodiceTecnico*)
 		\begin{itemize}[leftmargin=*, topsep=0pt]
 			\item[] FK: (NumeroTelefonoCliente) REFERENCES CLIENTI
 			\item[] FK: (CodiceOperatore) REFERENCES OPERATORI
@@ -1081,7 +1082,7 @@ ridondanza, rendendo utile il suo mantenimento.
 				\subitem (In caso il cliente non fosse presente)\newline
 			\item INSERT INTO Prodotti (PNC, SNC, Modello, DataAcquisto, DataInstallazione, CodiceGaranzia, CodiceCategoria) \\VALUES (?, ?, ?, ?, ?, ?, ?);
 				\subitem (In caso il prodotto non fosse presente)\newline
-			\item INSERT INTO Interventi (NumeroTelefonoCliente, DataRichiesta, Stato, DataVisita, TempoImpiegato, Nazione, CodiceOperatore, CodiceTecnico) \\VALUES (?, ?, ?, ?, ?, ?, ?, ?);\newline			
+			\item INSERT INTO Interventi (NumeroTelefonoCliente, DataRichiesta, Stato, DataVisita, TempoImpiegato, Zona, CodiceOperatore, CodiceTecnico) \\VALUES (?, ?, ?, ?, ?, ?, ?, ?);\newline			
 			\item INSERT INTO Guasti(NumeroTelefonoCliente, DataRichiestaIntervento, PNC, SNC, DescrizioneCliente, DescrizioneTecnico, CategoriaProdotto, ComponentCode, CodiceTipoDifetto) \\VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
 				\subitem (Per ogni guasto contenuto nell'intervento inserito)
 		\end{itemize}
@@ -1112,7 +1113,7 @@ ridondanza, rendendo utile il suo mantenimento.
 	\newpage
 	\item[\textbf{P1 -}] Visualizzare tutti i dati inerenti ai guasti accaduti nel mese corrente
 		\begin{itemize}[leftmargin=*, topsep=0pt]
-			\item SELECT Guasti.CategoriaProdotto, Guasti.PNC, Guasti.SNC, Prodotti.Modello, Guasti.DataRichiestaIntervento, Interventi.DataVisita, Prodotti.DataAcquisto, Prodotti.DataInstallazione, Interventi.Nazione, Guasti.DescrizioneCliente, Guasti.DescrizioneTecnico, Guasti.ComponentCode, Difetti.NomeComponente, Guasti.CodiceTipoDifetto, Difetti.NomeTipo AS 'NomeTipoDifetto', Ricambi.Codice AS 'CodiceRicambio', Ricambi.Nome AS 'NomeRicambio', Ricambi.CostoAcquisto, Ricambi.CostoInstallazione\\
+			\item SELECT Guasti.CategoriaProdotto, Guasti.PNC, Guasti.SNC, Prodotti.Modello, Guasti.DataRichiestaIntervento, Interventi.DataVisita, Prodotti.DataAcquisto, Prodotti.DataInstallazione, Interventi.Zona, Guasti.DescrizioneCliente, Guasti.DescrizioneTecnico, Guasti.ComponentCode, Difetti.NomeComponente, Guasti.CodiceTipoDifetto, Difetti.NomeTipo AS 'NomeTipoDifetto', Ricambi.Codice AS 'CodiceRicambio', Ricambi.Nome AS 'NomeRicambio', Ricambi.CostoAcquisto, Ricambi.CostoInstallazione\\
 			FROM (((Guasti JOIN Interventi ON Guasti.NumeroTelefonoCliente = Interventi.NumeroTelefonoCliente AND Guasti.DataRichiestaIntervento = Interventi.DataRichiesta) JOIN Prodotti ON Guasti.PNC = Prodotti.PNC AND Guasti.SNC = Prodotti.SNC) JOIN Difetti ON Guasti.ComponentCode = Difetti.ComponentCode AND Guasti.CodiceTipoDifetto = Difetti.CodiceTipo) LEFT OUTER JOIN Ricambi ON Ricambi.ComponentCode = Difetti.ComponentCode AND Ricambi.CodiceTipoDifetto = Difetti.CodiceTipo\\
 			WHERE MONTH(Guasti.DataRichiestaIntervento) = MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP);
 		\end{itemize}
@@ -1151,12 +1152,12 @@ ridondanza, rendendo utile il suo mantenimento.
 			GROUP BY Guasti.NumeroTelefonoCliente, Guasti.DataRichiestaIntervento, Guasti.CategoriaProdotto ORDER BY 3 DESC;
 		\end{itemize}
 	\newpage
-	\item[\textbf{P7 -}] I primi cinque paesi per numero di guasti avvenuti in questo mese
+	\item[\textbf{P7 -}] Le prime cinque zone per numero di guasti avvenuti in questo mese
 		\begin{itemize}[leftmargin=*, topsep=0pt]
-			\item SELECT Guasti.CategoriaProdotto, Interventi.Nazione, COUNT(*) AS '\#'\\
+			\item SELECT Guasti.CategoriaProdotto, Interventi.Zona, COUNT(*) AS '\#'\\
 			FROM Guasti JOIN Interventi ON Guasti.NumeroTelefonoCliente = Interventi.NumeroTelefonoCliente AND Guasti.DataRichiestaIntervento = Interventi.DataRichiesta\\
 			WHERE Guasti.CodiceTipoDifetto IS NOT NULL AND Guasti.ComponentCode IS NOT NULL AND MONTH(Guasti.DataRichiestaIntervento) = \\MONTH(CURRENT\_TIMESTAMP) AND YEAR(Guasti.DataRichiestaIntervento) = YEAR(CURRENT\_TIMESTAMP)\\
-			GROUP BY Interventi.Nazione, Guasti.CategoriaProdotto;
+			GROUP BY Interventi.Zona, Guasti.CategoriaProdotto;
 		\end{itemize}
 	\item[\textbf{P8 -}] I \textit{Time To Failure} rispetto alla data di acquisto di ciascun prodotto coinvolto nei guasti di questo mese
 		\begin{itemize}[leftmargin=*, topsep=0pt]
