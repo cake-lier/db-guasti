@@ -68,6 +68,7 @@
             this.OperatorView.Controls.Add(this.DeleteButton);
             this.OperatorView.Controls.Add(this.InsertButton);
             this.OperatorView.Controls.Add(this.AddProductsView);
+            this.OperatorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OperatorView.Location = new System.Drawing.Point(0, -1);
             this.OperatorView.Name = "OperatorView";
             this.OperatorView.Size = new System.Drawing.Size(1064, 682);
