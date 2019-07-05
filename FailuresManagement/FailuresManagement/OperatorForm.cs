@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace FailuresManagement
 {
+    /// <summary>
+    /// Represents the form used by the operators. It allows to insert a new intervention or delete it just after the insertion.
+    /// </summary>
     public partial class OperatorForm : Form
     {
         private const string dateTimeFormat = "dd/MM/yyyy HH:mm";
@@ -27,6 +30,11 @@ namespace FailuresManagement
         private readonly GestioneGuastiDataContext db;
         private readonly decimal operatorCode;
 
+        /// <summary>
+        /// Default constructor. It needs the employee code of the operator accessing the form so as to label all the
+        /// registered interventions with her code and associate those interventions with her.
+        /// </summary>
+        /// <param name="operatorCode">The employee code of the operator accessing this form.</param>
         public OperatorForm(decimal operatorCode)
         {
             db = new GestioneGuastiDataContext();
@@ -35,6 +43,10 @@ namespace FailuresManagement
             MaximizeBox = false;
         }
 
+        /*
+         * At loading time, prepares all the columns in the DataGridView for the insertion of products and faults
+         * associated with the intervention which is going to be opened.
+         */
         private void OperatorForm_Load(object sender, EventArgs e)
         {
             new List<string>
@@ -57,6 +69,9 @@ namespace FailuresManagement
                                                  0);
         }
 
+        /*
+         * Checks if a TextBox contains some text or not.
+         */
         private bool IsTextBoxValid(TextBox textBox, string fieldName)
         {
             if (textBox.Text == "")
@@ -67,6 +82,9 @@ namespace FailuresManagement
             return true;
         }
 
+        /*
+         * Checks if a field contains some data, so it isn't null, or not.
+         */
         private bool IsFieldValid(object field, string fieldName)
         {
             if (field == null)
@@ -77,6 +95,10 @@ namespace FailuresManagement
             return true;
         }
 
+        /*
+         * Reverts all the insertions pending to be submitted to the database by deleting it so as to letting know the
+         * database there's nothing to be done.
+         */
         private void RevertChanges()
         {
             foreach (var insert in db.GetChangeSet().Inserts)
@@ -86,6 +108,13 @@ namespace FailuresManagement
             db.SubmitChanges();
         }
 
+        /*
+         * Manages the behavior of the "insert" button. If all the data is valid, checks if the customer is already into
+         * the database, and if it isn't, it inserts it. It inserts then the new interventions and then checks if every product
+         * inserted into the DataGridView is already present into the database and, if one is not, it inserts into the database.
+         * Finally, it inserts all the faults associated with this new intervention. At every stage, if something goes wrong,
+         * it rollbacks the insertions and issues a MessageBox with an error message.
+         */
         private void InsertButton_Click(object sender, EventArgs e)
         {
             lastInsertionTime = new DateTime(DateTime.Now.Year,
@@ -121,9 +150,9 @@ namespace FailuresManagement
                 CodiceOperatore = operatorCode,
                 Stato = 'A',
                 DataVisita = VisitDatePicker.Value,
-                Nazione = (from op in db.Operatori
-                           where op.Codice == operatorCode
-                           select op.NazioneCentro).Single()
+                Zona = (from op in db.Operatori
+                        where op.Codice == operatorCode
+                        select op.Centri_Assistenza.AreaCompetenza).Single()
             });
             if (AddProductsView.Rows.Count == 1)
             {
@@ -220,6 +249,9 @@ namespace FailuresManagement
             }
         }
 
+        /*
+         * Manages the behavior of the "clear" button. It simply empties the DataGridView and all the TextBox fields.
+         */
         private void ClearButton_Click(object sender, EventArgs e)
         {
             TelephoneBox.Text = null;
@@ -239,6 +271,14 @@ namespace FailuresManagement
             ClearButton.Enabled = false;
         }
 
+        /*
+         * Manages the behavior of the "delete" button. If valid data is still into the form, for each fault (or
+         * equally for each product) into the DataGridView it deletes it and checks if the associated product is
+         * used in another fault. If it is, then it doesn't try to delete it, otherwise it does. After deleting
+         * all the faults, if it successfully deleted all faults associated with an intervention, deletes the
+         * intervention itself. Then checks if the user associated to the intervention was into the database for
+         * other interventions or not. If she wasn't, it deletes her.
+         */
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             if (TelephoneBox.Text != "")
@@ -317,6 +357,12 @@ namespace FailuresManagement
             ClearButton_Click(sender, e);
         }
 
+        /*
+         * If this form is closed by user clicking on close button, and the closing event is not issued by the parent form,
+         * then close also the parent form. This is done because exiting the application is only allowed by default by
+         * closing all currently opened, so also opened but hidden, windows. When this form is showed, the parent form
+         * is currently hidden, so it cannot be closed unless we tell it to do so.
+         */
         private void OperatorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason != CloseReason.FormOwnerClosing)

@@ -8,6 +8,10 @@ using System.Windows.Forms;
 
 namespace FailuresManagement
 {
+    /// <summary>
+    /// Represents the forms accessed by a technician. It allows to insert new informations into a previously inserted
+    /// intervention which is still open.
+    /// </summary>
     public partial class TechnicianForm : Form
     {
         private const string MissingDataTitle = "Mancanza dati";
@@ -23,6 +27,12 @@ namespace FailuresManagement
         private GestioneGuastiDataContext db;
         private readonly decimal technicianCode;
 
+        /// <summary>
+        /// Default constructor. It needs the employee code of the technician accessing this form so as to associate it
+        /// with the intervention is going to edit so as to let the system know who performed the restoration work for this
+        /// intervention.
+        /// </summary>
+        /// <param name="technicianCode">The employee code of the technician accessing this form.</param>
         public TechnicianForm(decimal technicianCode)
         {
             this.technicianCode = technicianCode;
@@ -30,6 +40,9 @@ namespace FailuresManagement
             AcceptButton = EditButton;
         }
 
+        /*
+         * 
+         */
         private void InitTechnicianForm()
         {
             db = new GestioneGuastiDataContext();
@@ -193,6 +206,12 @@ namespace FailuresManagement
             }
         }
 
+        /*
+         * If this form is closed by user clicking on close button, and the closing event is not issued by the parent form,
+         * then close also the parent form. This is done because exiting the application is only allowed by default by
+         * closing all currently opened, so also opened but hidden, windows. When this form is showed, the parent form
+         * is currently hidden, so it cannot be closed unless we tell it to do so.
+         */
         private void TechnicianForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason != CloseReason.FormOwnerClosing)
