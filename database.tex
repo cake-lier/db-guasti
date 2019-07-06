@@ -1224,8 +1224,8 @@ L'applicazione nella sua struttura ricalca la divisione tra gli utenti che utili
 La schermata di login è estremamente essenziale e in quanto tale permette un'interazione con l'utente minimale. Qui l'utente può inserire il proprio codice dipendente ed accedere
 ad una seconda schermata con i dati di suo interesse, una diversa per ogni categoria di utente che utilizza il database. Oltre alle tre categorie elencate in precedenza - operatori,
 tecnici e progettisti - è stata considerata una quarta categoria di utenti, gli amministratori. Gli amministratori sono coloro che eseguono le operazioni che non appartengono ad una
-categoria specifica di utenti, perché cercano di ottenere informazioni generali, che riguardano i dipendenti che vi appartengono in generale, come ad esempio le prestazioni di ogni
-singolo dipendente. La loro schermata si preoccuperà perciò di mostrare le operazioni dalla V1 alla V4. Essendo senza un codice dipendente, per accedere alla loro interfaccia
+categoria specifica di utenti, perché cercano di ottenere informazioni generali che riguardano i dipendenti, come ad esempio le prestazioni di ognuno di essi.
+La loro schermata si preoccuperà perciò di mostrare le operazioni dalla V1 alla V4. Essendo senza un codice dipendente, per accedere alla loro interfaccia
 occorre digitare come codice dipendente il simbolo "*".
 
 \section{Schermata degli amministratori}
@@ -1243,7 +1243,7 @@ Un amministratore può passare in rassegna i dati inerenti alle operazioni di su
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{images/designerScreen.png}
-	\caption{Schema logico relazionale ottenuto dal paragrafo precedente}
+	\caption{Immagine della schermata per i progettisti}
 \end{figure}
 
 Un progettista, come un amministratore, può vedere i dati inerenti a ciascuna delle operazioni di sua competenza attraverso le \textit{tab} disponibili nella sua schermata. In particolar
@@ -1255,16 +1255,16 @@ la cui descrizione fatta dal tecnico contiene una determinata stringa di caratte
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{images/operatorScreen.png}
-	\caption{Schema logico relazionale ottenuto dal paragrafo precedente}
+	\caption{Immagine della schermata per gli operatori}
 \end{figure}
 
-Questa schermata invece permette una maggior interazione tra l'utente e il sistema, essendo stata progettata per inserire nuovi interventi e relativi guasti nel sistema. I campi di 
-testo iniziali servono per inserire i dati di un cliente e se non è mai stato inserito all'interno del \textit{database} sarà esso stesso a deciderlo con un controllo preventivo.
+Questa schermata invece permette una maggior interazione tra l'utente e il sistema, essendo stata progettata per inserire nuovi interventi e relativi guasti. I campi di 
+testo iniziali servono per inserire i dati di un cliente e se non è mai stato inserito all'interno del \textit{database} sarà il sistema stesso a deciderlo con un controllo preventivo.
 La griglia subito sotto permette di inserire i dati relativi ad un prodotto che ha subito un guasto - e anche in questo caso sarà il sistema in automatico a determinare se è già
 stato inserito in passato o meno - nonché sul guasto associato. Utilizzando i dati precedenti assieme a questi ultimi, inoltre, verrà aggiunto un nuovo \textit{record} inerente
-all'intervento appena aperto. Subito dopo che l'intervento è stato inserito, in caso di rilevato errore, con le informazioni ancora inseriti nel \textit{form}, è possibile rimuovere
-i dati inseriti per poterli correggere e reinserire successivamente tramite il tasto "Cancella". Se invece si è convinti dei dati inseriti, il pulsante "Pulisci" svuota tutti i
-campi del \textit{form} e permette di effettuare un nuovo inserimento da capo. Se parte dei dati sono stati rimossi, o alterati, il sistema cancellerà solamente quei dati che riuscirà
+all'intervento appena aperto. Subito dopo che l'intervento è stato inserito, in caso di rilevato errore, con le informazioni ancora presenti nel \textit{form}, è possibile rimuovere
+dalla base di dati le informazioni inviate tramite il tasto "Cancella". Se invece si è convinti dei dati inseriti, il pulsante "Pulisci" svuota tutti i
+campi del \textit{form} e permette di effettuare un nuovo inserimento. Se parte dei dati sono stati rimossi, o alterati, il sistema cancellerà solamente quei dati che riuscirà
 a trovare nel \textit{database}, a patto che non siano utili per identificare altri interventi o altri guasti.
 
 \section{Schermata dei tecnici}
@@ -1272,7 +1272,7 @@ a trovare nel \textit{database}, a patto che non siano utili per identificare al
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{images/technicianScreen.png}
-	\caption{Schema logico relazionale ottenuto dal paragrafo precedente}
+	\caption{Immagine della schermata per i tecnici}
 \end{figure}
 
 Un tecnico si trova davanti ad una schermata inizialmente con un solo riquadro riempito con una griglia. Questa contiene informazioni sugli interventi che sono ancora aperti e che
