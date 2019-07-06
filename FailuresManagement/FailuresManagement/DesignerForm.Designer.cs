@@ -47,8 +47,8 @@
             this.TopSparePartsView = new System.Windows.Forms.DataGridView();
             this.CostSpareParts = new System.Windows.Forms.TabPage();
             this.TopCostSparePartsView = new System.Windows.Forms.DataGridView();
-            this.Countries = new System.Windows.Forms.TabPage();
-            this.TopNations = new System.Windows.Forms.DataGridView();
+            this.Zones = new System.Windows.Forms.TabPage();
+            this.TopZones = new System.Windows.Forms.DataGridView();
             this.TTFPurchase = new System.Windows.Forms.TabPage();
             this.TTFPurchaseView = new System.Windows.Forms.DataGridView();
             this.TTFInstallation = new System.Windows.Forms.TabPage();
@@ -68,8 +68,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.TopSparePartsView)).BeginInit();
             this.CostSpareParts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TopCostSparePartsView)).BeginInit();
-            this.Countries.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TopNations)).BeginInit();
+            this.Zones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TopZones)).BeginInit();
             this.TTFPurchase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TTFPurchaseView)).BeginInit();
             this.TTFInstallation.SuspendLayout();
@@ -86,7 +86,7 @@
             this.DesignerView.Controls.Add(this.ComponentCode);
             this.DesignerView.Controls.Add(this.NumberSpareParts);
             this.DesignerView.Controls.Add(this.CostSpareParts);
-            this.DesignerView.Controls.Add(this.Countries);
+            this.DesignerView.Controls.Add(this.Zones);
             this.DesignerView.Controls.Add(this.TTFPurchase);
             this.DesignerView.Controls.Add(this.TTFInstallation);
             this.DesignerView.Controls.Add(this.AvgTime);
@@ -166,10 +166,10 @@
             // ViewAll
             // 
             this.ViewAll.Controls.Add(this.AllFaultsView);
-            this.ViewAll.Location = new System.Drawing.Point(4, 54);
+            this.ViewAll.Location = new System.Drawing.Point(4, 25);
             this.ViewAll.Name = "ViewAll";
             this.ViewAll.Padding = new System.Windows.Forms.Padding(3);
-            this.ViewAll.Size = new System.Drawing.Size(1056, 621);
+            this.ViewAll.Size = new System.Drawing.Size(1056, 650);
             this.ViewAll.TabIndex = 1;
             this.ViewAll.Text = "Tutti i guasti";
             this.ViewAll.UseVisualStyleBackColor = true;
@@ -184,15 +184,15 @@
             this.AllFaultsView.Location = new System.Drawing.Point(3, 3);
             this.AllFaultsView.Name = "AllFaultsView";
             this.AllFaultsView.ReadOnly = true;
-            this.AllFaultsView.Size = new System.Drawing.Size(1050, 615);
+            this.AllFaultsView.Size = new System.Drawing.Size(1050, 644);
             this.AllFaultsView.TabIndex = 0;
             // 
             // PNC
             // 
             this.PNC.Controls.Add(this.TopPNCView);
-            this.PNC.Location = new System.Drawing.Point(4, 54);
+            this.PNC.Location = new System.Drawing.Point(4, 25);
             this.PNC.Name = "PNC";
-            this.PNC.Size = new System.Drawing.Size(1056, 621);
+            this.PNC.Size = new System.Drawing.Size(1056, 650);
             this.PNC.TabIndex = 2;
             this.PNC.Text = "Top 5 PNC";
             this.PNC.UseVisualStyleBackColor = true;
@@ -207,15 +207,15 @@
             this.TopPNCView.Location = new System.Drawing.Point(0, 0);
             this.TopPNCView.Name = "TopPNCView";
             this.TopPNCView.ReadOnly = true;
-            this.TopPNCView.Size = new System.Drawing.Size(1056, 621);
+            this.TopPNCView.Size = new System.Drawing.Size(1056, 650);
             this.TopPNCView.TabIndex = 0;
             // 
             // ComponentCode
             // 
             this.ComponentCode.Controls.Add(this.TopComponentCodeView);
-            this.ComponentCode.Location = new System.Drawing.Point(4, 54);
+            this.ComponentCode.Location = new System.Drawing.Point(4, 25);
             this.ComponentCode.Name = "ComponentCode";
-            this.ComponentCode.Size = new System.Drawing.Size(1056, 621);
+            this.ComponentCode.Size = new System.Drawing.Size(1056, 650);
             this.ComponentCode.TabIndex = 3;
             this.ComponentCode.Text = "Top 5 Component Code";
             this.ComponentCode.UseVisualStyleBackColor = true;
@@ -230,15 +230,15 @@
             this.TopComponentCodeView.Location = new System.Drawing.Point(0, 0);
             this.TopComponentCodeView.Name = "TopComponentCodeView";
             this.TopComponentCodeView.ReadOnly = true;
-            this.TopComponentCodeView.Size = new System.Drawing.Size(1056, 621);
+            this.TopComponentCodeView.Size = new System.Drawing.Size(1056, 650);
             this.TopComponentCodeView.TabIndex = 0;
             // 
             // NumberSpareParts
             // 
             this.NumberSpareParts.Controls.Add(this.TopSparePartsView);
-            this.NumberSpareParts.Location = new System.Drawing.Point(4, 54);
+            this.NumberSpareParts.Location = new System.Drawing.Point(4, 25);
             this.NumberSpareParts.Name = "NumberSpareParts";
-            this.NumberSpareParts.Size = new System.Drawing.Size(1056, 621);
+            this.NumberSpareParts.Size = new System.Drawing.Size(1056, 650);
             this.NumberSpareParts.TabIndex = 4;
             this.NumberSpareParts.Text = "Top 5 Ricambi Usati";
             this.NumberSpareParts.UseVisualStyleBackColor = true;
@@ -253,15 +253,15 @@
             this.TopSparePartsView.Location = new System.Drawing.Point(0, 0);
             this.TopSparePartsView.Name = "TopSparePartsView";
             this.TopSparePartsView.ReadOnly = true;
-            this.TopSparePartsView.Size = new System.Drawing.Size(1056, 621);
+            this.TopSparePartsView.Size = new System.Drawing.Size(1056, 650);
             this.TopSparePartsView.TabIndex = 0;
             // 
             // CostSpareParts
             // 
             this.CostSpareParts.Controls.Add(this.TopCostSparePartsView);
-            this.CostSpareParts.Location = new System.Drawing.Point(4, 54);
+            this.CostSpareParts.Location = new System.Drawing.Point(4, 25);
             this.CostSpareParts.Name = "CostSpareParts";
-            this.CostSpareParts.Size = new System.Drawing.Size(1056, 621);
+            this.CostSpareParts.Size = new System.Drawing.Size(1056, 650);
             this.CostSpareParts.TabIndex = 5;
             this.CostSpareParts.Text = "Top 5 Interventi più costosi";
             this.CostSpareParts.UseVisualStyleBackColor = true;
@@ -276,38 +276,38 @@
             this.TopCostSparePartsView.Location = new System.Drawing.Point(0, 0);
             this.TopCostSparePartsView.Name = "TopCostSparePartsView";
             this.TopCostSparePartsView.ReadOnly = true;
-            this.TopCostSparePartsView.Size = new System.Drawing.Size(1056, 621);
+            this.TopCostSparePartsView.Size = new System.Drawing.Size(1056, 650);
             this.TopCostSparePartsView.TabIndex = 0;
             // 
-            // Countries
+            // Zones
             // 
-            this.Countries.Controls.Add(this.TopNations);
-            this.Countries.Location = new System.Drawing.Point(4, 54);
-            this.Countries.Name = "Countries";
-            this.Countries.Size = new System.Drawing.Size(1056, 621);
-            this.Countries.TabIndex = 6;
-            this.Countries.Text = "Top 5 Paesi";
-            this.Countries.UseVisualStyleBackColor = true;
+            this.Zones.Controls.Add(this.TopZones);
+            this.Zones.Location = new System.Drawing.Point(4, 46);
+            this.Zones.Name = "Zones";
+            this.Zones.Size = new System.Drawing.Size(1056, 629);
+            this.Zones.TabIndex = 6;
+            this.Zones.Text = "Top 5 Zone";
+            this.Zones.UseVisualStyleBackColor = true;
             // 
-            // TopNations
+            // TopZones
             // 
-            this.TopNations.AllowUserToAddRows = false;
-            this.TopNations.AllowUserToDeleteRows = false;
-            this.TopNations.AllowUserToOrderColumns = true;
-            this.TopNations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TopNations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TopNations.Location = new System.Drawing.Point(0, 0);
-            this.TopNations.Name = "TopNations";
-            this.TopNations.ReadOnly = true;
-            this.TopNations.Size = new System.Drawing.Size(1056, 621);
-            this.TopNations.TabIndex = 0;
+            this.TopZones.AllowUserToAddRows = false;
+            this.TopZones.AllowUserToDeleteRows = false;
+            this.TopZones.AllowUserToOrderColumns = true;
+            this.TopZones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TopZones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TopZones.Location = new System.Drawing.Point(0, 0);
+            this.TopZones.Name = "TopZones";
+            this.TopZones.ReadOnly = true;
+            this.TopZones.Size = new System.Drawing.Size(1056, 629);
+            this.TopZones.TabIndex = 0;
             // 
             // TTFPurchase
             // 
             this.TTFPurchase.Controls.Add(this.TTFPurchaseView);
-            this.TTFPurchase.Location = new System.Drawing.Point(4, 54);
+            this.TTFPurchase.Location = new System.Drawing.Point(4, 25);
             this.TTFPurchase.Name = "TTFPurchase";
-            this.TTFPurchase.Size = new System.Drawing.Size(1056, 621);
+            this.TTFPurchase.Size = new System.Drawing.Size(1056, 650);
             this.TTFPurchase.TabIndex = 7;
             this.TTFPurchase.Text = "TTF da Acquisto";
             this.TTFPurchase.UseVisualStyleBackColor = true;
@@ -322,15 +322,15 @@
             this.TTFPurchaseView.Location = new System.Drawing.Point(0, 0);
             this.TTFPurchaseView.Name = "TTFPurchaseView";
             this.TTFPurchaseView.ReadOnly = true;
-            this.TTFPurchaseView.Size = new System.Drawing.Size(1056, 621);
+            this.TTFPurchaseView.Size = new System.Drawing.Size(1056, 650);
             this.TTFPurchaseView.TabIndex = 0;
             // 
             // TTFInstallation
             // 
             this.TTFInstallation.Controls.Add(this.TTFInstallationView);
-            this.TTFInstallation.Location = new System.Drawing.Point(4, 54);
+            this.TTFInstallation.Location = new System.Drawing.Point(4, 46);
             this.TTFInstallation.Name = "TTFInstallation";
-            this.TTFInstallation.Size = new System.Drawing.Size(1056, 621);
+            this.TTFInstallation.Size = new System.Drawing.Size(1056, 629);
             this.TTFInstallation.TabIndex = 8;
             this.TTFInstallation.Text = "TTF da Installazione";
             this.TTFInstallation.UseVisualStyleBackColor = true;
@@ -345,15 +345,15 @@
             this.TTFInstallationView.Location = new System.Drawing.Point(0, 0);
             this.TTFInstallationView.Name = "TTFInstallationView";
             this.TTFInstallationView.ReadOnly = true;
-            this.TTFInstallationView.Size = new System.Drawing.Size(1056, 621);
+            this.TTFInstallationView.Size = new System.Drawing.Size(1056, 629);
             this.TTFInstallationView.TabIndex = 0;
             // 
             // AvgTime
             // 
             this.AvgTime.Controls.Add(this.AvgTimeView);
-            this.AvgTime.Location = new System.Drawing.Point(4, 54);
+            this.AvgTime.Location = new System.Drawing.Point(4, 46);
             this.AvgTime.Name = "AvgTime";
-            this.AvgTime.Size = new System.Drawing.Size(1056, 621);
+            this.AvgTime.Size = new System.Drawing.Size(1056, 629);
             this.AvgTime.TabIndex = 9;
             this.AvgTime.Text = "Media tempistiche";
             this.AvgTime.UseVisualStyleBackColor = true;
@@ -368,7 +368,7 @@
             this.AvgTimeView.Location = new System.Drawing.Point(0, 0);
             this.AvgTimeView.Name = "AvgTimeView";
             this.AvgTimeView.ReadOnly = true;
-            this.AvgTimeView.Size = new System.Drawing.Size(1056, 621);
+            this.AvgTimeView.Size = new System.Drawing.Size(1056, 629);
             this.AvgTimeView.TabIndex = 0;
             // 
             // DesignerForm
@@ -399,8 +399,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.TopSparePartsView)).EndInit();
             this.CostSpareParts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TopCostSparePartsView)).EndInit();
-            this.Countries.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.TopNations)).EndInit();
+            this.Zones.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TopZones)).EndInit();
             this.TTFPurchase.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TTFPurchaseView)).EndInit();
             this.TTFInstallation.ResumeLayout(false);
@@ -428,8 +428,8 @@
         private System.Windows.Forms.DataGridView TopSparePartsView;
         private System.Windows.Forms.TabPage CostSpareParts;
         private System.Windows.Forms.DataGridView TopCostSparePartsView;
-        private System.Windows.Forms.TabPage Countries;
-        private System.Windows.Forms.DataGridView TopNations;
+        private System.Windows.Forms.TabPage Zones;
+        private System.Windows.Forms.DataGridView TopZones;
         private System.Windows.Forms.TabPage TTFPurchase;
         private System.Windows.Forms.DataGridView TTFPurchaseView;
         private System.Windows.Forms.TabPage TTFInstallation;

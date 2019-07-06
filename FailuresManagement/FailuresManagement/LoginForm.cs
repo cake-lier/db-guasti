@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace FailuresManagement
 {
+    /// <summary>
+    /// Represents the main form, which is the "login" form which allow user to "get in" into the system.
+    /// </summary>
     public partial class MainWindow : Form
     {
         private const string CredentialsErrorTitle = "Credenziali sbagliate";
@@ -16,6 +19,9 @@ namespace FailuresManagement
 
         private readonly GestioneGuastiDataContext db;
 
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public MainWindow()
         {
             db = new GestioneGuastiDataContext();
@@ -23,6 +29,9 @@ namespace FailuresManagement
             MaximizeBox = false;
         }
 
+        /*
+         * Factorizes the launch of a subform having this form as parent form.
+         */
         private void LaunchSubForm(Form subform)
         {
             Hide();
@@ -30,6 +39,10 @@ namespace FailuresManagement
             subform.Show();
         }
 
+        /*
+         * Manages what happens on a click by the user over the "login" button. If credentials are correct, launch one
+         * of the possible subforms: "management", "designer", "operator", "technician". Otherwise show an error MessageBox.
+         */
         private void LoginButton_Click(object sender, EventArgs e)
         {
             try

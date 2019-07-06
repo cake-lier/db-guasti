@@ -6,11 +6,20 @@ using System.Windows.Forms;
 
 namespace FailuresManagement
 {
+    /// <summary>
+    /// Represents the form used by the designers of the company. It allows to show statistics over faults during the
+    /// current month and search for keywords into their description.
+    /// </summary>
     public partial class DesignerForm : Form
     {
         private readonly IQueryable<decimal> designerCategories;
         private readonly GestioneGuastiDataContext db;
 
+        /// <summary>
+        /// Default constructor. Needs the employee code of the designer accessing the form, so as to show her only
+        /// the faults relevant to her analysis.
+        /// </summary>
+        /// <param name="designerCode">the employee code of the designer accessing this form</param>
         public DesignerForm(decimal designerCode)
         {
             db = new GestioneGuastiDataContext();
@@ -21,6 +30,9 @@ namespace FailuresManagement
             MaximizeBox = false;
         }
 
+        /*
+         * At loading time, prepares all the DataGridViews with data gathered from the database.
+         */
         private void DesignerForm_Load(object sender, EventArgs e)
         {
             AllFaultsView.DataSource = from row in db.AllFaults
@@ -41,7 +53,7 @@ namespace FailuresManagement
                                            Data_di_installazione = row.DataInstallazione.HasValue
                                                                 ? row.DataInstallazione.Value.ToShortDateString()
                                                                 : null,
-                                           row.Nazione,
+                                           row.Zona,
                                            Descrizione_cliente = row.DescrizioneCliente,
                                            Descrizione_tecnico = row.DescrizioneTecnico,
                                            Component_code = row.ComponentCode,
@@ -74,14 +86,14 @@ namespace FailuresManagement
                                                   Nome_del_componente = row.NomeComponente,
                                                   row.Numero
                                               };
-            TopNations.DataSource = from row in db.TopNations
+            TopZones.DataSource = from row in db.TopZones
                                     where designerCategories.Contains(row.CategoriaProdotto)
                                     select new
                                     {
                                         Categoria = (from c in db.Categorie
                                                      where c.Codice == row.CategoriaProdotto
                                                      select c.Nome).Single(),
-                                        row.Nazione,
+                                        row.Zona,
                                         row.Numero
                                     };
             TopSparePartsView.DataSource = from row in db.TopSpareParts
@@ -147,6 +159,11 @@ namespace FailuresManagement
                                              };
         }
 
+        /*
+         * Manages the behavior of the "search" button: it creates a new query having as a result all faults of this month
+         * which have into the "technician description" field the string specified into the TextBox related to this button.
+         * Then shows the data by putting it into a DataGridView.
+         */
         private void SearchButton_Click(object sender, EventArgs e)
         {
             if (SearchBox.Text == "")
@@ -172,6 +189,12 @@ namespace FailuresManagement
                                     };
         }
 
+        /*
+         * If this form is closed by user clicking on close button, and the closing event is not issued by the parent form,
+         * then close also the parent form. This is done because exiting the application is only allowed by default by
+         * closing all currently opened, so also opened but hidden, windows. When this form is showed, the parent form
+         * is currently hidden, so it cannot be closed unless we tell it to do so.
+         */
         private void DesignerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason != CloseReason.FormOwnerClosing)
