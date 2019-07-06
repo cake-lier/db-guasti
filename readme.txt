@@ -8,7 +8,7 @@
 
 *   Per poter eseguire l'applicativo, basta fare doppio clic sopra ed utilizzarlo, non è necessario alcun tipo di installazione precedente.
     Il database è contenuto all'interno di un server cloud di Microsoft Azure e pertanto è possibile accedervi indipendentemente dalla
-    presenza di una copia locale dello stesso o meno.
+    presenza di una copia locale dello stesso o meno. Esso si trova attraverso il percorso ./FailuresManagement/FailuresManagement/bin/Release/FailuresManagement.exe
 
 *   Per ricreare il database da zero in locale è presente lo script "create_db.sql" che è stato fatto generare in automatico da Microsoft SQL
     Server Management Studio e testato su Windows 10 su SQL Server Management Studio stesso. Occorre prima creare il database, poi
